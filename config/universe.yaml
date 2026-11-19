@@ -1,0 +1,27 @@
+# universe.yaml — where Phase 3 (stock picking) may look for new candidates.
+# screen.py builds each expanded sector's universe from the TOP 10 holdings of the sector's
+# benchmark SPDR ETF (Yahoo fund data) plus the `additions` below, then applies these filters.
+
+region: US                               # US-listed common stocks that file with the SEC
+min_market_cap_usd: 10000000000          # $10B minimum market cap (Yahoo marketCap)
+min_avg_dollar_volume_usd: 50000000      # $50M minimum average daily dollar volume ...
+adv_window_days: 63                      # ... measured over the last 63 trading days (~3 months)
+max_candidates_per_sector: 6             # shortlist cap per sector (mirrors committee.yaml phase3.shortlist_size)
+
+# Tickers never proposed (normalized Yahoo style, quoted), e.g. ["TSLA", "BRK-A"]
+exclusions: []
+
+# Extra candidates per sector on top of the ETF top-10 (quoted tickers), e.g.
+#   health_care: ["VRTX", "ISRG"]
+additions:
+  information_technology: []
+  health_care: []
+  financials: []
+  energy: []
+  industrials: []
+  consumer_discretionary: []
+  consumer_staples: []
+  utilities: []
+  materials: []
+  real_estate: []
+  communication_services: []

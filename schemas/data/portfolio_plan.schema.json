@@ -1,0 +1,402 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/portfolio_plan",
+  "title": "portfolio_plan/v1 (portfolio_preview.json / portfolio_plan.json)",
+  "description": "portfolio.py output (DESIGN 4.11).",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "base_currency",
+    "fx_usdils",
+    "total_value_usd",
+    "cash",
+    "positions",
+    "sectors",
+    "constraint_checks",
+    "notes"
+  ],
+  "properties": {
+    "schema": {
+      "enum": [
+        "portfolio_plan/v1",
+        "portfolio_preview/v1"
+      ]
+    },
+    "base_currency": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "fx_usdils": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact_or_null"
+    },
+    "total_value_usd": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "cash": {
+      "type": "object",
+      "required": [
+        "current_pct",
+        "target_pct",
+        "post_pct"
+      ],
+      "properties": {
+        "current_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "target_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "post_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "positions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ticker",
+          "asset_type",
+          "sector",
+          "action",
+          "weight_cur_pct",
+          "weight_tgt_pct",
+          "trade"
+        ],
+        "properties": {
+          "ticker": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+          },
+          "asset_type": {
+            "enum": [
+              "stock",
+              "fund"
+            ]
+          },
+          "sector": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/holding_sector"
+          },
+          "action": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/any_action"
+          },
+          "action_source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "price": {
+            "anyOf": [
+              {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              {
+                "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+              }
+            ]
+          },
+          "shares_cur": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "value_usd_cur": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "weight_cur_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "weight_tgt_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "trade": {
+            "type": "object",
+            "required": [
+              "side",
+              "shares",
+              "value_usd"
+            ],
+            "properties": {
+              "side": {
+                "enum": [
+                  "BUY",
+                  "SELL",
+                  "NONE"
+                ]
+              },
+              "shares": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "value_usd": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "value_ils": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": true
+          },
+          "dropped_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "effective_action": {
+            "description": "What the plan actually does: equals action unless a TRIM/SELL trade was dropped (rounds_to_zero_shares, below_min_trade_usd, no_price ...), in which case HOLD. The verdict (action) is never changed.",
+            "$ref": "urn:agent-investors:common_defs#/$defs/any_action"
+          },
+          "effective_action_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "trade_pct_of_position": {
+            "description": "Shares sold / shares held (0..1); null without a share count.",
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "exit_kind": {
+            "enum": [
+              "none",
+              "partial",
+              "full"
+            ]
+          },
+          "tax": {
+            "type": "object",
+            "properties": {
+              "applicable": {
+                "type": "boolean"
+              },
+              "est_gain_usd": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "est_tax_usd": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "note": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "sectors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sector",
+          "cur_lookthrough_pct",
+          "post_lookthrough_pct",
+          "target_pct",
+          "max_pct",
+          "gap_pp",
+          "breach"
+        ],
+        "properties": {
+          "sector": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/sector_or_cash"
+          },
+          "cur_lookthrough_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "post_lookthrough_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "target_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "max_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "gap_pp": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "breach": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "residual_breaches": {
+      "description": "Sectors still above their limit after the planned trades (the stock trims cannot cure them: the rest sits in funds).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sector",
+          "post_pct",
+          "limit_pct",
+          "excess_pp",
+          "stock_trim_pp",
+          "fund_contributions",
+          "note"
+        ],
+        "properties": {
+          "sector": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/sector_or_cash"
+          },
+          "post_pct": {
+            "type": "number"
+          },
+          "limit_pct": {
+            "type": "number"
+          },
+          "max_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "excess_pp": {
+            "type": "number"
+          },
+          "stock_trim_pp": {
+            "type": "number"
+          },
+          "fund_contributions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "ticker",
+                "weight_pct",
+                "sector_pct_of_portfolio"
+              ],
+              "properties": {
+                "ticker": {
+                  "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+                },
+                "weight_pct": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "sector_pct_of_portfolio": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "constraint_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "check",
+          "status",
+          "detail"
+        ],
+        "properties": {
+          "check": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "pass",
+              "warn",
+              "fail"
+            ]
+          },
+          "detail": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

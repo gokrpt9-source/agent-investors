@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "TSLA",
+ "longName": "Tesla, Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Consumer Cyclical",
+ "marketCap": 1400000000000.0
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "evidence/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [],
+  "missing_data": [],
+  "flags": [],
+  "reports": {
+    "runs/x/phase2/reports/fundamental_KO.json": {
+      "agent_role": "fundamental",
+      "ticker": "KO",
+      "status": "ok",
+      "score": 7,
+      "start": 10,
+      "floor": 1,
+      "deductions": [
+        {
+          "rule": "few_sources",
+          "detail": "2 distinct URLs",
+          "points": 2
+        },
+        {
+          "rule": "missing_data",
+          "detail": "1 item",
+          "points": -1
+        }
+      ]
+    }
+  }
+}

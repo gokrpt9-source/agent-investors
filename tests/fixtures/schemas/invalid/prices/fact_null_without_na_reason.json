@@ -1,0 +1,542 @@
+{
+  "schema": "prices/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:PG",
+      "url": "https://finance.yahoo.com/quote/PG/history/",
+      "title": "PG daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:JPM",
+      "url": "https://finance.yahoo.com/quote/JPM/history/",
+      "title": "JPM daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:BRK-B",
+      "url": "https://finance.yahoo.com/quote/BRK-B/history/",
+      "title": "BRK-B daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:QQQ",
+      "url": "https://finance.yahoo.com/quote/QQQ/history/",
+      "title": "QQQ daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:SPMO",
+      "url": "https://finance.yahoo.com/quote/SPMO/history/",
+      "title": "SPMO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:XLP",
+      "url": "https://finance.yahoo.com/quote/XLP/history/",
+      "title": "XLP daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "tickers": {
+    "KO": {
+      "last_close": {
+        "value": null,
+        "unit": "USD/share",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_KO.csv"
+    },
+    "PG": {
+      "last_close": {
+        "value": 158.2,
+        "unit": "USD/share",
+        "source_id": "D:PX:PG",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:PG",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:PG",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:PG",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:PG",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:PG",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_PG.csv"
+    },
+    "JPM": {
+      "last_close": {
+        "value": 301.5,
+        "unit": "USD/share",
+        "source_id": "D:PX:JPM",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:JPM",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:JPM",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:JPM",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:JPM",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:JPM",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_JPM.csv"
+    },
+    "BRK-B": {
+      "last_close": {
+        "value": 472.1,
+        "unit": "USD/share",
+        "source_id": "D:PX:BRK-B",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:BRK-B",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:BRK-B",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:BRK-B",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:BRK-B",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:BRK-B",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_BRK-B.csv"
+    },
+    "QQQ": {
+      "last_close": {
+        "value": 590.4,
+        "unit": "USD/share",
+        "source_id": "D:PX:QQQ",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:QQQ",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:QQQ",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:QQQ",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:QQQ",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:QQQ",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_QQQ.csv"
+    },
+    "SPMO": {
+      "last_close": {
+        "value": 108.3,
+        "unit": "USD/share",
+        "source_id": "D:PX:SPMO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:SPMO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:SPMO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:SPMO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:SPMO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:SPMO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_SPMO.csv"
+    },
+    "SPY": {
+      "last_close": {
+        "value": 655.0,
+        "unit": "USD/share",
+        "source_id": "D:PX:SPY",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:SPY",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:SPY",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:SPY",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:SPY",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:SPY",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_SPY.csv"
+    },
+    "XLP": {
+      "last_close": {
+        "value": 80.1,
+        "unit": "USD/share",
+        "source_id": "D:PX:XLP",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "last_date": "2026-10-02",
+      "first_date": "2023-10-02",
+      "rows": 753,
+      "provider": "yfinance",
+      "stale": false,
+      "adv_usd_63d": {
+        "value": 980000000.0,
+        "unit": "USD",
+        "source_id": "D:PX:XLP",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "returns_pct": {
+        "1m": {
+          "value": 1.2,
+          "unit": "pct",
+          "source_id": "D:PX:XLP",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "3m": {
+          "value": -0.8,
+          "unit": "pct",
+          "source_id": "D:PX:XLP",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "6m": {
+          "value": 2.5,
+          "unit": "pct",
+          "source_id": "D:PX:XLP",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "12m": {
+          "value": 4.0,
+          "unit": "pct",
+          "source_id": "D:PX:XLP",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "series_path": "data/cache/prices/prices_XLP.csv"
+    }
+  },
+  "failed": {},
+  "fx": {
+    "usdils": {
+      "value": 3.7,
+      "unit": "ILS/USD",
+      "source_id": "D:PX:ILS=X",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    }
+  }
+}

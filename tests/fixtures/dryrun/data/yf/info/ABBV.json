@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "ABBV",
+ "longName": "AbbVie Inc.",
+ "shortName": "AbbVie Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 214.6,
+ "regularMarketPrice": 214.6,
+ "sector": "Healthcare",
+ "industry": "Drug Manufacturers - General",
+ "sharesOutstanding": 1767000000,
+ "impliedSharesOutstanding": 1767000000,
+ "marketCap": 379198200000
+}

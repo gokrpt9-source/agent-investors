@@ -1,0 +1,69 @@
+{
+ "cik": "0000080424",
+ "entityType": "operating",
+ "sic": "2840",
+ "sicDescription": "Perfumes, Cosmetics & Other Toilet Preparations",
+ "name": "PROCTER & GAMBLE Co",
+ "tickers": [
+  "PG"
+ ],
+ "exchanges": [
+  "NYSE"
+ ],
+ "fiscalYearEnd": "1231",
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "filings": {
+  "recent": {
+   "accessionNumber": [
+    "0000080424-26-000041",
+    "0000080424-26-000040",
+    "0000080424-26-000032",
+    "0000080424-26-000039",
+    "0000080424-26-000031",
+    "0000080424-26-000038",
+    "0000080424-26-000014",
+    "0000080424-25-000013"
+   ],
+   "filingDate": [
+    "2026-09-15",
+    "2026-08-20",
+    "2026-08-04",
+    "2026-07-28",
+    "2026-05-01",
+    "2026-03-20",
+    "2026-02-12",
+    "2025-02-14"
+   ],
+   "reportDate": [
+    null,
+    null,
+    "2026-06-30",
+    null,
+    "2026-03-31",
+    null,
+    "2025-12-31",
+    "2024-12-31"
+   ],
+   "form": [
+    "8-K",
+    "4",
+    "10-Q",
+    "8-K",
+    "10-Q",
+    "DEF 14A",
+    "10-K",
+    "10-K"
+   ],
+   "primaryDocument": [
+    "pg-8k-20260915.htm",
+    "form4.xml",
+    "pg-20260630.htm",
+    "pg-8k-20260728.htm",
+    "pg-20260331.htm",
+    "pg-def14a.htm",
+    "pg-20251231.htm",
+    "pg-20241231.htm"
+   ]
+  }
+ }
+}

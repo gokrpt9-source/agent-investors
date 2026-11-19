@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/valuation",
+  "title": "valuation/v1 (valuation_<T>.json)",
+  "description": "valuation.py output (DESIGN 4.4).",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "ticker",
+    "price",
+    "shares",
+    "net_debt",
+    "base_cf",
+    "reverse_dcf",
+    "cells",
+    "methods_available"
+  ],
+  "properties": {
+    "schema": {
+      "const": "valuation/v1"
+    },
+    "ticker": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+    },
+    "price": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "shares": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "net_debt": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact",
+      "description": "Net debt actually deducted from enterprise value (see net_debt_basis)."
+    },
+    "net_debt_basis": {
+      "enum": [
+        "consolidated",
+        "captive_excluded",
+        "override"
+      ],
+      "description": "consolidated = reported net debt; captive_excluded = captive-finance ticker, net debt taken as 0; override = configured industrial fraction of consolidated net debt."
+    },
+    "net_debt_consolidated": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact",
+      "description": "Reported consolidated net debt (kept for reference when net_debt_basis is not consolidated)."
+    },
+    "base_cf": {
+      "type": "object",
+      "required": [
+        "nopat",
+        "fcf"
+      ],
+      "properties": {
+        "nopat": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "fcf": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "reverse_dcf": {
+      "type": "object",
+      "required": [
+        "implied_growth_pct",
+        "assumptions"
+      ],
+      "properties": {
+        "implied_growth_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "assumptions": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "cells": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cell"
+      }
+    },
+    "methods_available": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "dcf_nopat",
+          "dcf_fcf",
+          "pe",
+          "ev_ebit",
+          "p_b"
+        ]
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "cell": {
+      "type": "object",
+      "required": [
+        "id",
+        "method",
+        "params",
+        "fv_per_share",
+        "tv_share",
+        "flags",
+        "na_reason"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\S+$"
+        },
+        "method": {
+          "enum": [
+            "dcf_nopat",
+            "dcf_fcf",
+            "pe",
+            "ev_ebit",
+            "p_b"
+          ]
+        },
+        "params": {
+          "type": "object"
+        },
+        "fv_per_share": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "tv_share": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "flags": {
+          "type": "array"
+        },
+        "na_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

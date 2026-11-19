@@ -1,0 +1,400 @@
+{
+  "schema": "aggregate/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "tickers": {
+    "KO": {
+      "kind": "holding",
+      "asset_type": "stock",
+      "sector": "consumer_staples",
+      "sector_class": "default",
+      "inputs": {
+        "price": {
+          "value": 69.85,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 8.0,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": 22.0,
+        "cio_target_pct": 18.0,
+        "limit_breach": false
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "x",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 6,
+          "effective_conviction": 5,
+          "evidence": 7,
+          "in_mean": true
+        }
+      ],
+      "conviction_mean": 5.6,
+      "da": {
+        "path": "x",
+        "verdict": "damaged",
+        "adj": -1
+      },
+      "agg_conviction": 12,
+      "agg_evidence": 7.2,
+      "rr": {
+        "price": 69.85,
+        "fv_base": 67.9,
+        "invalidation": 65.9,
+        "invalidation_source": "technical_report",
+        "upside_pct": 1.0,
+        "downside_pct": 1.0,
+        "rr": 0.9,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [
+          {
+            "flag_id": "osint:F2",
+            "severity": "medium"
+          },
+          {
+            "flag_id": "osint:F1",
+            "severity": "high",
+            "must_address": true
+          }
+        ],
+        "unresolved": [
+          {
+            "flag_id": "osint:F1",
+            "severity": "high",
+            "must_address": true
+          }
+        ]
+      },
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "hold",
+          "test": "default",
+          "result": true
+        }
+      ]
+    },
+    "PG": {
+      "kind": "holding",
+      "asset_type": "stock",
+      "sector": "consumer_staples",
+      "sector_class": "default",
+      "inputs": {
+        "price": {
+          "value": 158.2,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 8.0,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": 22.0,
+        "cio_target_pct": 18.0,
+        "limit_breach": false
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "x",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 6,
+          "effective_conviction": 5,
+          "evidence": 7,
+          "in_mean": true
+        }
+      ],
+      "conviction_mean": 4.2,
+      "da": {
+        "path": "x",
+        "verdict": "damaged",
+        "adj": -1
+      },
+      "agg_conviction": 4.2,
+      "agg_evidence": 6.8,
+      "rr": {
+        "price": 158.2,
+        "fv_base": 67.9,
+        "invalidation": 65.9,
+        "invalidation_source": "technical_report",
+        "upside_pct": 1.0,
+        "downside_pct": 1.0,
+        "rr": 0.6,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "TRIM",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "hold",
+          "test": "default",
+          "result": true
+        }
+      ]
+    },
+    "JPM": {
+      "kind": "holding",
+      "asset_type": "stock",
+      "sector": "financials",
+      "sector_class": "financials",
+      "inputs": {
+        "price": {
+          "value": 301.5,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 8.0,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": 22.0,
+        "cio_target_pct": 18.0,
+        "limit_breach": false
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "x",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 6,
+          "effective_conviction": 5,
+          "evidence": 7,
+          "in_mean": true
+        }
+      ],
+      "conviction_mean": 6.1,
+      "da": {
+        "path": "x",
+        "verdict": "damaged",
+        "adj": -1
+      },
+      "agg_conviction": 6.1,
+      "agg_evidence": 7.0,
+      "rr": {
+        "price": 301.5,
+        "fv_base": 67.9,
+        "invalidation": 65.9,
+        "invalidation_source": "technical_report",
+        "upside_pct": 1.0,
+        "downside_pct": 1.0,
+        "rr": 1.4,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "hold",
+          "test": "default",
+          "result": true
+        }
+      ]
+    },
+    "BRK-B": {
+      "kind": "holding",
+      "asset_type": "stock",
+      "sector": "financials",
+      "sector_class": "financials",
+      "inputs": {
+        "price": {
+          "value": 472.1,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 8.0,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": 22.0,
+        "cio_target_pct": 18.0,
+        "limit_breach": false
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "x",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 6,
+          "effective_conviction": 5,
+          "evidence": 7,
+          "in_mean": true
+        }
+      ],
+      "conviction_mean": 6.4,
+      "da": {
+        "path": "x",
+        "verdict": "damaged",
+        "adj": -1
+      },
+      "agg_conviction": 6.4,
+      "agg_evidence": 6.9,
+      "rr": {
+        "price": 472.1,
+        "fv_base": 67.9,
+        "invalidation": 65.9,
+        "invalidation_source": "technical_report",
+        "upside_pct": 1.0,
+        "downside_pct": 1.0,
+        "rr": 1.1,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "hold",
+          "test": "default",
+          "result": true
+        }
+      ]
+    },
+    "QQQ": {
+      "kind": "holding",
+      "asset_type": "fund",
+      "sector": "funds",
+      "sector_class": "fund",
+      "inputs": {
+        "price": {
+          "value": 590.4,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 8.0,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": 22.0,
+        "cio_target_pct": 18.0,
+        "limit_breach": false
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "x",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 6,
+          "effective_conviction": 5,
+          "evidence": 7,
+          "in_mean": true
+        }
+      ],
+      "conviction_mean": 6.0,
+      "da": {
+        "path": "x",
+        "verdict": "damaged",
+        "adj": -1
+      },
+      "agg_conviction": 6.0,
+      "agg_evidence": 8.0,
+      "rr": null,
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "hold",
+          "test": "default",
+          "result": true
+        }
+      ]
+    },
+    "SPMO": {
+      "kind": "holding",
+      "asset_type": "fund",
+      "sector": "funds",
+      "sector_class": "fund",
+      "inputs": {
+        "price": {
+          "value": 108.3,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 8.0,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": 22.0,
+        "cio_target_pct": 18.0,
+        "limit_breach": false
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "x",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 6,
+          "effective_conviction": 5,
+          "evidence": 7,
+          "in_mean": true
+        }
+      ],
+      "conviction_mean": 5.8,
+      "da": {
+        "path": "x",
+        "verdict": "damaged",
+        "adj": -1
+      },
+      "agg_conviction": 5.8,
+      "agg_evidence": 7.5,
+      "rr": null,
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "hold",
+          "test": "default",
+          "result": true
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "_comment": "SYNTHETIC test data (not real fund composition)",
+  "quoteType": "EQUITY",
+  "sector": "Technology",
+  "marketCap": 3500000000000.0,
+  "currency": "USD"
+}

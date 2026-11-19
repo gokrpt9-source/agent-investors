@@ -1,0 +1,255 @@
+{
+  "schema": "macro/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "sources": [
+    {
+      "id": "D:FRED:DFF",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFF",
+      "title": "Federal Funds Effective Rate (FRED)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/macro.json"
+    },
+    {
+      "id": "D:FRED:CPIAUCSL",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL",
+      "title": "CPI for All Urban Consumers (FRED)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/macro.json"
+    },
+    {
+      "id": "D:FRED:DGS2",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
+      "title": "DGS2 (FRED)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:FRED:DGS10",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+      "title": "DGS10 (FRED)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:FRED:BAMLH0A0HYM2",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
+      "title": "BAMLH0A0HYM2 (FRED)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "series": {
+    "DFF": {
+      "name": "Effective Federal Funds Rate",
+      "units": "pct",
+      "frequency": "d",
+      "latest": {
+        "value": 3.88,
+        "unit": "pct",
+        "source_id": "D:FRED:DFF",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "observation_date": "2026-10-02",
+      "chg_3m": {
+        "value": -0.25,
+        "unit": "pp",
+        "source_id": "D:FRED:DFF",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "chg_12m": {
+        "value": -0.75,
+        "unit": "pp",
+        "source_id": "D:FRED:DFF",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "yoy_pct": null,
+      "history_tail": [
+        [
+          "2026-10-01",
+          3.88
+        ],
+        [
+          "2026-10-02",
+          3.88
+        ]
+      ]
+    },
+    "DGS2": {
+      "latest": {
+        "value": 3.55,
+        "unit": "pct",
+        "source_id": "D:FRED:DGS2",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "observation_date": "2026-10-02",
+      "frequency": "d",
+      "chg_3m": {
+        "value": -0.1,
+        "unit": "pp",
+        "source_id": "D:FRED:DGS2",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "chg_12m": {
+        "value": -0.5,
+        "unit": "pp",
+        "source_id": "D:FRED:DGS2",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "yoy_pct": null,
+      "history_tail": [
+        [
+          "2026-09-01",
+          3.55
+        ],
+        [
+          "2026-10-02",
+          3.55
+        ]
+      ]
+    },
+    "DGS10": {
+      "latest": {
+        "value": 4.05,
+        "unit": "pct",
+        "source_id": "D:FRED:DGS10",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "observation_date": "2026-10-02",
+      "frequency": "d",
+      "chg_3m": {
+        "value": -0.1,
+        "unit": "pp",
+        "source_id": "D:FRED:DGS10",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "chg_12m": {
+        "value": -0.5,
+        "unit": "pp",
+        "source_id": "D:FRED:DGS10",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "yoy_pct": null,
+      "history_tail": [
+        [
+          "2026-09-01",
+          4.05
+        ],
+        [
+          "2026-10-02",
+          4.05
+        ]
+      ]
+    },
+    "CPIAUCSL": {
+      "name": "CPI, All Urban Consumers (SA)",
+      "units": "index",
+      "frequency": "m",
+      "latest": {
+        "value": 331.2,
+        "unit": "index",
+        "source_id": "D:FRED:CPIAUCSL",
+        "as_of": "2026-08-31",
+        "kind": "macro",
+        "na_reason": null,
+        "observation_date": "2026-08-01"
+      },
+      "observation_date": "2026-08-01",
+      "chg_3m": {
+        "value": 0.6,
+        "unit": "pct",
+        "source_id": "D:FRED:CPIAUCSL",
+        "as_of": "2026-08-31",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "chg_12m": {
+        "value": 2.6,
+        "unit": "pct",
+        "source_id": "D:FRED:CPIAUCSL",
+        "as_of": "2026-08-31",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "yoy_pct": {
+        "value": 2.6,
+        "unit": "pct",
+        "source_id": "D:FRED:CPIAUCSL",
+        "as_of": "2026-08-31",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "history_tail": [
+        [
+          "2026-07-01",
+          330.6
+        ],
+        [
+          "2026-08-01",
+          331.2
+        ]
+      ]
+    },
+    "BAMLH0A0HYM2": {
+      "latest": {
+        "value": 3.1,
+        "unit": "pct",
+        "source_id": "D:FRED:BAMLH0A0HYM2",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "observation_date": "2026-10-02",
+      "frequency": "d",
+      "chg_3m": {
+        "value": -0.1,
+        "unit": "pp",
+        "source_id": "D:FRED:BAMLH0A0HYM2",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "chg_12m": {
+        "value": -0.5,
+        "unit": "pp",
+        "source_id": "D:FRED:BAMLH0A0HYM2",
+        "as_of": "2026-10-02",
+        "kind": "macro",
+        "na_reason": null
+      },
+      "yoy_pct": null,
+      "history_tail": [
+        [
+          "2026-09-01",
+          3.1
+        ],
+        [
+          "2026-10-02",
+          3.1
+        ]
+      ]
+    }
+  }
+}

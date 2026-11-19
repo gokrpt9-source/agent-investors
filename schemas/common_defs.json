@@ -1,0 +1,831 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:common_defs",
+  "title": "Shared definitions",
+  "description": "Shared $defs for every agent-output schema and data-file contract (docs/DESIGN.md sections 1 and 5). Referenced as urn:agent-investors:common_defs#/$defs/<name>.",
+  "$defs": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Calendar date YYYY-MM-DD."
+    },
+    "date_or_null": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$",
+      "description": "ISO-8601 timestamp with UTC offset (e.g. 2026-10-03T10:15:00+00:00)."
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{4}(_[A-Za-z0-9-]+)*$",
+      "description": "YYYY-MM-DD_HHMM with optional suffixes (_2, _dryrun, ...)."
+    },
+    "order_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.=-]{0,119}$",
+      "description": "Work-order id, e.g. p2-a-fundamental-KO, p2-sh-consumer_staples, p4-cio."
+    },
+    "ticker": {
+      "type": "string",
+      "pattern": "^\\^?[A-Z0-9][A-Z0-9.=-]{0,19}$",
+      "description": "Normalized ticker (upper case, '.' -> '-', e.g. BRK-B)."
+    },
+    "ticker_or_null": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ticker"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "comment": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Optional free-text note (used by the shipped examples). Ignored by every consumer."
+    },
+    "gics_sector": {
+      "enum": [
+        "information_technology",
+        "health_care",
+        "financials",
+        "energy",
+        "industrials",
+        "consumer_discretionary",
+        "consumer_staples",
+        "utilities",
+        "materials",
+        "real_estate",
+        "communication_services"
+      ],
+      "description": "One of the 11 GICS sector keys."
+    },
+    "sector_key": {
+      "enum": [
+        "information_technology",
+        "health_care",
+        "financials",
+        "energy",
+        "industrials",
+        "consumer_discretionary",
+        "consumer_staples",
+        "utilities",
+        "materials",
+        "real_estate",
+        "communication_services",
+        "funds"
+      ],
+      "description": "11 GICS sector keys plus the pseudo-sector 'funds' (ETF holdings)."
+    },
+    "gics_or_cash": {
+      "enum": [
+        "information_technology",
+        "health_care",
+        "financials",
+        "energy",
+        "industrials",
+        "consumer_discretionary",
+        "consumer_staples",
+        "utilities",
+        "materials",
+        "real_estate",
+        "communication_services",
+        "cash"
+      ]
+    },
+    "sector_or_cash": {
+      "enum": [
+        "information_technology",
+        "health_care",
+        "financials",
+        "energy",
+        "industrials",
+        "consumer_discretionary",
+        "consumer_staples",
+        "utilities",
+        "materials",
+        "real_estate",
+        "communication_services",
+        "cash",
+        "unclassified"
+      ],
+      "description": "Look-through bucket: 11 GICS sectors, cash, unclassified."
+    },
+    "holding_sector": {
+      "enum": [
+        "information_technology",
+        "health_care",
+        "financials",
+        "energy",
+        "industrials",
+        "consumer_discretionary",
+        "consumer_staples",
+        "utilities",
+        "materials",
+        "real_estate",
+        "communication_services",
+        "funds",
+        "unclassified"
+      ]
+    },
+    "role_key": {
+      "enum": [
+        "fundamental",
+        "technical",
+        "operator_ceo",
+        "industry_ops",
+        "osint",
+        "devils_advocate",
+        "etf",
+        "macro",
+        "cio",
+        "sector_head"
+      ]
+    },
+    "specialist_role": {
+      "enum": [
+        "fundamental",
+        "technical",
+        "operator_ceo",
+        "industry_ops",
+        "osint"
+      ]
+    },
+    "agent_type": {
+      "enum": [
+        "fundamental-analyst",
+        "technical-analyst",
+        "operator-ceo",
+        "industry-ops",
+        "osint-sentiment",
+        "devils-advocate",
+        "etf-analyst",
+        "macro-geopolitics",
+        "cio",
+        "sector-head"
+      ]
+    },
+    "severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "stance": {
+      "enum": [
+        "bullish",
+        "neutral",
+        "bearish"
+      ]
+    },
+    "fact_kind": {
+      "enum": [
+        "price",
+        "fundamental",
+        "macro",
+        "other"
+      ],
+      "description": "Drives the freshness rule in evidence_score.py."
+    },
+    "na_reason": {
+      "enum": [
+        "missing",
+        "not_meaningful",
+        "negative_denominator",
+        "insufficient_history",
+        "not_applicable"
+      ]
+    },
+    "holding_action": {
+      "enum": [
+        "ADD",
+        "HOLD",
+        "TRIM",
+        "SELL"
+      ]
+    },
+    "candidate_action": {
+      "enum": [
+        "BUY",
+        "PASS"
+      ]
+    },
+    "any_action": {
+      "enum": [
+        "ADD",
+        "HOLD",
+        "TRIM",
+        "SELL",
+        "BUY",
+        "PASS"
+      ]
+    },
+    "score_1_10": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "pct_0_100": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "pct_or_null": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "price_or_null": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "exclusiveMinimum": 0
+    },
+    "text_25w": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "x-max-words": 25,
+      "description": "Prose of at most 25 words. The word limit is enforced by scripts/validate.py; maxLength is only a coarse guard."
+    },
+    "text_40w": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "x-max-words": 40,
+      "description": "Prose of at most 40 words. The word limit is enforced by scripts/validate.py; maxLength is only a coarse guard."
+    },
+    "text_60w": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 480,
+      "x-max-words": 60,
+      "description": "Prose of at most 60 words. The word limit is enforced by scripts/validate.py; maxLength is only a coarse guard."
+    },
+    "text_80w": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 640,
+      "x-max-words": 80,
+      "description": "Prose of at most 80 words. The word limit is enforced by scripts/validate.py; maxLength is only a coarse guard."
+    },
+    "text_120w": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 960,
+      "x-max-words": 120,
+      "description": "Prose of at most 120 words. The word limit is enforced by scripts/validate.py; maxLength is only a coarse guard."
+    },
+    "text_150w": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200,
+      "x-max-words": 150,
+      "description": "Prose of at most 150 words. The word limit is enforced by scripts/validate.py; maxLength is only a coarse guard."
+    },
+    "justification": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 1200,
+      "x-min-words": 15,
+      "x-max-words": 150,
+      "description": "Written justification (>= 15 words; rendered in the memo's 'Overrides & Rule Deviations' section)."
+    },
+    "evidence_ref": {
+      "type": "string",
+      "pattern": "^\\S+$",
+      "maxLength": 120,
+      "description": "Id of an entry in this document's sources[] (e.g. D:SEC:KO:CF, W3)."
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence_ref"
+      },
+      "uniqueItems": true
+    },
+    "source_ids_min1": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence_ref"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "data_ref": {
+      "type": "string",
+      "pattern": "^[^#]+#/.*$",
+      "maxLength": 600,
+      "description": "<abs-or-repo-relative path>#<JSON pointer> into a script output, e.g. runs/2026-10-03_1015/phase2/data/fundamentals_KO.json#/ttm/revenue."
+    },
+    "missing_data": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 400
+      },
+      "description": "Plain-language list of figures/inputs that could not be sourced."
+    },
+    "source": {
+      "type": "object",
+      "description": "A cited source. Dataset sources (D:*) are copied verbatim from the work order's seed_sources; web sources use ids W1..Wn.",
+      "required": [
+        "id",
+        "url",
+        "title",
+        "accessed",
+        "kind"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "pattern": "^\\S+$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://\\S+$",
+          "maxLength": 2048,
+          "description": "Upstream http(s) URL. Local paths go in 'path'."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "accessed": {
+          "$ref": "#/$defs/date"
+        },
+        "kind": {
+          "enum": [
+            "dataset",
+            "web"
+          ]
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 600,
+          "description": "Local file holding the dataset (datasets only)."
+        }
+      },
+      "additionalProperties": true
+    },
+    "key_figure": {
+      "type": "object",
+      "description": "A number the agent relies on. value null => name must appear in missing_data (semantic check). A numeric value needs source_id and as_of; a numeric value citing a D:* dataset (except D:CFG:*) must carry data_ref and match the data file within 0.5%.",
+      "required": [
+        "name",
+        "value",
+        "unit",
+        "source_id",
+        "as_of",
+        "kind"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32,
+          "description": "pct | x | USD | USD/share | shares | days | ... (copied as given)."
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\S+$",
+          "maxLength": 120
+        },
+        "as_of": {
+          "$ref": "#/$defs/date_or_null"
+        },
+        "kind": {
+          "$ref": "#/$defs/fact_kind"
+        },
+        "data_ref": {
+          "$ref": "#/$defs/data_ref"
+        },
+        "filed": {
+          "$ref": "#/$defs/date_or_null"
+        },
+        "note": {
+          "$ref": "#/$defs/text_25w"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "then": {
+            "properties": {
+              "source_id": {
+                "type": "string"
+              },
+              "as_of": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "source_id": {
+                "type": "string",
+                "pattern": "^D:(?!CFG:)"
+              }
+            },
+            "required": [
+              "value",
+              "source_id"
+            ]
+          },
+          "then": {
+            "required": [
+              "data_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "red_flag": {
+      "type": "object",
+      "required": [
+        "id",
+        "flag",
+        "severity",
+        "must_address",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^F[0-9]+$",
+          "description": "F1, F2, ... unique within the report; referenced elsewhere as <role>:F<n>."
+        },
+        "flag": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+          "description": "What is wrong or needs checking (<= 40 words)"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "must_address": {
+          "type": "boolean",
+          "description": "true => another agent/the sector head must respond to it."
+        },
+        "source_ids": {
+          "$ref": "#/$defs/source_ids"
+        }
+      }
+    },
+    "flag_response": {
+      "type": "object",
+      "required": [
+        "flag_ref",
+        "status",
+        "note",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "flag_ref": {
+          "type": "string",
+          "pattern": "^[a-z_]+:F[0-9]+$",
+          "description": "<role>:F<n>, e.g. osint:F2."
+        },
+        "status": {
+          "enum": [
+            "mitigated",
+            "refuted",
+            "confirmed"
+          ],
+          "description": "mitigated/refuted resolve the flag; confirmed leaves it unresolved."
+        },
+        "note": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+          "description": "Why (<= 60 words)"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/source_ids"
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "required": [
+        "assessment",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "assessment": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+          "description": "Assessment (<= 60 words)"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/source_ids"
+        }
+      }
+    },
+    "strength": {
+      "type": "object",
+      "required": [
+        "point",
+        "evidence_refs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "point": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+          "description": "The strength (<= 40 words)"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/source_ids_min1"
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "required": [
+        "point",
+        "evidence_refs",
+        "severity"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "point": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+          "description": "The risk (<= 40 words)"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/source_ids_min1"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        }
+      }
+    },
+    "weights_map": {
+      "type": "object",
+      "description": "{bucket: percent 0-100}; buckets are GICS keys, cash, unclassified. Sum must be 100 +/- 0.5 (semantic check).",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/sector_or_cash"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/pct_0_100"
+      }
+    },
+    "constraint_override": {
+      "type": "object",
+      "description": "CIO target outside a macro sector bound.",
+      "required": [
+        "sector",
+        "macro_bound",
+        "macro_value",
+        "cio_target",
+        "justification"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "sector": {
+          "$ref": "#/$defs/gics_or_cash"
+        },
+        "macro_bound": {
+          "enum": [
+            "min",
+            "max"
+          ]
+        },
+        "macro_value": {
+          "$ref": "#/$defs/pct_0_100"
+        },
+        "cio_target": {
+          "$ref": "#/$defs/pct_0_100"
+        },
+        "justification": {
+          "$ref": "#/$defs/justification"
+        }
+      }
+    },
+    "fact": {
+      "type": "object",
+      "description": "Provenance-carrying number (DESIGN 1.1). value null => na_reason non-null.",
+      "required": [
+        "value",
+        "unit",
+        "source_id",
+        "as_of",
+        "kind",
+        "na_reason"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "as_of": {
+          "$ref": "#/$defs/date_or_null"
+        },
+        "kind": {
+          "$ref": "#/$defs/fact_kind"
+        },
+        "na_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/na_reason"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "filed": {
+          "$ref": "#/$defs/date_or_null"
+        },
+        "tag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "derivation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observation_date": {
+          "$ref": "#/$defs/date_or_null"
+        },
+        "period_end": {
+          "$ref": "#/$defs/date_or_null"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "then": {
+            "properties": {
+              "na_reason": {
+                "$ref": "#/$defs/na_reason"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": true
+    },
+    "fact_or_null": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/fact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "data_flag": {
+      "type": "object",
+      "required": [
+        "code",
+        "severity",
+        "detail"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "detail": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "envelope": {
+      "type": "object",
+      "description": "Envelope of every script output file (DESIGN 1.3); payload keys sit beside it.",
+      "required": [
+        "schema",
+        "generated_at",
+        "as_of",
+        "sources",
+        "missing_data",
+        "flags"
+      ],
+      "properties": {
+        "schema": {
+          "type": "string",
+          "pattern": "^[a-z_]+/v[0-9]+$"
+        },
+        "generated_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "as_of": {
+          "$ref": "#/$defs/date"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "missing_data": {
+          "$ref": "#/$defs/missing_data"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/data_flag"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

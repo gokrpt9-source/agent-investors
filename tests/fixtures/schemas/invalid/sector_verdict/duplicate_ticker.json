@@ -1,0 +1,71 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-sh-consumer_staples",
+  "agent_role": "sector_head",
+  "phase": 2,
+  "sector": "consumer_staples",
+  "as_of": "2026-10-03",
+  "summary": "Staples holdings are high quality but fully valued. KO holds on the rules with an open tax flag; PG's rule output is TRIM but the sector head holds it, citing the CIO's planned sector reduction as the better lever.",
+  "verdicts": [
+    {
+      "ticker": "KO",
+      "kind": "holding",
+      "action": "HOLD",
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "agg_conviction": 5.6,
+      "agg_evidence": 7.2,
+      "rr": 0.9,
+      "rationale": "Quality is intact but the upside to base fair value is small and the DA judged the thesis damaged by dividend coverage and the tax case.",
+      "dissents": [
+        {
+          "role": "operator_ceo",
+          "view": "Capital-return record justifies a higher conviction."
+        }
+      ],
+      "unresolved_red_flags": [
+        "osint:F1"
+      ],
+      "rule_deviation": false,
+      "deviation_justification": null,
+      "da_rebuttal": null
+    },
+    {
+      "ticker": "KO",
+      "kind": "holding",
+      "action": "HOLD",
+      "rule_action": "TRIM",
+      "rule_label": null,
+      "agg_conviction": 4.2,
+      "agg_evidence": 6.8,
+      "rr": 0.6,
+      "rationale": "Low conviction reflects valuation, not business deterioration; trimming is handled at sector level.",
+      "dissents": [],
+      "unresolved_red_flags": [],
+      "rule_deviation": true,
+      "deviation_justification": "The CIO already targets a lower staples weight; trimming PG on top of that would double count the same valuation concern and add tax drag, so the sector-level reduction is preferred.",
+      "da_rebuttal": null
+    }
+  ],
+  "sources": [
+    {
+      "id": "D:SEC:KO:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase2/data/fundamentals_KO.json"
+    },
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    }
+  ],
+  "missing_data": []
+}

@@ -1,0 +1,39 @@
+{
+ "cik": "0009900002",
+ "entityType": "operating",
+ "sic": "3571",
+ "sicDescription": "Electronic Computers",
+ "name": "ZZ SYNTHETIC QUARTERS INC",
+ "tickers": [],
+ "exchanges": [],
+ "fiscalYearEnd": "1231",
+ "filings": {
+  "recent": {
+   "accessionNumber": [
+    "0009900002-26-000003",
+    "0009900002-26-000002",
+    "0009900002-26-000001"
+   ],
+   "filingDate": [
+    "2026-08-05",
+    "2026-05-05",
+    "2026-02-20"
+   ],
+   "reportDate": [
+    "2026-06-30",
+    "2026-03-31",
+    "2025-12-31"
+   ],
+   "form": [
+    "10-Q",
+    "10-Q",
+    "10-K"
+   ],
+   "primaryDocument": [
+    "zzq4-20260630.htm",
+    "zzq4-20260331.htm",
+    "zzq4-20251231.htm"
+   ]
+  }
+ }
+}

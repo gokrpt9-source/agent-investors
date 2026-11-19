@@ -1,0 +1,112 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-osint-KO",
+ "agent_role": "osint",
+ "sector": "consumer_staples",
+ "ticker": "KO",
+ "as_of": "${AS_OF}",
+ "thesis": "Public signals for Coca-Cola are mostly routine: filings are timely and insider activity is unremarkable. One high-severity item needs a response: a long-running tax dispute over intercompany pricing remains open in the courts.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [],
+ "key_figures": [],
+ "invalidation_price": null,
+ "invalidation_rationale": "Signals are qualitative; a change in the flagged items would change the read.",
+ "conviction": 5,
+ "conviction_reason": "Signals point in different directions with no clear trend.",
+ "self_evidence": 6,
+ "self_evidence_reason": "Filing indexes were sampled; news-tone and hiring data were not available.",
+ "missing_data": [
+  "Hiring and employee-sentiment data (no source in the inputs)"
+ ],
+ "red_flags": [
+  {
+   "id": "F1",
+   "flag": "A long-running tax dispute over intercompany pricing remains open in the courts; an adverse outcome could require a sizeable cash payment.",
+   "severity": "high",
+   "must_address": true,
+   "source_ids": [
+    "W1"
+   ]
+  },
+  {
+   "id": "F2",
+   "flag": "Proposed sugar-tax measures are under discussion in several markets.",
+   "severity": "low",
+   "must_address": false,
+   "source_ids": [
+    "W2"
+   ]
+  }
+ ],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:KO:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000021344.json",
+   "title": "SEC EDGAR submissions — KO (CIK 0000021344)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_KO.json"
+  },
+  {
+   "id": "D:SEC:KO:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+   "title": "SEC EDGAR XBRL companyfacts — KO (CIK 0000021344)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_KO.json"
+  },
+  {
+   "id": "W1",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=8-K&dateb=&owner=include&count=40",
+   "title": "Current reports (8-K) — KO (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W2",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=10-Q&dateb=&owner=include&count=40",
+   "title": "Quarterly reports (10-Q) — KO (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W3",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=4&dateb=&owner=include&count=40",
+   "title": "Insider transaction reports (Form 4) — KO (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  }
+ ],
+ "extensions": {
+  "signals": [
+   {
+    "signal": "Recent current reports focus on routine business updates; volume pressure from changing consumer habits and currency translation is the recurring theme.",
+    "direction": "negative",
+    "source_ids": [
+     "W1"
+    ],
+    "trend": "stable"
+   },
+   {
+    "signal": "Quarterly filings arrived on the usual schedule with no late-filing notices.",
+    "direction": "positive",
+    "source_ids": [
+     "W2",
+     "D:SEC:KO:SUB"
+    ],
+    "trend": "stable"
+   },
+   {
+    "signal": "Insider filings show routine award and plan-based transactions, no unusual clusters.",
+    "direction": "neutral",
+    "source_ids": [
+     "W3"
+    ],
+    "trend": "stable"
+   }
+  ]
+ }
+}

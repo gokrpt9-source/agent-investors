@@ -1,0 +1,27 @@
+# investor_profile.yaml — who the committee works for and the hard portfolio limits.
+# Filled/confirmed interactively by /committee-setup; validated against
+# schemas/config_investor_profile.schema.json (+ semantic checks in scripts/common.py).
+# All percentages are percent numbers 0–100 (10 = 10%). Money is USD unless stated.
+
+horizon_years: 10                 # investment horizon in years
+risk_tolerance: moderate          # conservative | moderate | aggressive  (confirm in /committee-setup)
+
+# ---- position / sector limits (used by aggregate.py limit_breach and portfolio.py sizing)
+max_position_pct: 10              # max weight of any single stock
+max_fund_position_pct: 40         # max weight of any single fund/ETF holding
+max_sector_pct: 35                # max look-through weight of any GICS sector
+min_trade_usd: 200                # trades smaller than this are dropped from the plan
+target_cash_pct: 5                # cash buffer kept after proposed buys
+
+# ---- currency & tax
+base_currency: ILS                # reporting currency (USD/ILS from Yahoo "ILS=X")
+tax_jurisdiction: IL
+capital_gains_tax_pct: 25         # Israeli capital-gains rate. NOTE: Israeli tax applies to the REAL
+                                  # gain (CPI / FX adjusted) — the plan's estimate is indicative only;
+                                  # consult a tax advisor.
+allow_short: false                # the committee never proposes short positions
+allow_fractional_shares: false    # trade sizes are rounded DOWN to whole shares
+
+# ---- SEC EDGAR fair-access policy: requests must carry a real contact email in the
+# User-Agent ("agent-investors research <email>"). Placeholders containing "example" are refused.
+sec_contact_email: dryrun-fixtures@agent-investors.test   # fixture mode never contacts SEC

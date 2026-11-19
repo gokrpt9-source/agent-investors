@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "GE",
+ "longName": "GE Aerospace",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Industrials",
+ "marketCap": 300000000000.0
+}

@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "LLY",
+ "longName": "Eli Lilly and Company",
+ "shortName": "Eli Lilly and Company",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 905.2,
+ "regularMarketPrice": 905.2,
+ "sector": "Healthcare",
+ "industry": "Drug Manufacturers - General",
+ "sharesOutstanding": 897000000,
+ "impliedSharesOutstanding": 897000000,
+ "marketCap": 811964400000
+}

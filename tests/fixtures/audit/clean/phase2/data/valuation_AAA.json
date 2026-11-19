@@ -1,0 +1,35 @@
+{
+  "schema": "valuation/v1",
+  "ticker": "AAA",
+  "as_of": "2026-10-02",
+  "price": {
+    "value": 100.0,
+    "unit": "USD/share",
+    "source_id": "D:X",
+    "as_of": "2026-10-01",
+    "kind": "price",
+    "na_reason": null
+  },
+  "flags": [],
+  "methods_available": [
+    "dcf_nopat",
+    "pe"
+  ],
+  "cells": [
+    {
+      "id": "PE-mid",
+      "fv_per_share": 90.0,
+      "na_reason": null
+    }
+  ],
+  "reverse_dcf": {
+    "implied_growth_pct": {
+      "value": 8.0,
+      "unit": "pct",
+      "source_id": "D:X",
+      "as_of": "2026-10-01",
+      "kind": "other",
+      "na_reason": null
+    }
+  }
+}

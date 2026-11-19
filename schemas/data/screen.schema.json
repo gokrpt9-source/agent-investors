@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/screen",
+  "title": "screen/v1 (phase3/screen_<sector>.json)",
+  "description": "screen.py output (DESIGN 4.7).",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "sector",
+    "benchmark_etf",
+    "universe",
+    "excluded",
+    "weights",
+    "ranked",
+    "shortlist"
+  ],
+  "properties": {
+    "schema": {
+      "const": "screen/v1"
+    },
+    "sector": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/gics_sector"
+    },
+    "benchmark_etf": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+    },
+    "universe": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ticker",
+          "origin"
+        ],
+        "properties": {
+          "ticker": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+          },
+          "origin": {
+            "enum": [
+              "etf_top10",
+              "universe_add"
+            ]
+          },
+          "etf_weight_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "excluded": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ticker",
+          "reason"
+        ],
+        "properties": {
+          "ticker": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+          },
+          "reason": {
+            "enum": [
+              "held",
+              "recent",
+              "exclusion",
+              "mcap",
+              "adv",
+              "no_data",
+              "non_sec"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "weights": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "ranked": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ticker",
+          "rank",
+          "composite",
+          "components",
+          "raw",
+          "imputed"
+        ],
+        "properties": {
+          "ticker": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "composite": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "components": {
+            "type": "object",
+            "required": [
+              "quality",
+              "valuation",
+              "momentum"
+            ],
+            "properties": {
+              "quality": {
+                "type": "object",
+                "required": [
+                  "score"
+                ],
+                "properties": {
+                  "score": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "inputs": {
+                    "type": "object"
+                  }
+                },
+                "additionalProperties": true
+              },
+              "valuation": {
+                "type": "object",
+                "required": [
+                  "score"
+                ],
+                "properties": {
+                  "score": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "inputs": {
+                    "type": "object"
+                  }
+                },
+                "additionalProperties": true
+              },
+              "momentum": {
+                "type": "object",
+                "required": [
+                  "score"
+                ],
+                "properties": {
+                  "score": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "inputs": {
+                    "type": "object"
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          },
+          "raw": {
+            "type": "object",
+            "required": [
+              "mcap",
+              "adv_usd"
+            ],
+            "properties": {
+              "mcap": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+              },
+              "adv_usd": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+              }
+            },
+            "additionalProperties": true
+          },
+          "imputed": {
+            "type": "array"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "shortlist": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+      }
+    }
+  },
+  "additionalProperties": true
+}

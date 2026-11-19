@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/lookthrough",
+  "title": "lookthrough/v1 (phase1/lookthrough.json)",
+  "description": "etf_lookthrough.py output (DESIGN 4.6). sector_weights_pct sums to 100 +/- 0.01.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "total_value_usd",
+    "holdings",
+    "sector_weights_pct",
+    "funds",
+    "overlap"
+  ],
+  "properties": {
+    "schema": {
+      "const": "lookthrough/v1"
+    },
+    "total_value_usd": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "holdings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ticker",
+          "asset_type",
+          "weight_pct",
+          "sector",
+          "sector_split",
+          "classification_source",
+          "flags"
+        ],
+        "properties": {
+          "ticker": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+          },
+          "asset_type": {
+            "enum": [
+              "stock",
+              "fund"
+            ]
+          },
+          "weight_pct": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "sector": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/holding_sector"
+          },
+          "sector_split": {
+            "type": "object",
+            "propertyNames": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/sector_or_cash"
+            },
+            "additionalProperties": {
+              "type": "number"
+            }
+          },
+          "classification_source": {
+            "type": "string"
+          },
+          "flags": {
+            "type": "array"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "sector_weights_pct": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/weights_map"
+    },
+    "funds": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "expense_ratio_pct",
+          "top10",
+          "top10_concentration_pct",
+          "source_id"
+        ],
+        "properties": {
+          "expense_ratio_pct": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "top10": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "symbol",
+                "weight_pct"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string"
+                },
+                "weight_pct": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "top10_concentration_pct": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "source_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "overlap": {
+      "type": "object",
+      "required": [
+        "pairs",
+        "direct_overlap"
+      ],
+      "properties": {
+        "pairs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "a",
+              "b",
+              "overlap_pct",
+              "basis"
+            ],
+            "properties": {
+              "a": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+              },
+              "b": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+              },
+              "overlap_pct": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "basis": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "direct_overlap": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "fund",
+              "holding",
+              "fund_weight_pct"
+            ],
+            "properties": {
+              "fund": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+              },
+              "holding": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+              },
+              "fund_weight_pct": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

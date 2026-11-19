@@ -1,0 +1,114 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-b-devils_advocate-KO",
+ "agent_role": "devils_advocate",
+ "sector": "consumer_staples",
+ "ticker": "KO",
+ "as_of": "${AS_OF}",
+ "attacks": [
+  {
+   "target_claim": "The base fair value of 48.59 offers protection.",
+   "target_agent": "fundamental",
+   "counter_evidence": "The DCF-NOPAT-r10-g00 cell values the shares at 18.26; the base case leans on growth or multiples that the zero-growth cells do not support.",
+   "source_ids": [
+    "D:VAL:KO"
+   ],
+   "severity": "medium"
+  },
+  {
+   "target_claim": "The technical structure supports the position.",
+   "target_agent": "technical",
+   "counter_evidence": "Twelve-month relative strength versus SPY is -7.8 pp; support levels fail more often while the benchmark keeps outperforming.",
+   "source_ids": [
+    "D:PX:KO",
+    "D:PX:SPY"
+   ],
+   "severity": "medium"
+  },
+  {
+   "target_claim": "A long-running tax dispute over intercompany pricing remains open in the courts; an adverse outcome could require a sizeable cash payment.",
+   "target_agent": "osint",
+   "counter_evidence": "Disclosure is adequate and the potential payment is small relative to annual free cash flow, so the flag is mitigated rather than confirmed.",
+   "source_ids": [
+    "D:SEC:KO:CF"
+   ],
+   "severity": "low"
+  }
+ ],
+ "bear_case_price": 18.26,
+ "bear_case_ref": "DCF-NOPAT-r10-g00",
+ "kill_criteria": [
+  "Two consecutive quarters of declining TTM operating income in SEC filings.",
+  "A daily close below STOP1 at 84.80."
+ ],
+ "verdict_on_thesis": "survives",
+ "verdict_reason": "Quality and cash generation hold up; the open tax matter is disclosed and bounded, so the thesis survives despite a full valuation.",
+ "self_evidence": 7,
+ "self_evidence_reason": "Read every specialist report and the data files listed in the order.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [
+  {
+   "flag_ref": "osint:F1",
+   "status": "mitigated",
+   "note": "Filings disclose the matter and the potential cash outflow is small relative to annual free cash flow; the exposure is real but bounded.",
+   "source_ids": [
+    "D:SEC:KO:SUB"
+   ]
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Bear-case fair value",
+   "value": 18.26,
+   "unit": "USD/share",
+   "source_id": "D:VAL:KO",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase2/data/valuation_KO.json#/cells/5/fv_per_share"
+  }
+ ],
+ "sources": [
+  {
+   "id": "D:VAL:KO",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+   "title": "Valuation grid for KO derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_KO.json"
+  },
+  {
+   "id": "D:PX:KO",
+   "url": "https://finance.yahoo.com/quote/KO/history/",
+   "title": "Yahoo Finance price history (yfinance) — KO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_KO.csv"
+  },
+  {
+   "id": "D:SEC:KO:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+   "title": "SEC EDGAR XBRL companyfacts — KO (CIK 0000021344)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_KO.json"
+  },
+  {
+   "id": "D:SEC:KO:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000021344.json",
+   "title": "SEC EDGAR submissions — KO (CIK 0000021344)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_KO.json"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  }
+ ]
+}

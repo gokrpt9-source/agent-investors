@@ -1,0 +1,63 @@
+{
+  "_comment": "SYNTHETIC test data (not real fund holdings / company data)",
+  "sector_weightings": {},
+  "top_holdings": [
+    {
+      "symbol": "LLY",
+      "name": "LLY (synthetic)",
+      "holding_pct": 12.0
+    },
+    {
+      "symbol": "UNH",
+      "name": "UNH (synthetic)",
+      "holding_pct": 8.0
+    },
+    {
+      "symbol": "JNJ",
+      "name": "JNJ (synthetic)",
+      "holding_pct": 7.5
+    },
+    {
+      "symbol": "ABBV",
+      "name": "ABBV (synthetic)",
+      "holding_pct": 6.5
+    },
+    {
+      "symbol": "MRK",
+      "name": "MRK (synthetic)",
+      "holding_pct": 5.0
+    },
+    {
+      "symbol": "TMO",
+      "name": "TMO (synthetic)",
+      "holding_pct": 4.0
+    },
+    {
+      "symbol": "ABT",
+      "name": "ABT (synthetic)",
+      "holding_pct": 3.9
+    },
+    {
+      "symbol": "ISRG",
+      "name": "ISRG (synthetic)",
+      "holding_pct": 3.5
+    },
+    {
+      "symbol": "AMGN",
+      "name": "AMGN (synthetic)",
+      "holding_pct": 3.2
+    },
+    {
+      "symbol": "DHR",
+      "name": "DHR (synthetic)",
+      "holding_pct": 3.0
+    },
+    {
+      "symbol": "PFE",
+      "name": "PFE (synthetic)",
+      "holding_pct": 2.5
+    }
+  ],
+  "expense_ratio_pct": 0.08,
+  "expense_ratio_field": "info.netExpenseRatio"
+}

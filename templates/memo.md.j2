@@ -1,0 +1,85 @@
+{#- memo.md.j2 — Investment Committee memo, Markdown (DESIGN §4.14).
+    Rendered by scripts/render_memo.py with autoescape OFF. A table cell may hold several lines
+    (joined by a line-break character; `md_cell` turns them into <br>). The optional chair block
+    (`memo.chair`) is an unnumbered "Chair's Final Review" heading before section 1. The view model (`memo`) is built in
+    Python: every section is a list of blocks (para | subheading | bullets | kv | table | card)
+    with numbers already formatted. Inline text goes through `md_text` (newlines collapsed,
+    tag-like "<" neutralized); table cells go through `md_row` (also escapes "|").
+    Blank-line runs are collapsed after rendering. -#}
+{% macro md_block(b, lvl=3) %}
+{% if b.type == "para" %}
+{% if b.style == "disclaimer" %}
+> **{{ b.text|md_text }}**
+{% elif b.style == "warn" %}
+> **Note:** {{ b.text|md_text }}
+{% elif b.style == "muted" %}
+_{{ b.text|md_text }}_
+{% else %}
+{{ b.text|md_text }}
+{% endif %}
+
+{% elif b.type == "subheading" %}
+{{ "#" * lvl }} {{ b.text|md_text }}
+
+{% elif b.type == "bullets" %}
+{% for it in b.entries %}
+- {{ it|md_text }}
+{% endfor %}
+
+{% elif b.type == "kv" %}
+{% for pair in b.entries %}
+- **{{ pair[0]|md_text }}:** {{ pair[1]|md_text }}
+{% endfor %}
+
+{% elif b.type == "table" %}
+{% if b.caption %}
+**{{ b.caption|md_text }}**
+
+{% endif %}
+{{ b.headers|md_row }}
+{{ b.align|md_sep(b.headers|length) }}
+{% for r in b.rows %}
+{{ r|md_row }}
+{% endfor %}
+
+{% elif b.type == "card" %}
+{{ "#" * lvl }} {{ b.title|md_text }}
+
+{% for c in b.blocks %}
+{{ md_block(c, lvl + 1) }}
+{% endfor %}
+
+{% endif %}
+{% endmacro %}
+# {{ memo.title|md_text }}
+
+_{{ memo.subtitle|md_text }}_
+
+{% if memo.chair_status %}
+_{{ memo.chair_status|md_text }}_
+
+{% endif %}
+{% if memo.chair %}
+## {{ memo.chair.title }}
+
+**Verdict: {{ memo.chair.verdict_label|upper|md_text }}**{% if memo.chair.meta %} _({{ memo.chair.meta|md_text }})_{% endif %}
+
+
+{% if memo.chair.headline %}
+> **{{ memo.chair.headline|md_text }}**
+
+{% endif %}
+{% for b in memo.chair.blocks %}
+{{ md_block(b) }}
+{% endfor %}
+{% endif %}
+{% for s in memo.sections %}
+## {{ s.title }}
+
+{% for b in s.blocks %}
+{{ md_block(b) }}
+{% endfor %}
+{% endfor %}
+---
+
+_{{ memo.disclaimer|md_text }} Generated {{ memo.generated_at|md_text }} by scripts/render_memo.py._

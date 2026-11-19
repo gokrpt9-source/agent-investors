@@ -1,0 +1,68 @@
+{
+  "schema": "aggregate/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "sources": [],
+  "missing_data": [],
+  "flags": [],
+  "tickers": {
+    "MRK": {
+      "kind": "candidate",
+      "asset_type": "stock",
+      "sector": "health_care",
+      "sector_class": "default",
+      "inputs": {
+        "price": {
+          "value": 98.5,
+          "unit": "USD/share",
+          "source_id": "D:PX:MRK",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": null,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": null,
+        "cio_target_pct": null,
+        "limit_breach": false
+      },
+      "specialists": [],
+      "conviction_mean": 7.6,
+      "da": {
+        "path": "phase3/reports/devils_advocate_MRK.json",
+        "verdict": "survives",
+        "adj": 0
+      },
+      "agg_conviction": 7.6,
+      "agg_evidence": 9.0,
+      "rr": {
+        "price": 98.5,
+        "fv_base": 128.0,
+        "invalidation": 87.0,
+        "invalidation_source": "technical_report",
+        "upside_pct": 29.95,
+        "downside_pct": 11.68,
+        "rr": 2.56,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "BUY",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "insufficient_evidence",
+          "test": "agg_evidence 9.0 >= 5",
+          "result": "pass"
+        },
+        {
+          "rule": "final",
+          "test": "no other rule fired",
+          "result": "BUY"
+        }
+      ]
+    }
+  }
+}

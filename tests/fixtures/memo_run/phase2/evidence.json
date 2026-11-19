@@ -1,0 +1,181 @@
+{
+  "schema": "evidence/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "sources": [],
+  "missing_data": [],
+  "flags": [],
+  "reports": {
+    "C:/Users/someone-else/agent-investors/runs/2026-10-03_1015/phase2/reports/fundamental_KO.json": {
+      "agent_role": "fundamental",
+      "ticker": "KO",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": [
+        {
+          "rule": "missing_data",
+          "detail": "1 item",
+          "points": -1
+        }
+      ]
+    },
+    "runs/2026-10-03_1015/phase2/reports/technical_KO.json": {
+      "agent_role": "technical",
+      "ticker": "KO",
+      "status": "ok",
+      "score": 10,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/osint_KO.json": {
+      "agent_role": "osint",
+      "ticker": "KO",
+      "status": "ok",
+      "score": 4,
+      "start": 10,
+      "floor": 1,
+      "deductions": [
+        {
+          "rule": "few_sources",
+          "detail": "2 distinct URLs",
+          "points": -2
+        },
+        {
+          "rule": "missing_data",
+          "detail": "1 item",
+          "points": -1
+        },
+        {
+          "rule": "stale",
+          "detail": "news item older than 45 days",
+          "points": -1
+        },
+        {
+          "rule": "null_required",
+          "detail": "extensions.signals[3]",
+          "points": -2
+        }
+      ]
+    },
+    "phase2/reports/operator_ceo_KO.json": {
+      "agent_role": "operator_ceo",
+      "ticker": "KO",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": [
+        {
+          "rule": "missing_data",
+          "detail": "1 item",
+          "points": -1
+        }
+      ]
+    },
+    "C:/Users/someone-else/agent-investors/runs/2026-10-03_1015/phase2/reports/devils_advocate_KO.json": {
+      "agent_role": "devils_advocate",
+      "ticker": "KO",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": [
+        {
+          "rule": "missing_data",
+          "detail": "1 item",
+          "points": -1
+        }
+      ]
+    },
+    "phase2/reports/fundamental_PG.json": {
+      "agent_role": "fundamental",
+      "ticker": "PG",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/technical_PG.json": {
+      "agent_role": "technical",
+      "ticker": "PG",
+      "status": "ok",
+      "score": 10,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/operator_ceo_PG.failed.json": {
+      "agent_role": "operator_ceo",
+      "ticker": "PG",
+      "status": "failed",
+      "score": 1,
+      "start": 10,
+      "floor": 1,
+      "deductions": [
+        {
+          "rule": "failed",
+          "detail": "report failed",
+          "points": -9
+        }
+      ]
+    },
+    "phase2/reports/devils_advocate_PG.json": {
+      "agent_role": "devils_advocate",
+      "ticker": "PG",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/fundamental_JPM.r2.json": {
+      "agent_role": "fundamental",
+      "ticker": "JPM",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/technical_JPM.json": {
+      "agent_role": "technical",
+      "ticker": "JPM",
+      "status": "ok",
+      "score": 10,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/devils_advocate_JPM.json": {
+      "agent_role": "devils_advocate",
+      "ticker": "JPM",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/etf_QQQ.json": {
+      "agent_role": "etf",
+      "ticker": "QQQ",
+      "status": "ok",
+      "score": 10,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase2/reports/technical_QQQ.json": {
+      "agent_role": "technical",
+      "ticker": "QQQ",
+      "status": "ok",
+      "score": 10,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    }
+  }
+}

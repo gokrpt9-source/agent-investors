@@ -1,0 +1,203 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-fundamental-KO",
+ "agent_role": "fundamental",
+ "sector": "consumer_staples",
+ "ticker": "KO",
+ "as_of": "${AS_OF}",
+ "thesis": "Coca-Cola is a asset-light concentrate and brand franchise with operating margin of 29.3% TTM. Against the configured valuation grid the base fair value is 48.59 versus a 85.65 close (-43.3%), so the stock already prices in more than the filings support.",
+ "stance": "bearish",
+ "strengths": [
+  {
+   "point": "Durable global brand portfolio and bottler distribution network.",
+   "evidence_refs": [
+    "D:SEC:KO:CF"
+   ]
+  },
+  {
+   "point": "P/E of 26.9x on TTM earnings with operating margin of 29.3% TTM.",
+   "evidence_refs": [
+    "D:SEC:KO:CF",
+    "D:PX:KO"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: volume pressure from changing consumer habits and currency translation.",
+   "evidence_refs": [
+    "D:SEC:KO:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Base fair value sits 43.3% below the last close.",
+   "evidence_refs": [
+    "D:VAL:KO"
+   ],
+   "severity": "high"
+  },
+  {
+   "point": "The reverse DCF implies 25.0% annual growth is priced in.",
+   "evidence_refs": [
+    "D:VAL:KO"
+   ],
+   "severity": "high"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 49284000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:KO:CF",
+   "as_of": "2026-04-03",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_KO.json#/ttm/revenue",
+   "filed": "2026-04-30"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 13701000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:KO:CF",
+   "as_of": "2026-04-03",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_KO.json#/ttm/net_income",
+   "filed": "2026-04-30"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 29.344209073938803,
+   "unit": "pct",
+   "source_id": "D:SEC:KO:CF",
+   "as_of": "2026-04-03",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_KO.json#/margins_pct/operating",
+   "filed": "2026-04-30"
+  },
+  {
+   "name": "FCF yield",
+   "value": 3.4088847418194534,
+   "unit": "pct",
+   "source_id": "D:SEC:KO:CF",
+   "as_of": "2026-04-03",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_KO.json#/valuation/fcf_yield_pct",
+   "filed": "2026-04-30"
+  },
+  {
+   "name": "ROIC",
+   "value": 17.990237547865135,
+   "unit": "pct",
+   "source_id": "D:SEC:KO:CF",
+   "as_of": "2026-04-03",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_KO.json#/valuation/roic_pct",
+   "filed": "2026-04-30"
+  },
+  {
+   "name": "P/E",
+   "value": 26.896403116684915,
+   "unit": "x",
+   "source_id": "D:SEC:KO:CF",
+   "as_of": "2026-04-03",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_KO.json#/valuation/pe",
+   "filed": "2026-04-30"
+  },
+  {
+   "name": "Last close",
+   "value": 85.65,
+   "unit": "USD/share",
+   "source_id": "D:PX:KO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_KO.json#/price"
+  },
+  {
+   "name": "Reverse DCF implied growth",
+   "value": 25.04,
+   "unit": "pct",
+   "source_id": "D:VAL:KO",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase2/data/valuation_KO.json#/reverse_dcf/implied_growth_pct"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 6,
+ "conviction_reason": "The price sits above most of the valuation grid.",
+ "self_evidence": 7,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [
+  "From fundamentals data: valuation.p_tbv: intangibles not reported in SEC companyfacts — tangible book value not computed (read the balance sheet / intangibles note)"
+ ],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:KO:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+   "title": "SEC EDGAR XBRL companyfacts — KO (CIK 0000021344)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_KO.json"
+  },
+  {
+   "id": "D:VAL:KO",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+   "title": "Valuation grid for KO derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_KO.json"
+  },
+  {
+   "id": "D:PX:KO",
+   "url": "https://finance.yahoo.com/quote/KO/history/",
+   "title": "Yahoo Finance price history (yfinance) — KO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_KO.json"
+  },
+  {
+   "id": "D:SEC:KO:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000021344.json",
+   "title": "SEC EDGAR submissions — KO (CIK 0000021344)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_KO.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 39.78,
+   "fair_value_base": 48.59,
+   "fair_value_high": 67.1,
+   "method": "Course NOPAT/FCF DCF (r 9-10%, 5 years, growth-tiered exit multiple) blended with the configured multiple bands.",
+   "input_refs": [
+    "${RUN_DIR}/phase2/data/valuation_KO.json#/cells",
+    "${RUN_DIR}/phase2/data/valuation_KO.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "DCF-NOPAT-r10-g03",
+    "PE-low"
+   ],
+   "cells_base": [
+    "DCF-NOPAT-r10-g06",
+    "DCF-FCF-r10-g06",
+    "PE-mid",
+    "EVEBIT-mid"
+   ],
+   "cells_high": [
+    "DCF-NOPAT-r09-g10",
+    "PE-high"
+   ],
+   "reverse_dcf_implied_growth_pct": 25.04
+  },
+  "quality_notes": "Coca-Cola: operating margin of 29.3% TTM; moat rests on its global brand portfolio and bottler distribution network.",
+  "balance_sheet_notes": "Net debt of 33.2 bn USD, about 2.1x EBITDA; no near-term refinancing strain visible."
+ }
+}

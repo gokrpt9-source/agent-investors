@@ -1,0 +1,85 @@
+{
+  "schema": "screen/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "sector": "health_care",
+  "benchmark_etf": "XLV",
+  "universe": [
+    {
+      "ticker": "MRK",
+      "origin": "etf_top10",
+      "etf_weight_pct": 4.2
+    }
+  ],
+  "excluded": [
+    {
+      "ticker": "JNJ",
+      "reason": "other"
+    }
+  ],
+  "weights": {
+    "quality": 0.4,
+    "valuation": 0.3,
+    "momentum": 0.3
+  },
+  "ranked": [
+    {
+      "ticker": "MRK",
+      "rank": 1,
+      "composite": 0.63,
+      "components": {
+        "quality": {
+          "score": 0.6,
+          "inputs": {
+            "x": 0.3
+          }
+        },
+        "valuation": {
+          "score": 0.6,
+          "inputs": {
+            "x": 0.3
+          }
+        },
+        "momentum": {
+          "score": 0.6,
+          "inputs": {
+            "x": 0.3
+          }
+        }
+      },
+      "raw": {
+        "mcap": {
+          "value": 250000000000.0,
+          "unit": "USD",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "adv_usd": {
+          "value": 1200000000.0,
+          "unit": "USD",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        }
+      },
+      "imputed": []
+    }
+  ],
+  "shortlist": [
+    "MRK"
+  ]
+}

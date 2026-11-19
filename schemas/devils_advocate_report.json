@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:devils_advocate_report",
+  "title": "Devil's Advocate report",
+  "description": "Attacks the strongest claims of the specialist reports for one ticker (DESIGN 5). Must attack - agreement without attack is invalid (attacks minItems 1).",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "order_id",
+    "agent_role",
+    "sector",
+    "ticker",
+    "as_of",
+    "sources",
+    "missing_data",
+    "red_flags",
+    "self_evidence",
+    "self_evidence_reason",
+    "attacks",
+    "bear_case_price",
+    "kill_criteria",
+    "verdict_on_thesis",
+    "verdict_reason"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "_comment": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/comment"
+    },
+    "schema_version": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "order_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/order_id"
+    },
+    "agent_role": {
+      "const": "devils_advocate"
+    },
+    "sector": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/sector_key"
+    },
+    "ticker": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/source"
+      }
+    },
+    "missing_data": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/missing_data"
+    },
+    "red_flags": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/red_flag"
+      }
+    },
+    "flag_responses": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/flag_response"
+      },
+      "description": "Responses to other agents' flags (optional)."
+    },
+    "self_evidence": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/score_1_10",
+      "description": "Agent's own view of data completeness (recorded only; decisions use the rule-based evidence score)."
+    },
+    "self_evidence_reason": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "Why that self-evidence score (<= 60 words)"
+    },
+    "attacks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "target_claim",
+          "target_agent",
+          "counter_evidence",
+          "source_ids",
+          "severity"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "target_claim": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+            "description": "The claim being attacked (paraphrased) (<= 40 words)"
+          },
+          "target_agent": {
+            "enum": [
+              "fundamental",
+              "technical",
+              "operator_ceo",
+              "industry_ops",
+              "osint",
+              "etf"
+            ]
+          },
+          "counter_evidence": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+            "description": "Counter-evidence (<= 60 words)"
+          },
+          "source_ids": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/source_ids_min1"
+          },
+          "severity": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/severity"
+          }
+        }
+      }
+    },
+    "bear_case_price": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/price_or_null",
+      "description": "USD/share; null if no defensible bear price."
+    },
+    "bear_case_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\S+$",
+      "maxLength": 60,
+      "description": "Valuation cell id or technical level id the bear price comes from; required when bear_case_price is a number."
+    },
+    "kill_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+        "description": "Kill criterion (<= 40 words)"
+      }
+    },
+    "verdict_on_thesis": {
+      "enum": [
+        "survives",
+        "damaged",
+        "broken"
+      ]
+    },
+    "verdict_reason": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "Why that verdict (<= 60 words)"
+    },
+    "key_figures": {
+      "type": "array",
+      "maxItems": 15,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/key_figure"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "bear_case_price": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "bear_case_price"
+        ]
+      },
+      "then": {
+        "required": [
+          "bear_case_ref"
+        ],
+        "properties": {
+          "bear_case_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  ]
+}

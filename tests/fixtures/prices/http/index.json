@@ -1,0 +1,10 @@
+{
+  "https://stooq.com/q/d/l/?s=msft.us&i=d": "stooq/msft_us.csv",
+  "https://stooq.com/q/d/l/?s=usdils&i=d": "stooq/usdils.csv",
+  "https://stooq.com/q/d/l/?s=blck.us&i=d": "stooq/bot_wall.html",
+  "https://stooq.com/q/d/l/?s=nodt.us&i=d": "stooq/no_data.txt",
+  "https://stooq.com/q/d/l/?s=gone.us&i=d": {
+    "file": null,
+    "status": 404
+  }
+}

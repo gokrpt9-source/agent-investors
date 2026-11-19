@@ -1,0 +1,133 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-etf-SPMO",
+ "agent_role": "etf",
+ "sector": "funds",
+ "ticker": "SPMO",
+ "as_of": "${AS_OF}",
+ "thesis": "SPMO: S&P 500 momentum tilt; low cost with rules-based rebalancing toward leaders. Top-10 holdings are 47.1% of the fund, expense ratio 0.13%, and twelve-month relative strength versus SPY is 9.4 pp.",
+ "stance": "bullish",
+ "strengths": [
+  {
+   "point": "Low expense ratio of 0.13% and deep liquidity.",
+   "evidence_refs": [
+    "D:YF:SPMO:FUND"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Top-10 holdings are 47.1% of assets.",
+   "evidence_refs": [
+    "D:YF:SPMO:FUND"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Top-10 overlap with QQQ is 27.6%.",
+   "evidence_refs": [
+    "D:YF:SPMO:FUND"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "lookthrough_summary": {
+  "top_sectors": [
+   {
+    "sector": "information_technology",
+    "pct": 31.2
+   },
+   {
+    "sector": "financials",
+    "pct": 19.6
+   },
+   {
+    "sector": "communication_services",
+    "pct": 14.8
+   }
+  ],
+  "data_ref": "${RUN_DIR}/phase1/lookthrough.json#/funds/SPMO/sector_split"
+ },
+ "expense_ratio_pct": 0.13,
+ "top10_concentration_pct": 47.1,
+ "overlap": [
+  {
+   "with": "QQQ",
+   "overlap_pct": 27.6,
+   "basis": "top10"
+  }
+ ],
+ "momentum_vs_benchmark": {
+  "benchmark": "SPY",
+  "rs_3m": 3.4857,
+  "rs_6m": 5.9749,
+  "rs_12m": 9.3653
+ },
+ "role_in_portfolio": "factor_tilt",
+ "conviction": 8,
+ "conviction_reason": "Cost, liquidity and momentum support the role; concentration tempers it.",
+ "action": "ADD",
+ "key_figures": [
+  {
+   "name": "Expense ratio",
+   "value": 0.13,
+   "unit": "pct",
+   "source_id": "D:YF:SPMO:FUND",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase1/lookthrough.json#/funds/SPMO/expense_ratio_pct"
+  },
+  {
+   "name": "Top-10 concentration",
+   "value": 47.1,
+   "unit": "pct",
+   "source_id": "D:YF:SPMO:FUND",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase1/lookthrough.json#/funds/SPMO/top10_concentration_pct"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": 9.3653,
+   "unit": "pp",
+   "source_id": "D:PX:SPMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "A fund is reviewed on role, cost and overlap; no single price invalidates it.",
+ "self_evidence": 8,
+ "self_evidence_reason": "Fund composition and three years of prices were available.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:YF:SPMO:FUND",
+   "url": "https://finance.yahoo.com/quote/SPMO/holdings/",
+   "title": "Yahoo Finance fund holdings (yfinance) — SPMO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/lookthrough.json"
+  },
+  {
+   "id": "D:PX:SPMO",
+   "url": "https://finance.yahoo.com/quote/SPMO/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPMO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPMO.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  }
+ ]
+}

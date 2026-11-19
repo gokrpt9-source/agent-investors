@@ -1,0 +1,259 @@
+{
+  "schema": "portfolio_plan/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "sources": [
+    {
+      "id": "D:PX:ILS=X",
+      "url": "https://finance.yahoo.com/quote/ILS=X/history/",
+      "title": "USD/ILS daily history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "base_currency": "ILS",
+  "fx_usdils": {
+    "value": 3.7123,
+    "unit": "ILS/USD",
+    "source_id": "D:PX:ILS=X",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "total_value_usd": {
+    "value": 52000.0,
+    "unit": "USD",
+    "source_id": "D:PX:KO",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null,
+    "derivation": "shares x last close + cash"
+  },
+  "cash": {
+    "current_pct": 9.6,
+    "target_pct": 5.0,
+    "post_pct": 11.4
+  },
+  "positions": [
+    {
+      "ticker": "QQQ",
+      "asset_type": "fund",
+      "sector": "funds",
+      "action": "HOLD",
+      "action_source": "cio_final",
+      "price": 480.0,
+      "shares_cur": 40,
+      "value_usd_cur": 19200.0,
+      "weight_cur_pct": 36.9,
+      "weight_tgt_pct": 36.9,
+      "trade": {
+        "side": "NONE",
+        "shares": 0,
+        "value_usd": 0.0,
+        "value_ils": 0.0
+      },
+      "dropped_reason": null,
+      "tax": {
+        "applicable": false,
+        "est_gain_usd": null,
+        "est_tax_usd": null,
+        "note": null
+      },
+      "notes": []
+    },
+    {
+      "ticker": "KO",
+      "asset_type": "stock",
+      "sector": "consumer_staples",
+      "action": "HOLD",
+      "action_source": "cio_final",
+      "price": 69.85,
+      "shares_cur": 100,
+      "value_usd_cur": 6985.0,
+      "weight_cur_pct": 13.4,
+      "weight_tgt_pct": 13.4,
+      "trade": {
+        "side": "NONE",
+        "shares": 0,
+        "value_usd": 0.0,
+        "value_ils": 0.0
+      },
+      "dropped_reason": null,
+      "tax": {
+        "applicable": false,
+        "est_gain_usd": null,
+        "est_tax_usd": null,
+        "note": null
+      },
+      "notes": []
+    },
+    {
+      "ticker": "PG",
+      "asset_type": "stock",
+      "sector": "consumer_staples",
+      "action": "HOLD",
+      "action_source": "cio_final",
+      "price": 155.0,
+      "shares_cur": 40,
+      "value_usd_cur": 6200.0,
+      "weight_cur_pct": 11.9,
+      "weight_tgt_pct": 11.9,
+      "trade": {
+        "side": "NONE",
+        "shares": 0,
+        "value_usd": 0.0,
+        "value_ils": 0.0
+      },
+      "dropped_reason": null,
+      "tax": {
+        "applicable": false,
+        "est_gain_usd": null,
+        "est_tax_usd": null,
+        "note": null
+      },
+      "notes": []
+    },
+    {
+      "ticker": "JPM",
+      "asset_type": "stock",
+      "sector": "financials",
+      "action": "TRIM",
+      "action_source": "cio_final",
+      "price": 240.0,
+      "shares_cur": 30,
+      "value_usd_cur": 7200.0,
+      "weight_cur_pct": 13.8,
+      "weight_tgt_pct": 9.2,
+      "trade": {
+        "side": "SELL",
+        "shares": 10,
+        "value_usd": 2400.0,
+        "value_ils": 8909.52
+      },
+      "dropped_reason": null,
+      "tax": {
+        "applicable": true,
+        "est_gain_usd": 900.0,
+        "est_tax_usd": 225.0,
+        "note": "25% of the nominal USD gain; Israeli tax applies to the real (CPI/FX-adjusted) gain."
+      },
+      "notes": []
+    },
+    {
+      "ticker": "BRK-B",
+      "asset_type": "stock",
+      "sector": "financials",
+      "action": "TRIM",
+      "action_source": "rule",
+      "price": 480.0,
+      "shares_cur": 20,
+      "value_usd_cur": 9600.0,
+      "weight_cur_pct": 14.4,
+      "weight_tgt_pct": 14.4,
+      "trade": {
+        "side": "SELL",
+        "shares": 0,
+        "value_usd": 0.0,
+        "value_ils": 0.0
+      },
+      "dropped_reason": "below min_trade_usd (USD 150 < 200)",
+      "tax": {
+        "applicable": false,
+        "est_gain_usd": null,
+        "est_tax_usd": null,
+        "note": null
+      },
+      "notes": []
+    },
+    {
+      "ticker": "MRK",
+      "asset_type": "stock",
+      "sector": "health_care",
+      "action": "BUY",
+      "action_source": "cio_final",
+      "price": 98.5,
+      "shares_cur": 0,
+      "value_usd_cur": 0.0,
+      "weight_cur_pct": 0.0,
+      "weight_tgt_pct": 2.8,
+      "trade": {
+        "side": "BUY",
+        "shares": 15,
+        "value_usd": 1477.5,
+        "value_ils": 5484.92
+      },
+      "dropped_reason": null,
+      "tax": {
+        "applicable": false,
+        "est_gain_usd": null,
+        "est_tax_usd": null,
+        "note": null
+      },
+      "notes": [
+        "scaled pro-rata x0.9333 to keep cash >= 5%"
+      ]
+    }
+  ],
+  "sectors": [
+    {
+      "sector": "information_technology",
+      "cur_lookthrough_pct": 24.0,
+      "post_lookthrough_pct": 24.0,
+      "target_pct": 24.0,
+      "max_pct": 35.0,
+      "gap_pp": 0.0,
+      "breach": false
+    },
+    {
+      "sector": "financials",
+      "cur_lookthrough_pct": 25.0,
+      "post_lookthrough_pct": 23.4,
+      "target_pct": 23.0,
+      "max_pct": 35.0,
+      "gap_pp": 0.4,
+      "breach": false
+    },
+    {
+      "sector": "health_care",
+      "cur_lookthrough_pct": 3.5,
+      "post_lookthrough_pct": 6.3,
+      "target_pct": 8.0,
+      "max_pct": 35.0,
+      "gap_pp": -1.7,
+      "breach": false
+    },
+    {
+      "sector": "cash",
+      "cur_lookthrough_pct": 9.6,
+      "post_lookthrough_pct": 11.4,
+      "target_pct": 5.0,
+      "max_pct": null,
+      "gap_pp": 6.4,
+      "breach": false
+    }
+  ],
+  "constraint_checks": [
+    {
+      "check": "max_position_pct",
+      "status": "pass",
+      "detail": "No stock above 10% after trades except BRK-B (trim dropped)."
+    },
+    {
+      "check": "max_sector_pct",
+      "status": "warn",
+      "detail": "Funds look-through keeps IT near the macro cap (CIO override)."
+    },
+    {
+      "check": "target_cash_pct",
+      "status": "pass",
+      "detail": "Post-trade cash 11.4% >= 5.0% target."
+    }
+  ],
+  "notes": [
+    "Funds are never sold to fund stock purchases.",
+    "USD/ILS 3.7123 as of 2026-10-02 (D:PX:ILS=X); ILS values are indicative."
+  ]
+}

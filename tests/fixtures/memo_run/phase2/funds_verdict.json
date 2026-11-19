@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-sh-funds",
+  "agent_role": "sector_head",
+  "phase": 2,
+  "sector": "funds",
+  "as_of": "2026-10-03",
+  "summary": "QQQ remains the core growth holding; overlap with other funds is monitored.",
+  "verdicts": [
+    {
+      "ticker": "QQQ",
+      "kind": "holding",
+      "action": "HOLD",
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "agg_conviction": 6.0,
+      "agg_evidence": 8.5,
+      "rr": null,
+      "rationale": "Low-cost core exposure; concentration in mega-cap technology argues against adding.",
+      "dissents": [],
+      "unresolved_red_flags": [],
+      "rule_deviation": false,
+      "deviation_justification": null,
+      "da_rebuttal": null
+    }
+  ],
+  "sources": [
+    {
+      "id": "D:SEC:KO:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase2/data/fundamentals_KO.json"
+    },
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    }
+  ],
+  "missing_data": []
+}

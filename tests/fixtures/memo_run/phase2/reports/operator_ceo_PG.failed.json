@@ -1,0 +1,14 @@
+{
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-a-operator_ceo-PG",
+  "agent_role": "operator_ceo",
+  "ticker": "PG",
+  "sector": "consumer_staples",
+  "as_of": "2026-10-03",
+  "status": "failed",
+  "attempts": 2,
+  "errors": [
+    "attempt 1: $.conviction: 11 is greater than the maximum of 10 (got 11)",
+    "attempt 2: output file not written"
+  ]
+}

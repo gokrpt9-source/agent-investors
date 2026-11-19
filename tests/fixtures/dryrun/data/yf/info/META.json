@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "META",
+ "longName": "Meta Platforms, Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Communication Services",
+ "marketCap": 1800000000000.0
+}

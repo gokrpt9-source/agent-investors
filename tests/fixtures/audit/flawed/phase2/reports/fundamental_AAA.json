@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "agent_role": "fundamental",
+  "ticker": "AAA",
+  "as_of": "2026-10-02",
+  "thesis": "AAA is a steady business trading close to the fair value from the grid.",
+  "stance": "neutral",
+  "risks": [
+    {
+      "point": "Growth could slow if demand weakens.",
+      "severity": "medium"
+    }
+  ],
+  "key_figures": [
+    {
+      "name": "Price",
+      "value": 100.0,
+      "unit": "USD/share",
+      "source_id": "D:X",
+      "as_of": "2026-10-01"
+    }
+  ],
+  "missing_data": [],
+  "extensions": {
+    "valuation": {
+      "fair_value_low": 72.0,
+      "fair_value_base": 90.0,
+      "fair_value_high": 108.0
+    }
+  }
+}

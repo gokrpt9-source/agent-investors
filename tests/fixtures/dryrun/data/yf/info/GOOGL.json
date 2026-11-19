@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "GOOGL",
+ "longName": "Alphabet Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Communication Services",
+ "marketCap": 2900000000000.0
+}

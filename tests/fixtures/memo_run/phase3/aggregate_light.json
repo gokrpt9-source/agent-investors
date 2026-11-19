@@ -1,0 +1,64 @@
+{
+  "schema": "aggregate/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "sources": [],
+  "missing_data": [],
+  "flags": [],
+  "tickers": {
+    "ABBV": {
+      "kind": "candidate",
+      "asset_type": "stock",
+      "sector": "health_care",
+      "sector_class": "default",
+      "inputs": {
+        "price": {
+          "value": 182.0,
+          "unit": "USD/share",
+          "source_id": "D:PX:ABBV",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": null,
+        "cap_pct": 10.0,
+        "sector_lookthrough_pct": null,
+        "cio_target_pct": null,
+        "limit_breach": false
+      },
+      "specialists": [],
+      "conviction_mean": 5.5,
+      "da": null,
+      "agg_conviction": 5.5,
+      "agg_evidence": 8.5,
+      "rr": {
+        "price": 182.0,
+        "fv_base": 190.0,
+        "invalidation": 170.0,
+        "invalidation_source": "technical_report",
+        "upside_pct": 4.4,
+        "downside_pct": 6.59,
+        "rr": 0.67,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "PASS",
+      "rule_label": null,
+      "rule_trace": [
+        {
+          "rule": "insufficient_evidence",
+          "test": "agg_evidence 8.5 >= 5",
+          "result": "pass"
+        },
+        {
+          "rule": "final",
+          "test": "no other rule fired",
+          "result": "PASS"
+        }
+      ]
+    }
+  }
+}

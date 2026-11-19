@@ -1,0 +1,425 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/fundamentals",
+  "title": "fundamentals/v1 (fundamentals_<T>.json)",
+  "description": "fetch_fundamentals.py output (DESIGN 4.3). Non-SEC filers keep every block with null Facts (na_reason missing) and coverage non_sec.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "ticker",
+    "coverage",
+    "price",
+    "shares",
+    "market_cap",
+    "ttm",
+    "balance",
+    "margins_pct",
+    "growth_pct",
+    "valuation"
+  ],
+  "properties": {
+    "schema": {
+      "const": "fundamentals/v1"
+    },
+    "ticker": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+    },
+    "cik": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "coverage": {
+      "enum": [
+        "sec",
+        "partial",
+        "non_sec"
+      ]
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sic": {
+          "type": [
+            "integer",
+            "string",
+            "null"
+          ]
+        },
+        "sic_description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fiscal_year_end": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sector_class": {
+          "enum": [
+            "default",
+            "financials",
+            null
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "companyfacts_latest": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "form": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "filed": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "period_end": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "accn": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "submissions_latest": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "form": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "filed": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "report_date": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "accn": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": true
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lag_detected": {
+      "type": "boolean"
+    },
+    "price": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "shares": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "market_cap": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "ttm": {
+      "type": "object",
+      "required": [
+        "revenue",
+        "gross_profit",
+        "operating_income",
+        "net_income",
+        "ocf",
+        "capex",
+        "fcf",
+        "da",
+        "ebitda",
+        "pretax_income",
+        "income_tax"
+      ],
+      "properties": {
+        "revenue": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "gross_profit": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "operating_income": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "net_income": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "ocf": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "capex": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "fcf": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "da": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "ebitda": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "pretax_income": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "income_tax": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "fy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fy"
+        ],
+        "properties": {
+          "fy": {
+            "type": "integer"
+          },
+          "period_end": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/date_or_null"
+          },
+          "revenue": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "operating_income": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "net_income": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "ocf": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "capex": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "fcf": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "balance": {
+      "type": "object",
+      "required": [
+        "cash",
+        "st_investments",
+        "total_debt",
+        "net_debt",
+        "equity",
+        "goodwill",
+        "intangibles"
+      ],
+      "properties": {
+        "cash": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "st_investments": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "total_debt": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "net_debt": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "equity": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "goodwill": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "intangibles": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "margins_pct": {
+      "type": "object",
+      "required": [
+        "gross",
+        "operating",
+        "net",
+        "fcf"
+      ],
+      "properties": {
+        "gross": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "operating": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "net": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "fcf": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "growth_pct": {
+      "type": "object",
+      "required": [
+        "revenue_cagr_3y",
+        "ni_cagr_3y",
+        "fcf_cagr_3y",
+        "revenue_yoy_ttm"
+      ],
+      "properties": {
+        "revenue_cagr_3y": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "ni_cagr_3y": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "fcf_cagr_3y": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "revenue_yoy_ttm": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "valuation": {
+      "type": "object",
+      "required": [
+        "ev",
+        "pe",
+        "ev_ebit",
+        "ev_sales",
+        "fcf_yield_pct",
+        "net_debt_ebitda",
+        "p_b",
+        "p_tbv",
+        "roe_pct",
+        "roic_pct",
+        "tax_rate_used"
+      ],
+      "properties": {
+        "ev": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "pe": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "ev_ebit": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "ev_sales": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "fcf_yield_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "net_debt_ebitda": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "net_debt_ebitda_ex_captive": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact",
+          "description": "Captive-finance tickers only: net debt/EBITDA excluding the finance subsidiary; null (not_applicable) unless a net-debt override fraction is configured."
+        },
+        "p_b": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "p_tbv": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "roe_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "roic_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "tax_rate_used": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "balance_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Captive-finance tickers only: caveats on the consolidated balance sheet (leverage ratios overstated)."
+    },
+    "tag_map": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stitched": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

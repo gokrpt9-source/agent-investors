@@ -1,0 +1,13 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "SPMO",
+ "longName": "Invesco S&P 500 Momentum ETF",
+ "shortName": "Invesco S&P 500 Momentum ETF",
+ "quoteType": "ETF",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 118.3,
+ "regularMarketPrice": 118.3,
+ "netExpenseRatio": 0.13,
+ "category": "Large Growth"
+}

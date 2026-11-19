@@ -1,0 +1,184 @@
+{
+ "cik": 9900003,
+ "entityName": "ZZ SYNTHETIC LOSS CO",
+ "facts": {
+  "us-gaap": {
+   "Revenues": {
+    "label": "Revenues",
+    "units": {
+     "USD": [
+      {
+       "start": "2024-01-01",
+       "end": "2024-12-31",
+       "val": 450,
+       "accn": "0009900003-25-000001",
+       "form": "10-K",
+       "filed": "2025-03-01"
+      },
+      {
+       "start": "2024-01-01",
+       "end": "2024-12-31",
+       "val": 450,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      },
+      {
+       "start": "2025-01-01",
+       "end": "2025-12-31",
+       "val": 500,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      }
+     ]
+    }
+   },
+   "NetIncomeLoss": {
+    "label": "NetIncomeLoss",
+    "units": {
+     "USD": [
+      {
+       "start": "2024-01-01",
+       "end": "2024-12-31",
+       "val": 10,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      },
+      {
+       "start": "2025-01-01",
+       "end": "2025-12-31",
+       "val": -50,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      }
+     ]
+    }
+   },
+   "OperatingIncomeLoss": {
+    "label": "OperatingIncomeLoss",
+    "units": {
+     "USD": [
+      {
+       "start": "2025-01-01",
+       "end": "2025-12-31",
+       "val": -20,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      }
+     ]
+    }
+   },
+   "CashAndCashEquivalentsAtCarryingValue": {
+    "label": "CashAndCashEquivalentsAtCarryingValue",
+    "units": {
+     "USD": [
+      {
+       "end": "2025-12-31",
+       "val": 100,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      }
+     ]
+    }
+   },
+   "StockholdersEquity": {
+    "label": "StockholdersEquity",
+    "units": {
+     "USD": [
+      {
+       "end": "2025-12-31",
+       "val": 400,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      }
+     ]
+    }
+   },
+   "LongTermDebt": {
+    "label": "LongTermDebt",
+    "units": {
+     "USD": [
+      {
+       "end": "2023-12-31",
+       "val": 999,
+       "accn": "0009900003-24-000001",
+       "form": "10-K",
+       "filed": "2024-03-01"
+      }
+     ]
+    }
+   },
+   "LongTermDebtNoncurrent": {
+    "label": "LongTermDebtNoncurrent",
+    "units": {
+     "USD": [
+      {
+       "end": "2025-09-30",
+       "val": 150,
+       "accn": "0009900003-25-000002",
+       "form": "10-Q",
+       "filed": "2025-11-05"
+      },
+      {
+       "end": "2025-12-31",
+       "val": 160,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      }
+     ]
+    }
+   },
+   "LongTermDebtCurrent": {
+    "label": "LongTermDebtCurrent",
+    "units": {
+     "USD": [
+      {
+       "end": "2025-09-30",
+       "val": 30,
+       "accn": "0009900003-25-000002",
+       "form": "10-Q",
+       "filed": "2025-11-05"
+      }
+     ]
+    }
+   },
+   "ShortTermBorrowings": {
+    "label": "ShortTermBorrowings",
+    "units": {
+     "USD": [
+      {
+       "end": "2025-09-30",
+       "val": 20,
+       "accn": "0009900003-25-000002",
+       "form": "10-Q",
+       "filed": "2025-11-05"
+      }
+     ]
+    }
+   }
+  },
+  "dei": {
+   "EntityCommonStockSharesOutstanding": {
+    "label": "EntityCommonStockSharesOutstanding",
+    "units": {
+     "shares": [
+      {
+       "end": "2026-02-20",
+       "val": 40,
+       "accn": "0009900003-26-000001",
+       "form": "10-K",
+       "filed": "2026-03-02"
+      }
+     ]
+    }
+   }
+  }
+ }
+}

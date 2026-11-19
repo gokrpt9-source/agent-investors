@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "COST",
+ "longName": "Costco Wholesale Corporation",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Consumer Defensive",
+ "marketCap": 420000000000.0
+}

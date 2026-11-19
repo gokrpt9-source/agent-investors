@@ -1,0 +1,11 @@
+{
+  "_comment": "SYNTHETIC test data (not real fund composition)",
+  "sector_weightings": {
+    "technology": 0.6,
+    "healthcare": 0.3,
+    "weird_key": 0.02
+  },
+  "top_holdings": [],
+  "expense_ratio_pct": null,
+  "expense_ratio_field": "unavailable"
+}

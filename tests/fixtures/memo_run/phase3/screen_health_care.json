@@ -1,0 +1,42 @@
+{
+  "schema": "screen/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "sources": [
+    {
+      "id": "D:YF:XLV:FUND",
+      "url": "https://finance.yahoo.com/quote/XLV/holdings/",
+      "title": "XLV fund holdings (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase3/screen_health_care.json"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "sector": "health_care",
+  "benchmark_etf": "XLV",
+  "universe": [
+    {
+      "ticker": "MRK",
+      "origin": "etf_top10",
+      "etf_weight_pct": 4.1
+    },
+    {
+      "ticker": "ABBV",
+      "origin": "etf_top10",
+      "etf_weight_pct": 5.6
+    }
+  ],
+  "excluded": [],
+  "weights": {
+    "quality": 0.4,
+    "valuation": 0.3,
+    "momentum": 0.3
+  },
+  "ranked": [],
+  "shortlist": [
+    "MRK",
+    "ABBV"
+  ]
+}

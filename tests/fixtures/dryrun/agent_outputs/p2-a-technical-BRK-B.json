@@ -1,0 +1,125 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-technical-BRK-B",
+ "agent_role": "technical",
+ "sector": "financials",
+ "ticker": "BRK-B",
+ "as_of": "${AS_OF}",
+ "thesis": "BRK-B trades in a trading range: close 2.3% versus the 200-day average, ADX 18.0 and RSI 46.3. Twelve-month relative strength versus SPY is -5.3 pp.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is -5.3 pp.",
+   "evidence_refs": [
+    "D:PX:BRK-B"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 502.65,
+   "unit": "USD/share",
+   "source_id": "D:PX:BRK-B",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 46.3435,
+   "unit": "index",
+   "source_id": "D:PX:BRK-B",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 17.9506,
+   "unit": "index",
+   "source_id": "D:PX:BRK-B",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": -5.3417,
+   "unit": "pp",
+   "source_id": "D:PX:BRK-B",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 488.6968,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 5,
+ "conviction_reason": "Computed regime is range; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:BRK-B",
+   "url": "https://finance.yahoo.com/quote/BRK-B/history/",
+   "title": "Yahoo Finance price history (yfinance) — BRK-B",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_BRK-B.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  },
+  {
+   "id": "D:PX:XLF",
+   "url": "https://finance.yahoo.com/quote/XLF/history/",
+   "title": "Yahoo Finance price history (yfinance) — XLF",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_XLF.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "range",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 493.8669,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 506.018,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 488.6968,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 488.70; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/trend/regime",
+   "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/momentum/adx14",
+   "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/momentum/rsi14",
+   "${RUN_DIR}/phase2/data/technicals_BRK-B.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

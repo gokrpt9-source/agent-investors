@@ -1,0 +1,103 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-full-osint-MRK",
+ "agent_role": "osint",
+ "sector": "health_care",
+ "ticker": "MRK",
+ "as_of": "${AS_OF}",
+ "thesis": "Public signals for Merck are mostly routine: filings are timely and insider activity is unremarkable. One high-severity item needs a response: exclusivity on the lead oncology product expires within the forecast horizon.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [],
+ "key_figures": [],
+ "invalidation_price": null,
+ "invalidation_rationale": "Signals are qualitative; a change in the flagged items would change the read.",
+ "conviction": 5,
+ "conviction_reason": "Signals point in different directions with no clear trend.",
+ "self_evidence": 6,
+ "self_evidence_reason": "Filing indexes were sampled; news-tone and hiring data were not available.",
+ "missing_data": [
+  "Hiring and employee-sentiment data (no source in the inputs)"
+ ],
+ "red_flags": [
+  {
+   "id": "F1",
+   "flag": "Exclusivity on the lead oncology product expires within the forecast horizon; replacement revenue depends on pipeline readouts.",
+   "severity": "high",
+   "must_address": true,
+   "source_ids": [
+    "W1"
+   ]
+  }
+ ],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:MRK:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000310158.json",
+   "title": "SEC EDGAR submissions — MRK (CIK 0000310158)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_MRK.json"
+  },
+  {
+   "id": "D:SEC:MRK:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000310158.json",
+   "title": "SEC EDGAR XBRL companyfacts — MRK (CIK 0000310158)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_MRK.json"
+  },
+  {
+   "id": "W1",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000310158&type=8-K&dateb=&owner=include&count=40",
+   "title": "Current reports (8-K) — MRK (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W2",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000310158&type=10-Q&dateb=&owner=include&count=40",
+   "title": "Quarterly reports (10-Q) — MRK (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W3",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000310158&type=4&dateb=&owner=include&count=40",
+   "title": "Insider transaction reports (Form 4) — MRK (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  }
+ ],
+ "extensions": {
+  "signals": [
+   {
+    "signal": "Recent current reports focus on routine business updates; loss of exclusivity on its largest oncology product later in the decade is the recurring theme.",
+    "direction": "negative",
+    "source_ids": [
+     "W1"
+    ],
+    "trend": "stable"
+   },
+   {
+    "signal": "Quarterly filings arrived on the usual schedule with no late-filing notices.",
+    "direction": "positive",
+    "source_ids": [
+     "W2",
+     "D:SEC:MRK:SUB"
+    ],
+    "trend": "stable"
+   },
+   {
+    "signal": "Insider filings show routine award and plan-based transactions, no unusual clusters.",
+    "direction": "neutral",
+    "source_ids": [
+     "W3"
+    ],
+    "trend": "stable"
+   }
+  ]
+ }
+}

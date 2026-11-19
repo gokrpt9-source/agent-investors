@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "MSFT",
+ "longName": "Microsoft Corporation",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Technology",
+ "marketCap": 3700000000000.0
+}

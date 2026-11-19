@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p3-sh-health_care",
+  "agent_role": "sector_head",
+  "phase": 3,
+  "sector": "health_care",
+  "as_of": "2026-10-03",
+  "summary": "One BUY (MRK) passed every rule; ABBV did not make the finalist cut at the light review.",
+  "verdicts": [
+    {
+      "ticker": "MRK",
+      "kind": "candidate",
+      "action": "BUY",
+      "rule_action": "BUY",
+      "rule_label": null,
+      "agg_conviction": 7.6,
+      "agg_evidence": 9.0,
+      "rr": 2.56,
+      "rationale": "Base fair value well above price with a defined technical stop; DA verdict survives.",
+      "dissents": [
+        {
+          "role": "devils_advocate",
+          "view": "Patent-cliff timing could compress earnings faster than modeled."
+        }
+      ],
+      "unresolved_red_flags": [],
+      "rule_deviation": false,
+      "deviation_justification": null,
+      "da_rebuttal": null,
+      "thesis": "Durable oncology franchise and a deep late-stage pipeline priced as if the patent cliff were permanent.",
+      "fair_value_low": 96.0,
+      "fair_value_base": 128.0,
+      "fair_value_high": 150.0,
+      "invalidation_price": 87.0
+    }
+  ],
+  "sources": [
+    {
+      "id": "D:SEC:KO:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase2/data/fundamentals_KO.json"
+    },
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    }
+  ],
+  "missing_data": []
+}

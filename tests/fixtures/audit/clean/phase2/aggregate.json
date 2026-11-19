@@ -1,0 +1,251 @@
+{
+  "schema": "aggregate/v1",
+  "as_of": "2026-10-02",
+  "tickers": {
+    "AAA": {
+      "kind": "holding",
+      "asset_type": "stock",
+      "sector": "information_technology",
+      "sector_class": "default",
+      "inputs": {
+        "price": {
+          "value": 100.0,
+          "unit": "USD/share",
+          "source_id": "D:X",
+          "as_of": "2026-10-01",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 10.0,
+        "cap_pct": 10.0
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "phase2/reports/fundamental.json",
+          "status": "ok",
+          "stance": "bearish",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        },
+        {
+          "role": "technical",
+          "path": "phase2/reports/technical.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        },
+        {
+          "role": "osint",
+          "path": "phase2/reports/osint.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        },
+        {
+          "role": "operator_ceo",
+          "path": "phase2/reports/operator_ceo.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        }
+      ],
+      "conviction_mean": 4.4,
+      "da": {
+        "path": "x",
+        "status": "ok",
+        "verdict": "survives",
+        "adj": 0.0,
+        "evidence": 7.0
+      },
+      "agg_conviction": 4.4,
+      "agg_evidence": 8.0,
+      "rr": {
+        "price": 100.0,
+        "fv_base": 90.0,
+        "invalidation": 90.0,
+        "rr": -1.0,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "TRIM",
+      "rule_label": "limit_breach",
+      "rule_trace": [],
+      "notes": []
+    },
+    "BBB": {
+      "kind": "holding",
+      "asset_type": "stock",
+      "sector": "health_care",
+      "sector_class": "default",
+      "inputs": {
+        "price": {
+          "value": 200.0,
+          "unit": "USD/share",
+          "source_id": "D:X",
+          "as_of": "2026-10-01",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 10.0,
+        "cap_pct": 10.0
+      },
+      "specialists": [
+        {
+          "role": "fundamental",
+          "path": "phase2/reports/fundamental.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        },
+        {
+          "role": "technical",
+          "path": "phase2/reports/technical.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        },
+        {
+          "role": "osint",
+          "path": "phase2/reports/osint.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        },
+        {
+          "role": "operator_ceo",
+          "path": "phase2/reports/operator_ceo.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        }
+      ],
+      "conviction_mean": 5.2,
+      "da": {
+        "path": "x",
+        "status": "ok",
+        "verdict": "survives",
+        "adj": 0.0,
+        "evidence": 7.0
+      },
+      "agg_conviction": 5.2,
+      "agg_evidence": 8.0,
+      "rr": {
+        "price": 200.0,
+        "fv_base": 210.0,
+        "invalidation": 180.0,
+        "rr": 1.5,
+        "null_reason": null
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "HOLD",
+      "rule_label": "limit_breach",
+      "rule_trace": [],
+      "notes": []
+    },
+    "FND": {
+      "kind": "holding",
+      "asset_type": "fund",
+      "sector": "funds",
+      "sector_class": "fund",
+      "inputs": {
+        "price": {
+          "value": 100.0,
+          "unit": "USD/share",
+          "source_id": "D:X",
+          "as_of": "2026-10-01",
+          "kind": "price",
+          "na_reason": null
+        },
+        "position_pct": 10.0,
+        "cap_pct": 10.0
+      },
+      "specialists": [
+        {
+          "role": "etf",
+          "path": "phase2/reports/etf.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        },
+        {
+          "role": "technical",
+          "path": "phase2/reports/technical.json",
+          "status": "ok",
+          "stance": "neutral",
+          "conviction": 5.0,
+          "effective_conviction": 5.0,
+          "evidence": 8.0,
+          "in_mean": true,
+          "invalidation_price": null
+        }
+      ],
+      "conviction_mean": 5.0,
+      "da": {
+        "path": null,
+        "status": "not_run",
+        "verdict": null,
+        "adj": 0,
+        "evidence": null
+      },
+      "agg_conviction": 5.0,
+      "agg_evidence": 8.0,
+      "rr": {
+        "price": 100.0,
+        "fv_base": null,
+        "invalidation": 90.0,
+        "rr": null,
+        "null_reason": "not_applicable"
+      },
+      "flags": {
+        "all": [],
+        "unresolved": []
+      },
+      "rule_action": "HOLD",
+      "rule_label": "limit_breach",
+      "rule_trace": [],
+      "notes": []
+    }
+  }
+}

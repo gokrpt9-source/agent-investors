@@ -1,0 +1,16 @@
+{
+  "_comment": "SYNTHETIC test data (not real fund composition)",
+  "sector_weightings": {
+    "technology": 0.7,
+    "healthcare": 0.5
+  },
+  "top_holdings": [
+    {
+      "symbol": "AAPL",
+      "name": "AAPL (synthetic)",
+      "holding_pct": 10.0
+    }
+  ],
+  "expense_ratio_pct": 0.5,
+  "expense_ratio_field": "info.netExpenseRatio"
+}

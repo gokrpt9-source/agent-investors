@@ -1,0 +1,176 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-fundamental-JPM",
+ "agent_role": "fundamental",
+ "sector": "financials",
+ "ticker": "JPM",
+ "as_of": "${AS_OF}",
+ "thesis": "JPMorgan Chase is a universal bank with consumer, corporate and markets franchises with ROE of 17.4% TTM on reported equity. Against the configured valuation grid the base fair value is 252.56 versus a 318.90 close (-20.8%), so the stock already prices in more than the filings support.",
+ "stance": "bearish",
+ "strengths": [
+  {
+   "point": "Durable deposit franchise scale and diversified fee businesses.",
+   "evidence_refs": [
+    "D:SEC:JPM:CF"
+   ]
+  },
+  {
+   "point": "P/E of 13.0x on TTM earnings with ROE of 17.4% TTM on reported equity.",
+   "evidence_refs": [
+    "D:SEC:JPM:CF",
+    "D:PX:JPM"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: credit normalisation and lower net interest income as policy rates fall.",
+   "evidence_refs": [
+    "D:SEC:JPM:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Base fair value sits 20.8% below the last close.",
+   "evidence_refs": [
+    "D:VAL:JPM"
+   ],
+   "severity": "high"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 199408000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:JPM:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_JPM.json#/ttm/revenue",
+   "filed": "2026-08-06"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 65067000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:JPM:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_JPM.json#/ttm/net_income",
+   "filed": "2026-08-06"
+  },
+  {
+   "name": "ROE",
+   "value": 17.36982044751974,
+   "unit": "pct",
+   "source_id": "D:SEC:JPM:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_JPM.json#/valuation/roe_pct",
+   "filed": "2026-08-06"
+  },
+  {
+   "name": "P/B",
+   "value": 2.2629474198620922,
+   "unit": "x",
+   "source_id": "D:SEC:JPM:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_JPM.json#/valuation/p_b",
+   "filed": "2026-08-06"
+  },
+  {
+   "name": "P/E",
+   "value": 13.02804152005625,
+   "unit": "x",
+   "source_id": "D:SEC:JPM:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_JPM.json#/valuation/pe",
+   "filed": "2026-08-06"
+  },
+  {
+   "name": "Last close",
+   "value": 318.9,
+   "unit": "USD/share",
+   "source_id": "D:PX:JPM",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_JPM.json#/price"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 7,
+ "conviction_reason": "The price sits above most of the valuation grid.",
+ "self_evidence": 7,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [
+  "From fundamentals data: ttm.capex: missing in SEC companyfacts - FCF, FCF margin and FCF yield not computed",
+  "Reverse DCF implied growth (not computable for this sector class)"
+ ],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:JPM:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000019617.json",
+   "title": "SEC EDGAR XBRL companyfacts — JPM (CIK 0000019617)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_JPM.json"
+  },
+  {
+   "id": "D:VAL:JPM",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000019617.json",
+   "title": "Valuation grid for JPM derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_JPM.json"
+  },
+  {
+   "id": "D:PX:JPM",
+   "url": "https://finance.yahoo.com/quote/JPM/history/",
+   "title": "Yahoo Finance price history (yfinance) — JPM",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_JPM.json"
+  },
+  {
+   "id": "D:SEC:JPM:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000019617.json",
+   "title": "SEC EDGAR submissions — JPM (CIK 0000019617)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_JPM.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 180.61,
+   "fair_value_base": 252.56,
+   "fair_value_high": 338.6,
+   "method": "Configured P/E and P/B bands (financials: DCF cells have limited meaning) plus one FCF DCF cell.",
+   "input_refs": [
+    "${RUN_DIR}/phase2/data/valuation_JPM.json#/cells",
+    "${RUN_DIR}/phase2/data/valuation_JPM.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "PE-low",
+    "PB-low"
+   ],
+   "cells_base": [
+    "PE-mid",
+    "PB-mid"
+   ],
+   "cells_high": [
+    "PE-high",
+    "PB-high"
+   ],
+   "reverse_dcf_implied_growth_pct": null
+  },
+  "quality_notes": "JPMorgan Chase: ROE of 17.4% TTM on reported equity; moat rests on its deposit franchise scale and diversified fee businesses.",
+  "balance_sheet_notes": "Balance-sheet leverage is assessed through capital ratios that SEC companyfacts does not expose; equity and earnings figures are taken as reported."
+ }
+}

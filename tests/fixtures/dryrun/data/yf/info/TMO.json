@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "TMO",
+ "longName": "Thermo Fisher Scientific Inc.",
+ "shortName": "Thermo Fisher Scientific Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 512.3,
+ "regularMarketPrice": 512.3,
+ "sector": "Healthcare",
+ "industry": "Diagnostics & Research",
+ "sharesOutstanding": 377000000,
+ "impliedSharesOutstanding": 377000000,
+ "marketCap": 193137100000
+}

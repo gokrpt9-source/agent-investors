@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:desk_timer",
+  "title": "Desk timer result",
+  "description": "Written by desk-timer to runs/desk/<date>/timer_<SYMBOL>.json for ONE ticker the investor (or the chair, from the scout list) chose: entry state bar by bar, the stop/target plan and the alerts.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "agent",
+    "date",
+    "disclaimer",
+    "nothing_ordered",
+    "missing_data",
+    "commands_run",
+    "symbol",
+    "chosen_by",
+    "result",
+    "entry",
+    "plan",
+    "alerts"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "agent": {
+      "const": "desk-timer"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "disclaimer": {
+      "type": "string",
+      "pattern": "(?i)not financial advice",
+      "allOf": [
+        {
+          "pattern": "(?i)most people who day trade lose money"
+        }
+      ],
+      "description": "Must carry the skills' own disclaimer ('Education and tooling, not financial advice.') and 'Most people who day trade lose money.'"
+    },
+    "nothing_ordered": {
+      "const": true,
+      "description": "Always true: no desk agent places, modifies or cancels an order or moves money."
+    },
+    "missing_data": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Things the agent needed and could not get; never filled with guesses."
+    },
+    "commands_run": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Every skill command line the agent ran, verbatim."
+    },
+    "symbol": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9.\\-]{0,11}$"
+    },
+    "chosen_by": {
+      "enum": [
+        "user",
+        "chair_from_scout_list"
+      ]
+    },
+    "result": {
+      "enum": [
+        "ready",
+        "waiting",
+        "refused",
+        "market_closed",
+        "failed"
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "required": [
+        "status",
+        "setup",
+        "note",
+        "written"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "triggered",
+            "waiting",
+            "expired",
+            "not_open_yet",
+            "forming",
+            "closed",
+            "no_data"
+          ]
+        },
+        "setup": {
+          "enum": [
+            "orb",
+            "level"
+          ]
+        },
+        "checked_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "trigger_time": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "trigger_price": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "level": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "or_high": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "or_low": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "written": {
+          "type": "boolean",
+          "description": "trader/entry.json was written."
+        }
+      }
+    },
+    "plan": {
+      "type": "object",
+      "required": [
+        "written",
+        "refused_reason"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "written": {
+          "type": "boolean",
+          "description": "trader/plan.json was written."
+        },
+        "entry": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stop": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stop_rule": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "target_r": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "risk_per_share": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "reward_risk": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "flat_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "refused_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stop_is_a_plan_not_a_guarantee": {
+          "const": true
+        }
+      }
+    },
+    "alerts": {
+      "type": "object",
+      "required": [
+        "added",
+        "market_clock"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "added": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "stop",
+                  "target",
+                  "time"
+                ]
+              },
+              "level": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "market_clock": {
+          "type": "string",
+          "description": "Verbatim line from the alerts clock command."
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

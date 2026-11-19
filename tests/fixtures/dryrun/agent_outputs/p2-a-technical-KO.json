@@ -1,0 +1,125 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-technical-KO",
+ "agent_role": "technical",
+ "sector": "consumer_staples",
+ "ticker": "KO",
+ "as_of": "${AS_OF}",
+ "thesis": "KO trades in a transition between regimes: close 0.9% versus the 200-day average, ADX 20.3 and RSI 45.2. Twelve-month relative strength versus SPY is -7.8 pp.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is -7.8 pp.",
+   "evidence_refs": [
+    "D:PX:KO"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 85.65,
+   "unit": "USD/share",
+   "source_id": "D:PX:KO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_KO.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 45.2118,
+   "unit": "index",
+   "source_id": "D:PX:KO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_KO.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 20.3079,
+   "unit": "index",
+   "source_id": "D:PX:KO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_KO.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": -7.7939,
+   "unit": "pp",
+   "source_id": "D:PX:KO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_KO.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 84.7978,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 5,
+ "conviction_reason": "Computed regime is transition; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:KO",
+   "url": "https://finance.yahoo.com/quote/KO/history/",
+   "title": "Yahoo Finance price history (yfinance) — KO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_KO.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  },
+  {
+   "id": "D:PX:XLP",
+   "url": "https://finance.yahoo.com/quote/XLP/history/",
+   "title": "Yahoo Finance price history (yfinance) — XLP",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_XLP.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "transition",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 85.225,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_KO.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 86.176,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_KO.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 84.7978,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_KO.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 84.80; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase2/data/technicals_KO.json#/trend/regime",
+   "${RUN_DIR}/phase2/data/technicals_KO.json#/momentum/adx14",
+   "${RUN_DIR}/phase2/data/technicals_KO.json#/momentum/rsi14",
+   "${RUN_DIR}/phase2/data/technicals_KO.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "KO",
+  "shortName": "Coca-Cola Company (The)",
+  "longName": "The Coca-Cola Company",
+  "quoteType": "EQUITY",
+  "currency": "USD",
+  "exchange": "NYQ",
+  "sector": "Consumer Defensive",
+  "industry": "Beverages - Non-Alcoholic",
+  "marketCap": 368513318912,
+  "sharesOutstanding": 4302549243,
+  "impliedSharesOutstanding": 4302549243,
+  "currentPrice": 85.65,
+  "regularMarketPrice": 85.65,
+  "previousClose": 86.1,
+  "regularMarketTime": 1790971202
+}

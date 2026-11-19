@@ -1,0 +1,14 @@
+{
+  "schema": "valuation/v1",
+  "ticker": "CCC",
+  "flags": [],
+  "methods_available": [
+    "pe"
+  ],
+  "cells": [
+    {
+      "id": "PE-mid",
+      "na_reason": null
+    }
+  ]
+}

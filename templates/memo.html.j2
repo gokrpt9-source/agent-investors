@@ -1,0 +1,193 @@
+{#- memo.html.j2 — Investment Committee memo, self-contained HTML (DESIGN §4.14).
+    Rendered by scripts/render_memo.py with autoescape=True. Inline CSS only: no scripts, no
+    external stylesheets, fonts or images. Light and dark themes via prefers-color-scheme; print
+    styles force the light palette. Links are emitted only for plain http(s) URLs (safe_url). -#}
+{% macro html_block(b, lvl=3) %}
+{% if b.type == "para" %}
+<p class="{{ b.style }}">{{ b.text }}</p>
+{% elif b.type == "subheading" %}
+<h{{ lvl }}>{{ b.text }}</h{{ lvl }}>
+{% elif b.type == "bullets" %}
+<ul>
+{% for it in b.entries %}
+<li>{{ it }}</li>
+{% endfor %}
+</ul>
+{% elif b.type == "kv" %}
+<dl class="kv">
+{% for pair in b.entries %}
+<dt>{{ pair[0] }}</dt><dd>{{ pair[1] }}</dd>
+{% endfor %}
+</dl>
+{% elif b.type == "table" %}
+<div class="table-wrap">
+<table>
+{% if b.caption %}<caption>{{ b.caption }}</caption>{% endif %}
+<thead><tr>{% for h in b.headers %}{% set cls = b.align[loop.index0]|align_class %}<th{% if cls %} class="{{ cls }}"{% endif %} scope="col">{{ h }}</th>{% endfor %}</tr></thead>
+<tbody>
+{% for r in b.rows %}
+<tr>{% set ri = loop.index0 %}{% for c in r %}{% set i = loop.index0 %}{% set cls = b.align[i]|align_class %}{% set tip = b.titles[ri ~ ":" ~ i] if b.titles else "" %}<td{% if cls %} class="{{ cls }}"{% endif %}{% if tip %} title="{{ tip }}"{% endif %}>{% if i in b.links and (c|safe_url) %}<a href="{{ c|safe_url }}" rel="noopener noreferrer">{{ c }}</a>{% elif i in b.badges and (c|badge_class) %}<span class="badge {{ c|badge_class }}">{{ c }}</span>{% else %}{{ c|cell_html }}{% endif %}</td>{% endfor %}</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% elif b.type == "card" %}
+<article class="card">
+<h{{ lvl }} class="card-title">{{ b.title }}</h{{ lvl }}>
+{% for c in b.blocks %}
+{{ html_block(c, lvl + 1) }}
+{% endfor %}
+</article>
+{% endif %}
+{% endmacro %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="generator" content="agent-investors scripts/render_memo.py">
+<title>{{ memo.title }} · {{ memo.subtitle }}</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff; --fg: #1c1f24; --muted: #5d6573; --border: #d9dde4; --th: #f1f3f6;
+  --stripe: #f9fafb; --card: #f7f8fa; --accent: #1f4fbf; --link: #1f4fbf;
+  --warn-bg: #fff5df; --warn-fg: #6e4500; --warn-border: #f0c36d;
+  --disc-bg: #eef2fd; --disc-fg: #1b2650; --disc-border: #1f4fbf;
+  --pos: #0f7a3c; --neg: #b3261e; --warn: #a15c00; --neutral: #475467; --mute: #6b7280;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121418; --fg: #e3e6ea; --muted: #9aa3af; --border: #30363f; --th: #1b1f25;
+    --stripe: #16191e; --card: #171a20; --accent: #8aa9ff; --link: #8aa9ff;
+    --warn-bg: #33270c; --warn-fg: #f3d189; --warn-border: #7a5a14;
+    --disc-bg: #1a2140; --disc-fg: #cdd6ff; --disc-border: #8aa9ff;
+    --pos: #5fd38d; --neg: #ff8a80; --warn: #f5b759; --neutral: #b4bcc8; --mute: #9aa3af;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font: 15px/1.55 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+.page { max-width: 1120px; margin: 0 auto; padding: 28px 22px 56px; }
+header.memo-header { border-bottom: 3px solid var(--accent); padding-bottom: 10px; margin-bottom: 8px; }
+h1 { font-size: 1.65rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+.subtitle { color: var(--muted); margin: 0; font-size: .95rem; }
+h2 { font-size: 1.28rem; margin: 2.2rem 0 .8rem; padding-bottom: .3rem; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.07rem; margin: 1.4rem 0 .5rem; }
+h4 { font-size: .98rem; margin: 1rem 0 .4rem; }
+h5 { font-size: .92rem; margin: .9rem 0 .35rem; color: var(--muted); }
+p { margin: .5rem 0 .8rem; }
+p.muted { color: var(--muted); font-size: .92rem; }
+p.warn { background: var(--warn-bg); color: var(--warn-fg); border-left: 4px solid var(--warn-border);
+  padding: .55rem .8rem; border-radius: 6px; }
+p.disclaimer { background: var(--disc-bg); color: var(--disc-fg); border-left: 4px solid var(--disc-border);
+  padding: .8rem 1rem; border-radius: 6px; font-weight: 600; }
+ul { margin: .4rem 0 .9rem; padding-left: 1.3rem; }
+li { margin: .2rem 0; }
+a { color: var(--link); word-break: break-all; }
+dl.kv { display: grid; grid-template-columns: minmax(10rem, max-content) 1fr; gap: .3rem 1.1rem; margin: .5rem 0 1rem; }
+dl.kv dt { font-weight: 600; color: var(--muted); }
+dl.kv dd { margin: 0; }
+.table-wrap { overflow-x: auto; margin: .5rem 0 1.1rem; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+caption { text-align: left; font-weight: 600; padding: .3rem 0; }
+th, td { border: 1px solid var(--border); padding: .38rem .55rem; vertical-align: top; text-align: left; }
+th { background: var(--th); font-weight: 600; }
+tbody tr:nth-child(even) { background: var(--stripe); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.wide, th.wide { min-width: 24rem; }
+td strong { font-weight: 650; color: var(--muted); }
+.chair { border: 1px solid var(--border); border-left: 7px solid var(--accent); background: var(--card);
+  border-radius: 10px; padding: .9rem 1.3rem 1rem; margin: 1.3rem 0 .6rem; }
+.chair.chair-b-pos { border-left-color: var(--pos); }
+.chair.chair-b-warn { border-left-color: var(--warn); }
+.chair.chair-b-neg { border-left-color: var(--neg); }
+.chair h2 { margin: 0 0 .5rem; border-bottom: 0; padding-bottom: 0; font-size: 1.35rem; }
+.chair .chair-verdict { margin: .2rem 0 .5rem; display: flex; gap: .7rem; align-items: center; flex-wrap: wrap; }
+.chair .chair-verdict .badge { font-size: .9rem; padding: .1rem .75rem; }
+.chair .chair-headline { font-size: 1.12rem; font-weight: 650; margin: .2rem 0 .8rem; }
+.chair h3 { margin: 1.1rem 0 .4rem; }
+.chair .table-wrap { margin-bottom: .6rem; }
+.card { border: 1px solid var(--border); background: var(--card); border-radius: 8px; padding: .8rem 1.1rem;
+  margin: 1rem 0 1.2rem; }
+.card .card-title { margin-top: .2rem; }
+.badge { display: inline-block; padding: 0 .5rem; border-radius: 999px; font-size: .78rem; font-weight: 700;
+  letter-spacing: .02em; border: 1px solid currentColor; white-space: nowrap; }
+.b-pos { color: var(--pos); } .b-neg { color: var(--neg); } .b-warn { color: var(--warn); }
+.b-neutral { color: var(--neutral); } .b-mute { color: var(--mute); }
+nav.toc { margin: 1.4rem 0 .5rem; padding: .7rem 1rem; border: 1px solid var(--border); border-radius: 8px; }
+nav.toc ol { margin: 0; padding-left: 0; list-style: none; columns: 2; column-gap: 2rem; }
+nav.toc li { margin: .15rem 0; }
+footer { margin-top: 2.5rem; padding-top: .8rem; border-top: 1px solid var(--border); color: var(--muted);
+  font-size: .85rem; }
+@media (max-width: 700px) {
+  .page { padding: 18px 12px 40px; }
+  nav.toc ol { columns: 1; }
+  dl.kv { grid-template-columns: 1fr; }
+}
+@media print {
+  :root {
+    --bg: #ffffff; --fg: #000000; --muted: #444444; --border: #bbbbbb; --th: #eeeeee; --stripe: #ffffff;
+    --card: #ffffff; --accent: #000000; --link: #000000; --warn-bg: #ffffff; --warn-fg: #000000;
+    --warn-border: #888888; --disc-bg: #ffffff; --disc-fg: #000000; --disc-border: #000000;
+    --pos: #000000; --neg: #000000; --warn: #000000; --neutral: #000000; --mute: #444444;
+  }
+  body { font-size: 10.5pt; }
+  .page { max-width: none; padding: 0; }
+  nav.toc { display: none; }
+  .table-wrap { overflow: visible; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  tr, .card, .chair, dl.kv { break-inside: avoid; page-break-inside: avoid; }
+  a { text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="memo-header">
+<h1>{{ memo.title }}</h1>
+<p class="subtitle">{{ memo.subtitle }}</p>
+{% if memo.chair_status %}
+<p class="muted">{{ memo.chair_status }}</p>
+{% endif %}
+</header>
+<main>
+{% if memo.chair %}
+<section id="chair" class="chair chair-{{ memo.chair.verdict_class }}" aria-label="{{ memo.chair.title }}">
+<h2>{{ memo.chair.title }}</h2>
+<p class="chair-verdict"><span class="badge {{ memo.chair.verdict_class }}">{{ memo.chair.verdict_label }}</span>{% if memo.chair.meta %}<span class="muted">{{ memo.chair.meta }}</span>{% endif %}</p>
+{% if memo.chair.headline %}
+<p class="chair-headline">{{ memo.chair.headline }}</p>
+{% endif %}
+{% for b in memo.chair.blocks %}
+{{ html_block(b) }}
+{% endfor %}
+</section>
+{% endif %}
+{% for s in memo.sections %}
+<section id="{{ s.anchor }}">
+<h2>{{ s.title }}</h2>
+{% for b in s.blocks %}
+{{ html_block(b) }}
+{% endfor %}
+</section>
+{% if loop.first and memo.sections|length > 1 %}
+<nav class="toc" aria-label="Contents">
+<ol>
+{% for t in memo.sections[1:] %}
+<li><a href="#{{ t.anchor }}">{{ t.title }}</a></li>
+{% endfor %}
+</ol>
+</nav>
+{% endif %}
+{% endfor %}
+</main>
+<footer>
+<p>{{ memo.disclaimer }}</p>
+<p>Generated {{ memo.generated_at }} by scripts/render_memo.py.</p>
+</footer>
+</div>
+</body>
+</html>

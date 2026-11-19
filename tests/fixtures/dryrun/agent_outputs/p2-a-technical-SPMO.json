@@ -1,0 +1,117 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-technical-SPMO",
+ "agent_role": "technical",
+ "sector": "funds",
+ "ticker": "SPMO",
+ "as_of": "${AS_OF}",
+ "thesis": "SPMO trades in a trading range: close 10.0% versus the 200-day average, ADX 12.6 and RSI 47.6. Twelve-month relative strength versus SPY is 9.4 pp.",
+ "stance": "bullish",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is 9.4 pp.",
+   "evidence_refs": [
+    "D:PX:SPMO"
+   ],
+   "severity": "low"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 118.3,
+   "unit": "USD/share",
+   "source_id": "D:PX:SPMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 47.6413,
+   "unit": "index",
+   "source_id": "D:PX:SPMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 12.6139,
+   "unit": "index",
+   "source_id": "D:PX:SPMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": 9.3653,
+   "unit": "pp",
+   "source_id": "D:PX:SPMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 116.508,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 8,
+ "conviction_reason": "Computed regime is range; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:SPMO",
+   "url": "https://finance.yahoo.com/quote/SPMO/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPMO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPMO.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "range",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 117.5633,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 119.15,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 116.508,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_SPMO.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 116.51; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase2/data/technicals_SPMO.json#/trend/regime",
+   "${RUN_DIR}/phase2/data/technicals_SPMO.json#/momentum/adx14",
+   "${RUN_DIR}/phase2/data/technicals_SPMO.json#/momentum/rsi14",
+   "${RUN_DIR}/phase2/data/technicals_SPMO.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

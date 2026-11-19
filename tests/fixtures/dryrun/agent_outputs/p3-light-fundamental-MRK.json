@@ -1,0 +1,194 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-fundamental-MRK",
+ "agent_role": "fundamental",
+ "sector": "health_care",
+ "ticker": "MRK",
+ "as_of": "${AS_OF}",
+ "thesis": "Merck is a large pharmaceutical company with oncology and vaccine franchises with operating margin of 31.8% TTM. Against the configured valuation grid the base fair value is 106.98 versus a 86.90 close (23.1%), so the stock leaves a margin of safety.",
+ "stance": "bullish",
+ "strengths": [
+  {
+   "point": "Durable patent-protected oncology franchise and global vaccine manufacturing.",
+   "evidence_refs": [
+    "D:SEC:MRK:CF"
+   ]
+  },
+  {
+   "point": "P/E of 12.8x on TTM earnings with operating margin of 31.8% TTM.",
+   "evidence_refs": [
+    "D:SEC:MRK:CF",
+    "D:PX:MRK"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: loss of exclusivity on its largest oncology product later in the decade.",
+   "evidence_refs": [
+    "D:SEC:MRK:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "The reverse DCF implies 1.1% annual growth is priced in.",
+   "evidence_refs": [
+    "D:VAL:MRK"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 64681500000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:MRK:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_MRK.json#/ttm/revenue",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 16946553000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:MRK:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_MRK.json#/ttm/net_income",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 31.8,
+   "unit": "pct",
+   "source_id": "D:SEC:MRK:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_MRK.json#/margins_pct/operating",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "FCF yield",
+   "value": 6.319425888741979,
+   "unit": "pct",
+   "source_id": "D:SEC:MRK:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_MRK.json#/valuation/fcf_yield_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "ROIC",
+   "value": 23.374170721016355,
+   "unit": "pct",
+   "source_id": "D:SEC:MRK:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_MRK.json#/valuation/roic_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "P/E",
+   "value": 12.804332538894489,
+   "unit": "x",
+   "source_id": "D:SEC:MRK:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_MRK.json#/valuation/pe",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Last close",
+   "value": 86.9,
+   "unit": "USD/share",
+   "source_id": "D:PX:MRK",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_MRK.json#/price"
+  },
+  {
+   "name": "Reverse DCF implied growth",
+   "value": 1.12,
+   "unit": "pct",
+   "source_id": "D:VAL:MRK",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase3/data/valuation_MRK.json#/reverse_dcf/implied_growth_pct"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 8,
+ "conviction_reason": "Valuation cells and quality metrics agree.",
+ "self_evidence": 8,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:MRK:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000310158.json",
+   "title": "SEC EDGAR XBRL companyfacts — MRK (CIK 0000310158)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_MRK.json"
+  },
+  {
+   "id": "D:VAL:MRK",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000310158.json",
+   "title": "Valuation grid for MRK derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/valuation_MRK.json"
+  },
+  {
+   "id": "D:PX:MRK",
+   "url": "https://finance.yahoo.com/quote/MRK/history/",
+   "title": "Yahoo Finance price history (yfinance) — MRK",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_MRK.json"
+  },
+  {
+   "id": "D:SEC:MRK:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000310158.json",
+   "title": "SEC EDGAR submissions — MRK (CIK 0000310158)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_MRK.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 87.43,
+   "fair_value_base": 106.98,
+   "fair_value_high": 157.51,
+   "method": "Course NOPAT/FCF DCF (r 9-10%, 5 years, growth-tiered exit multiple) blended with the configured multiple bands.",
+   "input_refs": [
+    "${RUN_DIR}/phase3/data/valuation_MRK.json#/cells",
+    "${RUN_DIR}/phase3/data/valuation_MRK.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "DCF-NOPAT-r10-g03",
+    "PE-low"
+   ],
+   "cells_base": [
+    "DCF-NOPAT-r10-g06",
+    "DCF-FCF-r10-g06",
+    "PE-mid",
+    "EVEBIT-mid"
+   ],
+   "cells_high": [
+    "DCF-NOPAT-r09-g10",
+    "PE-high"
+   ],
+   "reverse_dcf_implied_growth_pct": 1.12
+  },
+  "quality_notes": "Merck: operating margin of 31.8% TTM; moat rests on its patent-protected oncology franchise and global vaccine manufacturing.",
+  "balance_sheet_notes": "Net debt of 25.2 bn USD, about 1.0x EBITDA; no near-term refinancing strain visible."
+ }
+}

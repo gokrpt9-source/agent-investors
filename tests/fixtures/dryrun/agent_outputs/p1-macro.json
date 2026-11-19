@@ -1,0 +1,374 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p1-macro",
+ "agent_role": "macro",
+ "as_of": "${AS_OF}",
+ "regime": "late-cycle easing",
+ "regime_summary": "Policy rates are falling from restrictive levels and the curve has re-steepened. Inflation is easing but still above target while unemployment edges up. Credit spreads are calm. The mix favours quality and defensive growth over rate-sensitive valuation extremes.",
+ "drivers": [
+  {
+   "driver": "Policy easing under way: fed funds at 3.88%, -0.63 pp over twelve months.",
+   "direction": "tailwind",
+   "series": [
+    "DFF",
+    "DGS2"
+   ],
+   "data_refs": [
+    "${RUN_DIR}/phase1/macro.json#/series/DFF/latest",
+    "${RUN_DIR}/phase1/macro.json#/series/DFF/chg_12m",
+    "${RUN_DIR}/phase1/macro.json#/series/DGS2/latest"
+   ],
+   "source_ids": [
+    "D:FRED:DFF",
+    "D:FRED:DGS2"
+   ]
+  },
+  {
+   "driver": "Curve re-steepened to 0.56 pp with the 10-year near 4.18%.",
+   "direction": "mixed",
+   "series": [
+    "T10Y2Y",
+    "DGS10"
+   ],
+   "data_refs": [
+    "${RUN_DIR}/phase1/macro.json#/series/T10Y2Y/latest",
+    "${RUN_DIR}/phase1/macro.json#/series/DGS10/latest"
+   ],
+   "source_ids": [
+    "D:FRED:T10Y2Y",
+    "D:FRED:DGS10"
+   ]
+  },
+  {
+   "driver": "Inflation easing but above target: CPI 2.3% and core 2.7% YoY.",
+   "direction": "mixed",
+   "series": [
+    "CPIAUCSL",
+    "CPILFESL"
+   ],
+   "data_refs": [
+    "${RUN_DIR}/phase1/macro.json#/series/CPIAUCSL/yoy_pct",
+    "${RUN_DIR}/phase1/macro.json#/series/CPILFESL/yoy_pct"
+   ],
+   "source_ids": [
+    "D:FRED:CPIAUCSL",
+    "D:FRED:CPILFESL"
+   ]
+  },
+  {
+   "driver": "Labour market softening at the margin: unemployment 4.4%.",
+   "direction": "headwind",
+   "series": [
+    "UNRATE",
+    "PAYEMS"
+   ],
+   "data_refs": [
+    "${RUN_DIR}/phase1/macro.json#/series/UNRATE/latest",
+    "${RUN_DIR}/phase1/macro.json#/series/PAYEMS/latest"
+   ],
+   "source_ids": [
+    "D:FRED:UNRATE",
+    "D:FRED:PAYEMS"
+   ]
+  },
+  {
+   "driver": "Credit calm: high-yield spread 3.05 pp, VIX 16.9.",
+   "direction": "tailwind",
+   "series": [
+    "BAMLH0A0HYM2",
+    "VIXCLS"
+   ],
+   "data_refs": [
+    "${RUN_DIR}/phase1/macro.json#/series/BAMLH0A0HYM2/latest",
+    "${RUN_DIR}/phase1/macro.json#/series/VIXCLS/latest"
+   ],
+   "source_ids": [
+    "D:FRED:BAMLH0A0HYM2",
+    "D:FRED:VIXCLS"
+   ]
+  }
+ ],
+ "scenarios": [
+  {
+   "name": "Soft landing",
+   "probability": 0.5,
+   "description": "Inflation drifts toward target while growth stays positive; gradual further cuts.",
+   "sector_implications": [
+    {
+     "sector": "information_technology",
+     "impact": "positive"
+    },
+    {
+     "sector": "health_care",
+     "impact": "neutral"
+    },
+    {
+     "sector": "financials",
+     "impact": "positive"
+    }
+   ]
+  },
+  {
+   "name": "Growth scare",
+   "probability": 0.3,
+   "description": "Hiring stalls, spreads widen and markets rotate toward defensives.",
+   "sector_implications": [
+    {
+     "sector": "consumer_staples",
+     "impact": "positive"
+    },
+    {
+     "sector": "health_care",
+     "impact": "positive"
+    },
+    {
+     "sector": "financials",
+     "impact": "negative",
+     "note": "Credit costs rise."
+    }
+   ]
+  },
+  {
+   "name": "Sticky inflation",
+   "probability": 0.2,
+   "description": "Core inflation stalls above target and long yields rise again.",
+   "sector_implications": [
+    {
+     "sector": "information_technology",
+     "impact": "negative"
+    },
+    {
+     "sector": "energy",
+     "impact": "positive"
+    }
+   ]
+  }
+ ],
+ "sector_constraints": [
+  {
+   "sector": "information_technology",
+   "min_weight": 12,
+   "max_weight": 20,
+   "rationale": "Rate-sensitive valuations and mega-cap concentration argue for a cap."
+  },
+  {
+   "sector": "health_care",
+   "min_weight": 6,
+   "max_weight": 18,
+   "rationale": "Defensive growth at reasonable multiples; currently under-owned."
+  },
+  {
+   "sector": "financials",
+   "min_weight": 10,
+   "max_weight": 28,
+   "rationale": "A re-steepened curve supports margins while credit risk caps the upside."
+  },
+  {
+   "sector": "consumer_staples",
+   "min_weight": 8,
+   "max_weight": 22,
+   "rationale": "Defensive ballast for a slowdown, but valuations are full."
+  },
+  {
+   "sector": "energy",
+   "min_weight": 0,
+   "max_weight": 8,
+   "rationale": "Falling crude prices weigh on earnings momentum."
+  }
+ ],
+ "conviction": 6,
+ "conviction_reason": "Series agree on direction; the growth outlook is finely balanced.",
+ "key_figures": [
+  {
+   "name": "Fed funds effective rate",
+   "value": 3.88,
+   "unit": "pct",
+   "source_id": "D:FRED:DFF",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/DFF/latest"
+  },
+  {
+   "name": "Fed funds 12m change",
+   "value": -0.63,
+   "unit": "pp",
+   "source_id": "D:FRED:DFF",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/DFF/chg_12m"
+  },
+  {
+   "name": "2-year Treasury yield",
+   "value": 3.62,
+   "unit": "pct",
+   "source_id": "D:FRED:DGS2",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/DGS2/latest"
+  },
+  {
+   "name": "10-year Treasury yield",
+   "value": 4.18,
+   "unit": "pct",
+   "source_id": "D:FRED:DGS10",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/DGS10/latest"
+  },
+  {
+   "name": "10y-2y spread",
+   "value": 0.56,
+   "unit": "pct",
+   "source_id": "D:FRED:T10Y2Y",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/T10Y2Y/latest"
+  },
+  {
+   "name": "CPI YoY",
+   "value": 2.3228,
+   "unit": "pct",
+   "source_id": "D:FRED:CPIAUCSL",
+   "as_of": "2026-08-31",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/CPIAUCSL/yoy_pct"
+  },
+  {
+   "name": "Core CPI YoY",
+   "value": 2.6683,
+   "unit": "pct",
+   "source_id": "D:FRED:CPILFESL",
+   "as_of": "2026-08-31",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/CPILFESL/yoy_pct"
+  },
+  {
+   "name": "Unemployment rate",
+   "value": 4.4,
+   "unit": "pct",
+   "source_id": "D:FRED:UNRATE",
+   "as_of": "2026-08-31",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/UNRATE/latest"
+  },
+  {
+   "name": "HY OAS",
+   "value": 3.05,
+   "unit": "pct",
+   "source_id": "D:FRED:BAMLH0A0HYM2",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/BAMLH0A0HYM2/latest"
+  },
+  {
+   "name": "WTI crude",
+   "value": 66.4,
+   "unit": "USD/bbl",
+   "source_id": "D:FRED:DCOILWTICO",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/DCOILWTICO/latest"
+  },
+  {
+   "name": "VIX",
+   "value": 16.9,
+   "unit": "index",
+   "source_id": "D:FRED:VIXCLS",
+   "as_of": "2026-10-01",
+   "kind": "macro",
+   "data_ref": "${RUN_DIR}/phase1/macro.json#/series/VIXCLS/latest"
+  }
+ ],
+ "sources": [
+  {
+   "id": "D:FRED:DFF",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFF",
+   "title": "FRED series DFF — Effective Federal Funds Rate (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:DGS2",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2",
+   "title": "FRED series DGS2 — 2-Year Treasury Constant Maturity Yield (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:DGS10",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10",
+   "title": "FRED series DGS10 — 10-Year Treasury Constant Maturity Yield (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:T10Y2Y",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y",
+   "title": "FRED series T10Y2Y — 10-Year minus 2-Year Treasury Spread (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:CPIAUCSL",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL",
+   "title": "FRED series CPIAUCSL — CPI, All Urban Consumers (SA) (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:CPILFESL",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPILFESL",
+   "title": "FRED series CPILFESL — Core CPI ex Food & Energy (SA) (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:UNRATE",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=UNRATE",
+   "title": "FRED series UNRATE — Unemployment Rate (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:PAYEMS",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=PAYEMS",
+   "title": "FRED series PAYEMS — Nonfarm Payrolls (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:BAMLH0A0HYM2",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2",
+   "title": "FRED series BAMLH0A0HYM2 — ICE BofA US High Yield OAS (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:DCOILWTICO",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DCOILWTICO",
+   "title": "FRED series DCOILWTICO — WTI Crude Oil Spot Price (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  },
+  {
+   "id": "D:FRED:VIXCLS",
+   "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS",
+   "title": "FRED series VIXCLS — CBOE Volatility Index (VIX) (CSV)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/macro.json"
+  }
+ ],
+ "missing_data": []
+}

@@ -1,0 +1,195 @@
+{
+ "cik": 9900002,
+ "entityName": "ZZ SYNTHETIC QUARTERS INC",
+ "facts": {
+  "us-gaap": {
+   "Revenues": {
+    "label": "Revenues",
+    "units": {
+     "USD": [
+      {
+       "start": "2024-01-01",
+       "end": "2024-12-31",
+       "val": 900,
+       "accn": "0009900002-25-000001",
+       "form": "10-K",
+       "filed": "2025-02-20"
+      },
+      {
+       "start": "2024-01-01",
+       "end": "2024-12-31",
+       "val": 900,
+       "accn": "0009900002-26-000001",
+       "form": "10-K",
+       "filed": "2026-02-20"
+      },
+      {
+       "start": "2025-01-01",
+       "end": "2025-12-31",
+       "val": 1000,
+       "accn": "0009900002-26-000001",
+       "form": "10-K",
+       "filed": "2026-02-20"
+      },
+      {
+       "start": "2025-01-01",
+       "end": "2025-06-30",
+       "val": 470,
+       "accn": "0009900002-25-000002",
+       "form": "10-Q",
+       "filed": "2025-08-05"
+      },
+      {
+       "start": "2025-04-01",
+       "end": "2025-06-30",
+       "val": 240,
+       "accn": "0009900002-25-000002",
+       "form": "10-Q",
+       "filed": "2025-08-05"
+      },
+      {
+       "start": "2025-01-01",
+       "end": "2025-09-30",
+       "val": 720,
+       "accn": "0009900002-25-000003",
+       "form": "10-Q",
+       "filed": "2025-11-05"
+      },
+      {
+       "start": "2025-07-01",
+       "end": "2025-09-30",
+       "val": 250,
+       "accn": "0009900002-25-000003",
+       "form": "10-Q",
+       "filed": "2025-11-05"
+      },
+      {
+       "start": "2026-01-01",
+       "end": "2026-03-31",
+       "val": 300,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   },
+   "NetIncomeLoss": {
+    "label": "NetIncomeLoss",
+    "units": {
+     "USD": [
+      {
+       "start": "2026-01-01",
+       "end": "2026-03-31",
+       "val": 20,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   },
+   "WeightedAverageNumberOfDilutedSharesOutstanding": {
+    "label": "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "units": {
+     "shares": [
+      {
+       "start": "2026-01-01",
+       "end": "2026-03-31",
+       "val": 345,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   },
+   "CashAndCashEquivalentsAtCarryingValue": {
+    "label": "CashAndCashEquivalentsAtCarryingValue",
+    "units": {
+     "USD": [
+      {
+       "end": "2026-03-31",
+       "val": 100,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   },
+   "StockholdersEquity": {
+    "label": "StockholdersEquity",
+    "units": {
+     "USD": [
+      {
+       "end": "2026-03-31",
+       "val": 500,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   },
+   "LongTermDebt": {
+    "label": "LongTermDebt",
+    "units": {
+     "USD": [
+      {
+       "end": "2026-03-31",
+       "val": 50,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   },
+   "ShortTermBorrowings": {
+    "label": "ShortTermBorrowings",
+    "units": {
+     "USD": [
+      {
+       "end": "2026-03-31",
+       "val": 5,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   }
+  },
+  "dei": {
+   "EntityCommonStockSharesOutstanding": {
+    "label": "EntityCommonStockSharesOutstanding",
+    "units": {
+     "shares": [
+      {
+       "end": "2025-10-24",
+       "val": 340,
+       "accn": "0009900002-25-000003",
+       "form": "10-Q",
+       "filed": "2025-11-05"
+      },
+      {
+       "end": "2026-04-24",
+       "val": 300,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      },
+      {
+       "end": "2026-04-24",
+       "val": 50,
+       "accn": "0009900002-26-000002",
+       "form": "10-Q",
+       "filed": "2026-05-05"
+      }
+     ]
+    }
+   }
+  }
+ }
+}

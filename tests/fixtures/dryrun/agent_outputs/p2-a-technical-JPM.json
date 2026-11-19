@@ -1,0 +1,125 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-technical-JPM",
+ "agent_role": "technical",
+ "sector": "financials",
+ "ticker": "JPM",
+ "as_of": "${AS_OF}",
+ "thesis": "JPM trades in a transition between regimes: close 8.4% versus the 200-day average, ADX 17.8 and RSI 68.3. Twelve-month relative strength versus SPY is 5.4 pp.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is 5.4 pp.",
+   "evidence_refs": [
+    "D:PX:JPM"
+   ],
+   "severity": "low"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 318.9,
+   "unit": "USD/share",
+   "source_id": "D:PX:JPM",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_JPM.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 68.2763,
+   "unit": "index",
+   "source_id": "D:PX:JPM",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_JPM.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 17.7737,
+   "unit": "index",
+   "source_id": "D:PX:JPM",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_JPM.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": 5.4286,
+   "unit": "pp",
+   "source_id": "D:PX:JPM",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/technicals_JPM.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 307.2425,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 5,
+ "conviction_reason": "Computed regime is transition; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:JPM",
+   "url": "https://finance.yahoo.com/quote/JPM/history/",
+   "title": "Yahoo Finance price history (yfinance) — JPM",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_JPM.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  },
+  {
+   "id": "D:PX:XLF",
+   "url": "https://finance.yahoo.com/quote/XLF/history/",
+   "title": "Yahoo Finance price history (yfinance) — XLF",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_XLF.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "transition",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 309.6363,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_JPM.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 319.5,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_JPM.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 307.2425,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase2/data/technicals_JPM.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 307.24; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase2/data/technicals_JPM.json#/trend/regime",
+   "${RUN_DIR}/phase2/data/technicals_JPM.json#/momentum/adx14",
+   "${RUN_DIR}/phase2/data/technicals_JPM.json#/momentum/rsi14",
+   "${RUN_DIR}/phase2/data/technicals_JPM.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

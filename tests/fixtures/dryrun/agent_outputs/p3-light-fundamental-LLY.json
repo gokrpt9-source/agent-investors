@@ -1,0 +1,201 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-fundamental-LLY",
+ "agent_role": "fundamental",
+ "sector": "health_care",
+ "ticker": "LLY",
+ "as_of": "${AS_OF}",
+ "thesis": "Eli Lilly is a pharmaceutical company led by incretin metabolic medicines with operating margin of 43.0% TTM. Against the configured valuation grid the base fair value is 532.75 versus a 905.20 close (-41.1%), so the stock already prices in more than the filings support.",
+ "stance": "bearish",
+ "strengths": [
+  {
+   "point": "Durable first-mover scale in incretin therapies and manufacturing capacity.",
+   "evidence_refs": [
+    "D:SEC:LLY:CF"
+   ]
+  },
+  {
+   "point": "P/E of 35.7x on TTM earnings with operating margin of 43.0% TTM.",
+   "evidence_refs": [
+    "D:SEC:LLY:CF",
+    "D:PX:LLY"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: a valuation that already discounts years of very high growth.",
+   "evidence_refs": [
+    "D:SEC:LLY:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Base fair value sits 41.1% below the last close.",
+   "evidence_refs": [
+    "D:VAL:LLY"
+   ],
+   "severity": "high"
+  },
+  {
+   "point": "The reverse DCF implies 27.8% annual growth is priced in.",
+   "evidence_refs": [
+    "D:VAL:LLY"
+   ],
+   "severity": "high"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 68904000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:LLY:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_LLY.json#/ttm/revenue",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 22738320000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:LLY:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_LLY.json#/ttm/net_income",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 43.0,
+   "unit": "pct",
+   "source_id": "D:SEC:LLY:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_LLY.json#/margins_pct/operating",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "FCF yield",
+   "value": 1.697217267160974,
+   "unit": "pct",
+   "source_id": "D:SEC:LLY:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_LLY.json#/valuation/fcf_yield_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "ROIC",
+   "value": 42.85315111216685,
+   "unit": "pct",
+   "source_id": "D:SEC:LLY:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_LLY.json#/valuation/roic_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "P/E",
+   "value": 35.70907613227362,
+   "unit": "x",
+   "source_id": "D:SEC:LLY:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_LLY.json#/valuation/pe",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Last close",
+   "value": 905.2,
+   "unit": "USD/share",
+   "source_id": "D:PX:LLY",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_LLY.json#/price"
+  },
+  {
+   "name": "Reverse DCF implied growth",
+   "value": 27.83,
+   "unit": "pct",
+   "source_id": "D:VAL:LLY",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase3/data/valuation_LLY.json#/reverse_dcf/implied_growth_pct"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 6,
+ "conviction_reason": "The price sits above most of the valuation grid.",
+ "self_evidence": 8,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:LLY:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000059478.json",
+   "title": "SEC EDGAR XBRL companyfacts — LLY (CIK 0000059478)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_LLY.json"
+  },
+  {
+   "id": "D:VAL:LLY",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000059478.json",
+   "title": "Valuation grid for LLY derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/valuation_LLY.json"
+  },
+  {
+   "id": "D:PX:LLY",
+   "url": "https://finance.yahoo.com/quote/LLY/history/",
+   "title": "Yahoo Finance price history (yfinance) — LLY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_LLY.json"
+  },
+  {
+   "id": "D:SEC:LLY:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000059478.json",
+   "title": "SEC EDGAR submissions — LLY (CIK 0000059478)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_LLY.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 430.58,
+   "fair_value_base": 532.75,
+   "fair_value_high": 682.87,
+   "method": "Course NOPAT/FCF DCF (r 9-10%, 5 years, growth-tiered exit multiple) blended with the configured multiple bands.",
+   "input_refs": [
+    "${RUN_DIR}/phase3/data/valuation_LLY.json#/cells",
+    "${RUN_DIR}/phase3/data/valuation_LLY.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "DCF-NOPAT-r10-g10",
+    "PE-low"
+   ],
+   "cells_base": [
+    "DCF-NOPAT-r10-g15",
+    "DCF-FCF-r10-g15",
+    "PE-mid",
+    "EVEBIT-mid"
+   ],
+   "cells_high": [
+    "DCF-NOPAT-r09-g15",
+    "PE-high"
+   ],
+   "reverse_dcf_implied_growth_pct": 27.83
+  },
+  "quality_notes": "Eli Lilly: operating margin of 43.0% TTM; moat rests on its first-mover scale in incretin therapies and manufacturing capacity.",
+  "balance_sheet_notes": "Net debt of 35.5 bn USD, about 1.1x EBITDA; no near-term refinancing strain visible."
+ }
+}

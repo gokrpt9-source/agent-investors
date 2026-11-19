@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "NFLX",
+ "longName": "Netflix, Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Communication Services",
+ "marketCap": 510000000000.0
+}

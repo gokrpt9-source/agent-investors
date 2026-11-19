@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "ABT",
+ "longName": "Abbott Laboratories",
+ "shortName": "Abbott Laboratories",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 131.2,
+ "regularMarketPrice": 131.2,
+ "sector": "Healthcare",
+ "industry": "Medical Devices",
+ "sharesOutstanding": 1741000000,
+ "impliedSharesOutstanding": 1741000000,
+ "marketCap": 228419200000
+}

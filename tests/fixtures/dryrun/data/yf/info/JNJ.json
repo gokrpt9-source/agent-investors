@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "JNJ",
+ "longName": "Johnson & Johnson",
+ "shortName": "Johnson & Johnson",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 171.4,
+ "regularMarketPrice": 171.4,
+ "sector": "Healthcare",
+ "industry": "Drug Manufacturers - General",
+ "sharesOutstanding": 2408000000,
+ "impliedSharesOutstanding": 2408000000,
+ "marketCap": 412731200000
+}

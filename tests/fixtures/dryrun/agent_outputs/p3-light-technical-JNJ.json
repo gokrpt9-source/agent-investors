@@ -1,0 +1,125 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-technical-JNJ",
+ "agent_role": "technical",
+ "sector": "health_care",
+ "ticker": "JNJ",
+ "as_of": "${AS_OF}",
+ "thesis": "JNJ trades in an established uptrend: close 6.5% versus the 200-day average, ADX 29.7 and RSI 57.6. Twelve-month relative strength versus SPY is -1.7 pp.",
+ "stance": "bullish",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is -1.7 pp.",
+   "evidence_refs": [
+    "D:PX:JNJ"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 171.4,
+   "unit": "USD/share",
+   "source_id": "D:PX:JNJ",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_JNJ.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 57.629,
+   "unit": "index",
+   "source_id": "D:PX:JNJ",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_JNJ.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 29.7028,
+   "unit": "index",
+   "source_id": "D:PX:JNJ",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_JNJ.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": -1.7488,
+   "unit": "pp",
+   "source_id": "D:PX:JNJ",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_JNJ.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 169.3456,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 7,
+ "conviction_reason": "Computed regime is trend_up; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:JNJ",
+   "url": "https://finance.yahoo.com/quote/JNJ/history/",
+   "title": "Yahoo Finance price history (yfinance) — JNJ",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_JNJ.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  },
+  {
+   "id": "D:PX:XLV",
+   "url": "https://finance.yahoo.com/quote/XLV/history/",
+   "title": "Yahoo Finance price history (yfinance) — XLV",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_XLV.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "trend_up",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 170.6533,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_JNJ.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 172.67,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_JNJ.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 169.3456,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_JNJ.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 169.35; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase3/data/technicals_JNJ.json#/trend/regime",
+   "${RUN_DIR}/phase3/data/technicals_JNJ.json#/momentum/adx14",
+   "${RUN_DIR}/phase3/data/technicals_JNJ.json#/momentum/rsi14",
+   "${RUN_DIR}/phase3/data/technicals_JNJ.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

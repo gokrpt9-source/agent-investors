@@ -1,0 +1,466 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:sector_verdict",
+  "title": "Sector verdict",
+  "description": "sector-head output for one sector in phase 2 (holdings) or phase 3 (candidates). Zero BUYs is a valid outcome; <= max_buys_per_sector BUYs (semantic check).",
+  "type": "object",
+  "required": [
+    "run_id",
+    "order_id",
+    "agent_role",
+    "phase",
+    "sector",
+    "as_of",
+    "summary",
+    "verdicts",
+    "sources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "_comment": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/comment"
+    },
+    "schema_version": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "order_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/order_id"
+    },
+    "agent_role": {
+      "const": "sector_head"
+    },
+    "phase": {
+      "enum": [
+        2,
+        3
+      ]
+    },
+    "sector": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/sector_key"
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "summary": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_80w",
+      "description": "Sector summary (<= 80 words)"
+    },
+    "verdicts": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "$ref": "#/$defs/verdict"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/source"
+      }
+    },
+    "missing_data": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/missing_data"
+    }
+  },
+  "$defs": {
+    "verdict": {
+      "type": "object",
+      "required": [
+        "ticker",
+        "kind",
+        "action",
+        "rule_action",
+        "agg_conviction",
+        "agg_evidence",
+        "rr",
+        "rationale",
+        "dissents",
+        "unresolved_red_flags",
+        "rule_deviation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ticker": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+        },
+        "kind": {
+          "enum": [
+            "holding",
+            "candidate"
+          ]
+        },
+        "action": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/any_action"
+        },
+        "rule_action": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/any_action",
+          "description": "Copied from aggregate.json (rule output)."
+        },
+        "rule_label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80,
+          "description": "e.g. insufficient_evidence (from aggregate.json)."
+        },
+        "agg_conviction": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 10
+        },
+        "agg_evidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 10
+        },
+        "rr": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "rationale": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_80w",
+          "description": "Why this action (<= 80 words)"
+        },
+        "dissents": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "required": [
+              "role",
+              "view"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "role": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/role_key"
+              },
+              "view": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+                "description": "Dissenting view (<= 40 words)"
+              }
+            }
+          }
+        },
+        "unresolved_red_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "description": "flag_ids from aggregate.json flags.unresolved (e.g. osint:F2)."
+        },
+        "rule_deviation": {
+          "type": "boolean"
+        },
+        "deviation_justification": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1200,
+          "x-min-words": 15,
+          "x-max-words": 150,
+          "description": "Required (>= 15 words) when rule_deviation is true; null otherwise."
+        },
+        "da_rebuttal": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 480,
+          "x-max-words": 60,
+          "description": "Sector head's rebuttal of a 'broken' DA verdict (<= 60 words), else null."
+        },
+        "thesis": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 480,
+          "x-max-words": 60,
+          "description": "Investment thesis (<= 60 words); required non-empty for BUY."
+        },
+        "fair_value_low": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fair_value_base": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fair_value_high": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "invalidation_price": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/price_or_null"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "rule_deviation": {
+                "const": true
+              }
+            },
+            "required": [
+              "rule_deviation"
+            ]
+          },
+          "then": {
+            "required": [
+              "deviation_justification"
+            ],
+            "properties": {
+              "deviation_justification": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/justification"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rule_deviation": {
+                "const": false
+              },
+              "rule_action": {
+                "const": "ADD"
+              }
+            },
+            "required": [
+              "rule_deviation",
+              "rule_action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "ADD"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rule_deviation": {
+                "const": false
+              },
+              "rule_action": {
+                "const": "HOLD"
+              }
+            },
+            "required": [
+              "rule_deviation",
+              "rule_action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "HOLD"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rule_deviation": {
+                "const": false
+              },
+              "rule_action": {
+                "const": "TRIM"
+              }
+            },
+            "required": [
+              "rule_deviation",
+              "rule_action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "TRIM"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rule_deviation": {
+                "const": false
+              },
+              "rule_action": {
+                "const": "SELL"
+              }
+            },
+            "required": [
+              "rule_deviation",
+              "rule_action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "SELL"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rule_deviation": {
+                "const": false
+              },
+              "rule_action": {
+                "const": "BUY"
+              }
+            },
+            "required": [
+              "rule_deviation",
+              "rule_action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "BUY"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rule_deviation": {
+                "const": false
+              },
+              "rule_action": {
+                "const": "PASS"
+              }
+            },
+            "required": [
+              "rule_deviation",
+              "rule_action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "PASS"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "BUY"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "required": [
+              "thesis",
+              "fair_value_low",
+              "fair_value_base",
+              "fair_value_high",
+              "invalidation_price"
+            ],
+            "properties": {
+              "thesis": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/text_60w"
+              },
+              "fair_value_low": {
+                "type": "number"
+              },
+              "fair_value_base": {
+                "type": "number"
+              },
+              "fair_value_high": {
+                "type": "number"
+              },
+              "invalidation_price": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "holding"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/holding_action"
+              },
+              "rule_action": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/holding_action"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "candidate"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/candidate_action"
+              },
+              "rule_action": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/candidate_action"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

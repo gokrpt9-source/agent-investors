@@ -1,0 +1,9 @@
+{
+  "https://www.sec.gov/files/company_tickers.json": "sec/company_tickers.json",
+  "https://data.sec.gov/api/xbrl/companyfacts/CIK0009900001.json": "sec/companyfacts_CIK0009900001.json",
+  "https://data.sec.gov/submissions/CIK0009900001.json": "sec/submissions_CIK0009900001.json",
+  "https://data.sec.gov/api/xbrl/companyfacts/CIK0009900002.json": "sec/companyfacts_CIK0009900002.json",
+  "https://data.sec.gov/submissions/CIK0009900002.json": "sec/submissions_CIK0009900002.json",
+  "https://data.sec.gov/api/xbrl/companyfacts/CIK0009900003.json": "sec/companyfacts_CIK0009900003.json",
+  "https://data.sec.gov/submissions/CIK0009900003.json": "sec/submissions_CIK0009900003.json"
+}

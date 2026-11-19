@@ -1,0 +1,91 @@
+# portfolio.yaml — current holdings reviewed by the committee.
+# /committee-setup asks for the values below; until then every holding has null shares and
+# weights and `python scripts/committee.py validate-config` reports "run /committee-setup".
+#
+# Per holding give EITHER `shares` (preferred; valued at the latest close of `ticker`, or of
+# `proxy_ticker` when set) OR `weight_pct` (percent of the whole portfolio, 0–100). If any
+# holding uses weight_pct without shares, `total_value_usd` is required. If both shares and
+# weight_pct are given, shares win.
+#
+# Field reference:
+#   ticker               Yahoo-style symbol (BRK-B, not BRK.B). Quote tickers in YAML.
+#   asset_type           stock | fund (optional; classification falls back to Yahoo/SEC data)
+#   shares               number of shares/units held (> 0)
+#   weight_pct           percent of total portfolio value (> 0, <= 100)
+#   cost_basis           AVERAGE COST PER SHARE (optional) — enables the capital-gains tax note
+#   cost_basis_currency  currency of cost_basis (USD default)
+#   purchase_date        YYYY-MM-DD (optional; quoted)
+#   currency             trading currency of the holding
+#   proxy_ticker         US-listed proxy used for prices/look-through. Use it for the real TASE
+#                        UCITS funds you hold, e.g. a NASDAQ-100 tracker on TASE -> proxy "QQQ",
+#                        an S&P 500 momentum tracker -> "SPMO".
+#   sector_override      force a GICS sector key (e.g. financials) instead of auto-classification
+#
+# Portfolio-level: give cash as cash_usd OR cash_pct (not both).
+
+as_of: null                       # "YYYY-MM-DD" the positions below were read from your broker
+total_value_usd: null             # required only for weight_pct-based entry
+cash_usd: null
+cash_pct: null
+
+holdings:
+  - ticker: "QQQ"
+    asset_type: fund
+    shares: null
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "SPMO"
+    asset_type: fund
+    shares: null
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "BRK-B"
+    asset_type: stock
+    shares: null
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null         # etf_overrides.yaml already maps BRK-B -> financials (conglomerate)
+  - ticker: "KO"
+    asset_type: stock
+    shares: null
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "PG"
+    asset_type: stock
+    shares: null
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "JPM"
+    asset_type: stock
+    shares: null
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null

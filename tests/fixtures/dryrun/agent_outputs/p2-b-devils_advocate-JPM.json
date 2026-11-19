@@ -1,0 +1,96 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-b-devils_advocate-JPM",
+ "agent_role": "devils_advocate",
+ "sector": "financials",
+ "ticker": "JPM",
+ "as_of": "${AS_OF}",
+ "attacks": [
+  {
+   "target_claim": "The base fair value of 252.56 offers protection.",
+   "target_agent": "fundamental",
+   "counter_evidence": "The PE-low cell values the shares at 220.30; the base case leans on growth or multiples that the zero-growth cells do not support.",
+   "source_ids": [
+    "D:VAL:JPM"
+   ],
+   "severity": "medium"
+  },
+  {
+   "target_claim": "The technical structure supports the position.",
+   "target_agent": "technical",
+   "counter_evidence": "Relative strength versus SPY is positive (5.4 pp over twelve months), but much of it came in one leg and the ADX does not confirm a durable trend.",
+   "source_ids": [
+    "D:PX:JPM",
+    "D:PX:SPY"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "bear_case_price": 220.3,
+ "bear_case_ref": "PE-low",
+ "kill_criteria": [
+  "Two consecutive quarters of declining TTM operating income in SEC filings.",
+  "A daily close below STOP1 at 307.24."
+ ],
+ "verdict_on_thesis": "damaged",
+ "verdict_reason": "Franchise quality is not in doubt, but the price sits above the top of the P/B band while net interest income faces falling policy rates.",
+ "self_evidence": 7,
+ "self_evidence_reason": "Read every specialist report and the data files listed in the order.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "key_figures": [
+  {
+   "name": "Bear-case fair value",
+   "value": 220.3,
+   "unit": "USD/share",
+   "source_id": "D:VAL:JPM",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase2/data/valuation_JPM.json#/cells/20/fv_per_share"
+  }
+ ],
+ "sources": [
+  {
+   "id": "D:VAL:JPM",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000019617.json",
+   "title": "Valuation grid for JPM derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_JPM.json"
+  },
+  {
+   "id": "D:PX:JPM",
+   "url": "https://finance.yahoo.com/quote/JPM/history/",
+   "title": "Yahoo Finance price history (yfinance) — JPM",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_JPM.csv"
+  },
+  {
+   "id": "D:SEC:JPM:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000019617.json",
+   "title": "SEC EDGAR XBRL companyfacts — JPM (CIK 0000019617)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_JPM.json"
+  },
+  {
+   "id": "D:SEC:JPM:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000019617.json",
+   "title": "SEC EDGAR submissions — JPM (CIK 0000019617)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_JPM.json"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  }
+ ]
+}

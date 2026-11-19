@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "agent_role": "sector_head",
+  "phase": 2,
+  "sector": "information_technology",
+  "summary": "Technology is above the 32% limit, so AAA is trimmed while the fund is left alone.",
+  "verdicts": [
+    {
+      "ticker": "AAA",
+      "kind": "holding",
+      "action": "TRIM",
+      "rule_action": "TRIM",
+      "rationale": "The sector is above its 32% limit, which drives the trim. The business is sound and the price is slightly above fair value, so about a third of the position is sold and the rest stays in the portfolio."
+    }
+  ]
+}

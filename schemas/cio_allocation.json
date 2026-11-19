@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:cio_allocation",
+  "title": "CIO allocation",
+  "description": "cio output in allocation mode (phase 1). Targets outside macro bounds need a constraint_overrides entry; expand_sectors <= max_expand_sectors (semantic checks).",
+  "type": "object",
+  "required": [
+    "run_id",
+    "order_id",
+    "agent_role",
+    "mode",
+    "as_of",
+    "current_sector_weights",
+    "target_sector_weights",
+    "expand_sectors",
+    "reduce_sectors",
+    "constraint_overrides",
+    "rationale",
+    "conviction",
+    "sources",
+    "missing_data"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "_comment": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/comment"
+    },
+    "schema_version": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "order_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/order_id"
+    },
+    "agent_role": {
+      "const": "cio"
+    },
+    "mode": {
+      "const": "allocation"
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "current_sector_weights": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/weights_map",
+      "description": "Copied from lookthrough.json sector_weights_pct."
+    },
+    "target_sector_weights": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/weights_map"
+    },
+    "expand_sectors": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 11,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/gics_sector"
+      }
+    },
+    "reduce_sectors": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 11,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/gics_sector"
+      }
+    },
+    "constraint_overrides": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/constraint_override"
+      }
+    },
+    "rationale": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_150w",
+      "description": "Allocation rationale (<= 150 words)"
+    },
+    "conviction": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/score_1_10"
+    },
+    "conviction_reason": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "Why that conviction (<= 60 words)"
+    },
+    "key_figures": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/key_figure"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/source"
+      }
+    },
+    "missing_data": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/missing_data"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:audit",
+  "title": "audit/1 (runs/<id>/phase4/audit.json)",
+  "description": "Deterministic quality audit of a finished committee run, written by scripts/audit.py for the chair. Findings are ordered by severity (high first), then code, then ticker; ids F01, F02, ... follow that order. verdict is needs_rework when any finding is high, else pass.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "run_id", "generated_at", "as_of", "summary", "findings"],
+  "properties": {
+    "schema": {"const": "audit/1"},
+    "run_id": {"type": ["string", "null"]},
+    "generated_at": {"type": "string", "minLength": 10},
+    "as_of": {"type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["high", "medium", "low", "verdict"],
+      "properties": {
+        "high": {"type": "integer", "minimum": 0},
+        "medium": {"type": "integer", "minimum": 0},
+        "low": {"type": "integer", "minimum": 0},
+        "verdict": {"enum": ["pass", "needs_rework"]}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/finding"}
+    },
+    "check_errors": {
+      "description": "Present only when a check crashed; the other checks still ran.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check", "error"],
+        "properties": {"check": {"type": "string"}, "error": {"type": "string"}}
+      }
+    }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "code", "severity", "ticker", "section", "message", "evidence", "fix"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^F\\d{2,}$"},
+        "code": {
+          "enum": [
+            "stale_portfolio", "action_vs_trade", "trim_became_full_exit", "text_vs_plan_contradiction",
+            "valuation_outlier", "systematic_valuation_bias", "captive_or_leverage_flag",
+            "plan_does_not_cure_breach", "limit_inconsistency", "weak_why", "unresolved_high_flags",
+            "failed_reports", "low_evidence", "thin_review", "pending_event_risk", "cash_drag"
+          ]
+        },
+        "severity": {"enum": ["high", "medium", "low"]},
+        "ticker": {"type": ["string", "null"], "minLength": 1},
+        "section": {
+          "description": "Memo section the problem shows in (run = the whole run).",
+          "enum": ["2", "4", "5", "6", "7", "10", "run"]
+        },
+        "message": {"type": "string", "minLength": 1, "description": "One or two plain-English sentences."},
+        "evidence": {"type": "string", "description": "Numbers, paths or quotes that prove the finding."},
+        "fix": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "roles", "tickers", "feedback"],
+          "properties": {
+            "type": {"enum": ["rerun_agents", "rerender", "replan", "new_run", "note_only"]},
+            "roles": {
+              "description": "Agent roles to re-run (rerun_agents only).",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": ["fundamental", "technical", "operator_ceo", "industry_ops", "osint", "devils_advocate",
+                         "etf", "sector_head", "cio", "macro"]
+              }
+            },
+            "tickers": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+            "feedback": {
+              "type": "string",
+              "description": "Self-contained instruction text for the re-run work order (or the chair's action)."
+            }
+          }
+        }
+      }
+    }
+  }
+}

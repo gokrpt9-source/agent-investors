@@ -1,0 +1,66 @@
+# etf_overrides.yaml — manual classification overrides and fallback fund compositions.
+#
+# securities.<TICKER>  — forces how a single security is classified by etf_lookthrough.py
+#                        (checked after a portfolio-level sector_override, before Yahoo/SIC data).
+#   sector        GICS sector key
+#   asset_type    stock | fund
+#   flags         labels carried into look-through/memo (e.g. conglomerate)
+#   note          free text shown to agents
+#   share_class   EDGAR share-count handling for multi-class issuers (fetch_fundamentals.py,
+#                 DESIGN §4.3 step 10); semantics are owned by fetch_fundamentals.py:
+#                   class_factor  numeric adjustment applied to the share count (null = default:
+#                                 sum the per-class dei counts reported in the same filing)
+#                   shares_tags   explicit XBRL tags to use for shares (empty = default order)
+#                 When the default is wrong, the yfinance marketCap cross-check raises the
+#                 share_count_ambiguous flag and market cap falls back to Yahoo.
+#   source_url    REQUIRED whenever the entry carries a number (e.g. class_factor)
+#
+# funds.<TICKER>       — fallback composition used only when Yahoo fund data is unavailable.
+#   sector_weights     {sector_key: percent} summing to 100 (cash / unclassified allowed)
+#   source_url         REQUIRED: where the weights were read (fund factsheet URL)
+#   as_of              REQUIRED: "YYYY-MM-DD" of that factsheet
+#   expense_ratio_pct  optional, percent (0.20 = 0.20%)
+#   top_holdings       optional list of {symbol, name?, weight_pct} (percent of the fund). Used when
+#                      Yahoo gives no holdings, by BOTH consumers: etf_lookthrough.py (top-10
+#                      concentration / overlap of a held fund) and screen.py (Phase 3 candidate
+#                      universe: a SECTOR ETF's top holdings, e.g. funds.XLV). Same sourcing rule as
+#                      sector_weights: source_url + as_of above must cover the holdings list. The
+#                      schema requires sector_weights even then (for a sector ETF use 100% of its
+#                      sector). screen.py takes the first `screen.etf_top_n` rows by weight and cites
+#                      the entry as source D:CFG:etf_overrides.funds.<ETF>.
+#   note               optional
+#
+# Example (commented out — numbers must come from a real factsheet you checked):
+# funds:
+#   "SPMO":
+#     sector_weights: {information_technology: 30.0, financials: 20.0, communication_services: 15.0,
+#                      industrials: 12.0, consumer_discretionary: 8.0, health_care: 7.0,
+#                      consumer_staples: 4.0, energy: 2.0, utilities: 1.0, real_estate: 0.5,
+#                      materials: 0.5}
+#     source_url: "https://www.invesco.com/us/financial-products/etfs/product-detail?ticker=SPMO"
+#     as_of: "2026-09-30"
+#     expense_ratio_pct: 0.13
+#     note: "Factsheet sector split"
+#   # a sector ETF whose Yahoo holdings are unavailable, kept as the screen.py universe fallback:
+#   "XLV":
+#     sector_weights: {health_care: 100.0}
+#     source_url: "https://<issuer-factsheet-url-you-read>"      # illustrative holdings, replace
+#     as_of: "2026-09-30"
+#     top_holdings:
+#       - {symbol: "LLY", name: "Eli Lilly", weight_pct: 14.0}
+#       - {symbol: "JNJ", weight_pct: 8.5}
+
+securities:
+  "BRK-B":
+    sector: financials
+    asset_type: stock
+    flags: [conglomerate]
+    note: >-
+      Berkshire Hathaway is classified as Financials (insurance float is the core engine) but
+      it is a conglomerate: rail (BNSF), energy utilities, manufacturing/retail and a large
+      equity portfolio. Treat sector look-through as approximate.
+    share_class:
+      class_factor: null          # default handling; class A and class B shares are NOT 1:1, so
+      shares_tags: []             # expect the share_count_ambiguous flag + Yahoo market cap
+
+funds: {}

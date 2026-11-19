@@ -1,0 +1,201 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-fundamental-JNJ",
+ "agent_role": "fundamental",
+ "sector": "health_care",
+ "ticker": "JNJ",
+ "as_of": "${AS_OF}",
+ "thesis": "Johnson & Johnson is a diversified pharmaceutical and medtech group with operating margin of 26.2% TTM. Against the configured valuation grid the base fair value is 125.83 versus a 171.40 close (-26.6%), so the stock already prices in more than the filings support.",
+ "stance": "neutral",
+ "strengths": [
+  {
+   "point": "Durable broad product portfolio and hospital relationships in medtech.",
+   "evidence_refs": [
+    "D:SEC:JNJ:CF"
+   ]
+  },
+  {
+   "point": "P/E of 21.4x on TTM earnings with operating margin of 26.2% TTM.",
+   "evidence_refs": [
+    "D:SEC:JNJ:CF",
+    "D:PX:JNJ"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: litigation exposure and biosimilar erosion in immunology.",
+   "evidence_refs": [
+    "D:SEC:JNJ:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Base fair value sits 26.6% below the last close.",
+   "evidence_refs": [
+    "D:VAL:JNJ"
+   ],
+   "severity": "high"
+  },
+  {
+   "point": "The reverse DCF implies 8.7% annual growth is priced in.",
+   "evidence_refs": [
+    "D:VAL:JNJ"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 94172250000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:JNJ:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json#/ttm/revenue",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 19305311250.0,
+   "unit": "USD",
+   "source_id": "D:SEC:JNJ:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json#/ttm/net_income",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 26.200000000000003,
+   "unit": "pct",
+   "source_id": "D:SEC:JNJ:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json#/margins_pct/operating",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "FCF yield",
+   "value": 4.814354899750733,
+   "unit": "pct",
+   "source_id": "D:SEC:JNJ:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json#/valuation/fcf_yield_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "ROIC",
+   "value": 21.381421083661355,
+   "unit": "pct",
+   "source_id": "D:SEC:JNJ:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json#/valuation/roic_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "P/E",
+   "value": 21.37915284841626,
+   "unit": "x",
+   "source_id": "D:SEC:JNJ:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json#/valuation/pe",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Last close",
+   "value": 171.4,
+   "unit": "USD/share",
+   "source_id": "D:PX:JNJ",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json#/price"
+  },
+  {
+   "name": "Reverse DCF implied growth",
+   "value": 8.71,
+   "unit": "pct",
+   "source_id": "D:VAL:JNJ",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase3/data/valuation_JNJ.json#/reverse_dcf/implied_growth_pct"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 6,
+ "conviction_reason": "Quality is clear but the valuation grid gives no edge.",
+ "self_evidence": 8,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:JNJ:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000200406.json",
+   "title": "SEC EDGAR XBRL companyfacts — JNJ (CIK 0000200406)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json"
+  },
+  {
+   "id": "D:VAL:JNJ",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000200406.json",
+   "title": "Valuation grid for JNJ derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/valuation_JNJ.json"
+  },
+  {
+   "id": "D:PX:JNJ",
+   "url": "https://finance.yahoo.com/quote/JNJ/history/",
+   "title": "Yahoo Finance price history (yfinance) — JNJ",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json"
+  },
+  {
+   "id": "D:SEC:JNJ:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000200406.json",
+   "title": "SEC EDGAR submissions — JNJ (CIK 0000200406)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_JNJ.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 99.74,
+   "fair_value_base": 125.83,
+   "fair_value_high": 171.69,
+   "method": "Course NOPAT/FCF DCF (r 9-10%, 5 years, growth-tiered exit multiple) blended with the configured multiple bands.",
+   "input_refs": [
+    "${RUN_DIR}/phase3/data/valuation_JNJ.json#/cells",
+    "${RUN_DIR}/phase3/data/valuation_JNJ.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "DCF-NOPAT-r10-g00",
+    "PE-low"
+   ],
+   "cells_base": [
+    "DCF-NOPAT-r10-g03",
+    "DCF-FCF-r10-g03",
+    "PE-mid",
+    "EVEBIT-mid"
+   ],
+   "cells_high": [
+    "DCF-NOPAT-r09-g06",
+    "PE-high"
+   ],
+   "reverse_dcf_implied_growth_pct": 8.71
+  },
+  "quality_notes": "Johnson & Johnson: operating margin of 26.2% TTM; moat rests on its broad product portfolio and hospital relationships in medtech.",
+  "balance_sheet_notes": "Net debt of 15.8 bn USD, about 0.5x EBITDA; no near-term refinancing strain visible."
+ }
+}

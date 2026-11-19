@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p3-sh-health_care",
+  "agent_role": "sector_head",
+  "phase": 3,
+  "sector": "health_care",
+  "as_of": "2026-10-03",
+  "summary": "Verdicts for the health_care sector follow the rule outputs.",
+  "verdicts": [
+    {
+      "ticker": "MRK",
+      "kind": "candidate",
+      "action": "BUY",
+      "rule_action": "BUY",
+      "rule_label": null,
+      "agg_conviction": 7.4,
+      "agg_evidence": 7.0,
+      "rr": 2.7,
+      "rationale": "Rules pass with margin; the DA verdict survives.",
+      "dissents": [],
+      "unresolved_red_flags": [],
+      "rule_deviation": false,
+      "deviation_justification": null,
+      "da_rebuttal": null,
+      "thesis": "Placeholder thesis for a candidate.",
+      "fair_value_low": 95.0,
+      "fair_value_base": 118.0,
+      "fair_value_high": 140.0,
+      "invalidation_price": 88.0
+    }
+  ],
+  "sources": [
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": []
+}

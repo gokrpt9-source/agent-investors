@@ -1,0 +1,37 @@
+{
+  "order_id": "p2-a-fundamental-KO",
+  "run_id": "2026-10-03_1015",
+  "step": "p2.wave_a",
+  "agent_type": "random-agent",
+  "agent_role": "fundamental",
+  "mode": null,
+  "ticker": "KO",
+  "sector": "consumer_staples",
+  "sector_class": "default",
+  "attempt": 1,
+  "as_of": "2026-10-03",
+  "inputs": [
+    {
+      "path": "C:/x/phase2/data/fundamentals_KO.json",
+      "purpose": "SEC fundamentals"
+    }
+  ],
+  "output": "C:/x/phase2/reports/fundamental_KO.json",
+  "schema": "C:/x/schemas/specialist_report.json",
+  "seed_sources": [
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "required_fields": [
+    "extensions.valuation.fair_value_base"
+  ],
+  "prior_errors": [],
+  "word_limits": {
+    "thesis": 60
+  }
+}

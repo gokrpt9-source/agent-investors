@@ -1,0 +1,50 @@
+# etf_overrides.yaml — manual classification overrides and fallback fund compositions.
+#
+# securities.<TICKER>  — forces how a single security is classified by etf_lookthrough.py
+#                        (checked after a portfolio-level sector_override, before Yahoo/SIC data).
+#   sector        GICS sector key
+#   asset_type    stock | fund
+#   flags         labels carried into look-through/memo (e.g. conglomerate)
+#   note          free text shown to agents
+#   share_class   EDGAR share-count handling for multi-class issuers (fetch_fundamentals.py,
+#                 DESIGN §4.3 step 10); semantics are owned by fetch_fundamentals.py:
+#                   class_factor  numeric adjustment applied to the share count (null = default:
+#                                 sum the per-class dei counts reported in the same filing)
+#                   shares_tags   explicit XBRL tags to use for shares (empty = default order)
+#                 When the default is wrong, the yfinance marketCap cross-check raises the
+#                 share_count_ambiguous flag and market cap falls back to Yahoo.
+#   source_url    REQUIRED whenever the entry carries a number (e.g. class_factor)
+#
+# funds.<TICKER>       — fallback composition used only when Yahoo fund data is unavailable.
+#   sector_weights     {sector_key: percent} summing to 100 (cash / unclassified allowed)
+#   source_url         REQUIRED: where the weights were read (fund factsheet URL)
+#   as_of              REQUIRED: "YYYY-MM-DD" of that factsheet
+#   expense_ratio_pct  optional, percent (0.20 = 0.20%)
+#   note               optional
+#
+# Example (commented out — numbers must come from a real factsheet you checked):
+# funds:
+#   "SPMO":
+#     sector_weights: {information_technology: 30.0, financials: 20.0, communication_services: 15.0,
+#                      industrials: 12.0, consumer_discretionary: 8.0, health_care: 7.0,
+#                      consumer_staples: 4.0, energy: 2.0, utilities: 1.0, real_estate: 0.5,
+#                      materials: 0.5}
+#     source_url: "https://www.invesco.com/us/financial-products/etfs/product-detail?ticker=SPMO"
+#     as_of: "2026-09-30"
+#     expense_ratio_pct: 0.13
+#     note: "Factsheet sector split"
+
+securities:
+  "BRK-B":
+    sector: financials
+    asset_type: stock
+    flags: [conglomerate]
+    note: >-
+      Berkshire Hathaway is classified as Financials (insurance float is the core engine) but
+      it is a conglomerate: rail (BNSF), energy utilities, manufacturing/retail and a large
+      equity portfolio. Treat sector look-through as approximate.
+    share_class:
+      class_factor: null          # default handling; class A and class B shares are NOT 1:1, so
+      shares_tags: []             # expect the share_count_ambiguous flag + Yahoo market cap
+
+funds: {}

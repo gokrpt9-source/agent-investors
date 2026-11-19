@@ -1,0 +1,201 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-fundamental-TMO",
+ "agent_role": "fundamental",
+ "sector": "health_care",
+ "ticker": "TMO",
+ "as_of": "${AS_OF}",
+ "thesis": "Thermo Fisher Scientific is a life-science tools and laboratory services with operating margin of 18.5% TTM. Against the configured valuation grid the base fair value is 291.27 versus a 512.30 close (-43.1%), so the stock already prices in more than the filings support.",
+ "stance": "neutral",
+ "strengths": [
+  {
+   "point": "Durable installed instrument base with recurring consumables.",
+   "evidence_refs": [
+    "D:SEC:TMO:CF"
+   ]
+  },
+  {
+   "point": "P/E of 28.8x on TTM earnings with operating margin of 18.5% TTM.",
+   "evidence_refs": [
+    "D:SEC:TMO:CF",
+    "D:PX:TMO"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: biotech funding cycles and customer destocking.",
+   "evidence_refs": [
+    "D:SEC:TMO:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Base fair value sits 43.1% below the last close.",
+   "evidence_refs": [
+    "D:VAL:TMO"
+   ],
+   "severity": "high"
+  },
+  {
+   "point": "The reverse DCF implies 14.6% annual growth is priced in.",
+   "evidence_refs": [
+    "D:VAL:TMO"
+   ],
+   "severity": "high"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 44668250000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:TMO:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_TMO.json#/ttm/revenue",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 6700237500.0,
+   "unit": "USD",
+   "source_id": "D:SEC:TMO:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_TMO.json#/ttm/net_income",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 18.5,
+   "unit": "pct",
+   "source_id": "D:SEC:TMO:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_TMO.json#/margins_pct/operating",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "FCF yield",
+   "value": 3.700438703905154,
+   "unit": "pct",
+   "source_id": "D:SEC:TMO:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_TMO.json#/valuation/fcf_yield_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "ROIC",
+   "value": 9.612061107882575,
+   "unit": "pct",
+   "source_id": "D:SEC:TMO:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_TMO.json#/valuation/roic_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "P/E",
+   "value": 28.825411039534043,
+   "unit": "x",
+   "source_id": "D:SEC:TMO:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_TMO.json#/valuation/pe",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Last close",
+   "value": 512.3,
+   "unit": "USD/share",
+   "source_id": "D:PX:TMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_TMO.json#/price"
+  },
+  {
+   "name": "Reverse DCF implied growth",
+   "value": 14.61,
+   "unit": "pct",
+   "source_id": "D:VAL:TMO",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase3/data/valuation_TMO.json#/reverse_dcf/implied_growth_pct"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 5,
+ "conviction_reason": "Quality is clear but the valuation grid gives no edge.",
+ "self_evidence": 8,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:TMO:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000097745.json",
+   "title": "SEC EDGAR XBRL companyfacts — TMO (CIK 0000097745)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_TMO.json"
+  },
+  {
+   "id": "D:VAL:TMO",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000097745.json",
+   "title": "Valuation grid for TMO derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/valuation_TMO.json"
+  },
+  {
+   "id": "D:PX:TMO",
+   "url": "https://finance.yahoo.com/quote/TMO/history/",
+   "title": "Yahoo Finance price history (yfinance) — TMO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_TMO.json"
+  },
+  {
+   "id": "D:SEC:TMO:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000097745.json",
+   "title": "SEC EDGAR submissions — TMO (CIK 0000097745)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_TMO.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 243.2,
+   "fair_value_base": 291.27,
+   "fair_value_high": 459.27,
+   "method": "Course NOPAT/FCF DCF (r 9-10%, 5 years, growth-tiered exit multiple) blended with the configured multiple bands.",
+   "input_refs": [
+    "${RUN_DIR}/phase3/data/valuation_TMO.json#/cells",
+    "${RUN_DIR}/phase3/data/valuation_TMO.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "DCF-NOPAT-r10-g03",
+    "PE-low"
+   ],
+   "cells_base": [
+    "DCF-NOPAT-r10-g06",
+    "DCF-FCF-r10-g06",
+    "PE-mid",
+    "EVEBIT-mid"
+   ],
+   "cells_high": [
+    "DCF-NOPAT-r09-g10",
+    "PE-high"
+   ],
+   "reverse_dcf_implied_growth_pct": 14.61
+  },
+  "quality_notes": "Thermo Fisher Scientific: operating margin of 18.5% TTM; moat rests on its installed instrument base with recurring consumables.",
+  "balance_sheet_notes": "Net debt of 27.1 bn USD, about 2.4x EBITDA; no near-term refinancing strain visible."
+ }
+}

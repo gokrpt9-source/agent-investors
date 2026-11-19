@@ -1,0 +1,173 @@
+{
+  "_comment": "Synthetic test fixture - not real data.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-02_0900",
+  "order_id": "p2-a-fundamental-TST",
+  "agent_role": "fundamental",
+  "sector": "consumer_staples",
+  "ticker": "TST",
+  "as_of": "2026-10-02",
+  "thesis": "Durable concentrate franchise with high returns on capital and steady pricing power, but the shares already discount mid-single-digit growth. Base fair value sits slightly below the current price, so risk/reward is balanced rather than compelling.",
+  "stance": "neutral",
+  "strengths": [
+    {
+      "point": "Operating margin near 30% TTM reflects the asset-light concentrate model.",
+      "evidence_refs": [
+        "D:SEC:TST:CF"
+      ]
+    },
+    {
+      "point": "Free cash flow covers the dividend with modest headroom after capex.",
+      "evidence_refs": [
+        "D:SEC:TST:CF",
+        "W1"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "point": "Reverse DCF implies roughly 6% annual NOPAT growth is already priced in.",
+      "evidence_refs": [
+        "D:VAL:TST"
+      ],
+      "severity": "medium"
+    },
+    {
+      "point": "Net debt above 2x EBITDA limits flexibility if volumes soften.",
+      "evidence_refs": [
+        "D:SEC:TST:CF"
+      ],
+      "severity": "low"
+    }
+  ],
+  "key_figures": [
+    {
+      "name": "Revenue TTM",
+      "value": 47900000000,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/fundamentals_TST.json#/ttm/revenue",
+      "filed": "2026-07-28"
+    },
+    {
+      "name": "Operating margin TTM",
+      "value": 29.8,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/fundamentals_TST.json#/margins_pct/operating",
+      "filed": "2026-07-28"
+    },
+    {
+      "name": "FCF yield",
+      "value": 3.4,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/fundamentals_TST.json#/valuation/fcf_yield_pct",
+      "filed": "2026-07-28"
+    },
+    {
+      "name": "Net debt / EBITDA",
+      "value": 2.1,
+      "unit": "x",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/fundamentals_TST.json#/valuation/net_debt_ebitda",
+      "filed": "2026-07-28"
+    },
+    {
+      "name": "Last close",
+      "value": 69.85,
+      "unit": "USD/share",
+      "source_id": "D:PX:TST",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-02_0900/phase1/prices.json#/tickers/KO/last_close"
+    },
+    {
+      "name": "Reverse DCF implied growth",
+      "value": 6.2,
+      "unit": "pct",
+      "source_id": "D:VAL:TST",
+      "as_of": "2026-10-02",
+      "kind": "other",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/valuation_TST.json#/reverse_dcf/implied_growth_pct"
+    }
+  ],
+  "invalidation_price": 61.0,
+  "invalidation_rationale": "A sustained move below the low-case fair value would mean the market prices structural volume decline, contradicting the stable-franchise thesis.",
+  "conviction": 6,
+  "conviction_reason": "Quality is clear and well sourced; valuation leaves little margin of safety.",
+  "self_evidence": 8,
+  "self_evidence_reason": "TTM and 3-year history available from companyfacts; segment volume data missing.",
+  "missing_data": [
+    "Unit case volume by segment for the latest quarter (not in companyfacts)"
+  ],
+  "red_flags": [],
+  "sources": [
+    {
+      "id": "D:SEC:TST:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase2/data/fundamentals_TST.json"
+    },
+    {
+      "id": "D:VAL:TST",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "Valuation grid for KO derived from SEC companyfacts",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase2/data/valuation_TST.json"
+    },
+    {
+      "id": "D:PX:TST",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase1/prices.json"
+    },
+    {
+      "id": "W1",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=10-Q",
+      "title": "The Coca-Cola Company - Form 10-Q filings (SEC EDGAR)",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    }
+  ],
+  "extensions": {
+    "valuation": {
+      "fair_value_low": 58.4,
+      "fair_value_base": 67.9,
+      "fair_value_high": 78.6,
+      "method": "Course NOPAT DCF (r 9-10%, 5 years, growth-tiered exit multiple) cross-checked against the configured P/E band.",
+      "input_refs": [
+        "runs/2026-10-02_0900/phase2/data/valuation_TST.json#/cells",
+        "runs/2026-10-02_0900/phase2/data/valuation_TST.json#/reverse_dcf"
+      ],
+      "cells_low": [
+        "DCF-NOPAT-r10-g00",
+        "PE-low"
+      ],
+      "cells_base": [
+        "DCF-NOPAT-r10-g03",
+        "PE-mid"
+      ],
+      "cells_high": [
+        "DCF-NOPAT-r09-g06",
+        "PE-high"
+      ],
+      "reverse_dcf_implied_growth_pct": 6.2
+    },
+    "quality_notes": "High and stable operating margin, ROIC in the high teens, and pricing that has offset input inflation in recent years.",
+    "balance_sheet_notes": "Investment-grade balance sheet; net debt near 2x EBITDA with laddered maturities. No near-term refinancing pressure visible in the filings."
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "MRK",
+ "longName": "Merck & Co., Inc.",
+ "shortName": "Merck & Co., Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 86.9,
+ "regularMarketPrice": 86.9,
+ "sector": "Healthcare",
+ "industry": "Drug Manufacturers - General",
+ "sharesOutstanding": 2497000000,
+ "impliedSharesOutstanding": 2497000000,
+ "marketCap": 216989300000
+}

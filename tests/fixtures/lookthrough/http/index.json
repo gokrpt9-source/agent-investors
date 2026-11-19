@@ -1,0 +1,6 @@
+{
+  "_comment": "SYNTHETIC SEC EDGAR fixtures for the look-through SIC fallback (no Yahoo info fixture exists for MSFT/FINX).",
+  "https://www.sec.gov/files/company_tickers.json": "sec/company_tickers.json",
+  "https://data.sec.gov/submissions/CIK0000789019.json": "sec/CIK0000789019.json",
+  "https://data.sec.gov/submissions/CIK0000999001.json": "sec/CIK0000999001.json"
+}

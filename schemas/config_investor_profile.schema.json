@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:config_investor_profile",
+  "title": "config/investor_profile.yaml",
+  "description": "Investor profile and hard portfolio limits. Percentages are percent numbers 0-100. Semantic checks (email, limit ordering) live in scripts/common.py validate_config.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "horizon_years",
+    "risk_tolerance",
+    "max_position_pct",
+    "max_fund_position_pct",
+    "max_sector_pct",
+    "min_trade_usd",
+    "target_cash_pct",
+    "base_currency",
+    "tax_jurisdiction",
+    "capital_gains_tax_pct",
+    "allow_short",
+    "sec_contact_email",
+    "allow_fractional_shares"
+  ],
+  "properties": {
+    "horizon_years": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 100
+    },
+    "risk_tolerance": {
+      "enum": [
+        "conservative",
+        "moderate",
+        "aggressive"
+      ]
+    },
+    "max_position_pct": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 100
+    },
+    "max_fund_position_pct": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 100
+    },
+    "max_sector_pct": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 100
+    },
+    "min_trade_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "target_cash_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "base_currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "tax_jurisdiction": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "capital_gains_tax_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "allow_short": {
+      "type": "boolean"
+    },
+    "allow_fractional_shares": {
+      "type": "boolean"
+    },
+    "sec_contact_email": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Contact email sent in the SEC EDGAR User-Agent. Must be a real address (placeholders containing 'example' are refused)."
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "investor": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Personal context for the agents (CIO, ETF analyst). Statements by the investor, unverified. All optional.",
+      "properties": {
+        "age": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 16,
+          "maximum": 100
+        },
+        "occupation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lives_with_parents_until": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 2000,
+          "maximum": 2100
+        },
+        "expected_income": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "monthly_ils": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "starts": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "note": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "income_sector_correlation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "horizon_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "contribution_plan_ils_per_month": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:config_committee",
+  "title": "config/committee.yaml",
+  "description": "All thresholds, windows, concurrency and cache TTLs of the deterministic layer. Required keys are pinned; extra keys are allowed so new parameters can be added. Ordering checks (sell_max < trim_below < add_conviction, ...) are semantic checks in scripts/common.py validate_config.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "version", "enabled_sectors", "concurrency", "benchmark", "fx_ticker", "sector_etfs",
+    "phase1_reuse_days", "cache_ttl_hours", "orchestration", "roles", "prices", "technicals",
+    "fundamentals", "valuation", "screen", "phase3", "lookthrough", "evidence", "aggregation",
+    "risk_reward", "actions", "sizing", "macro", "validation", "ledger", "market_holidays"
+  ],
+  "properties": {
+    "version": {"const": 1},
+    "enabled_sectors": {
+      "type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/sector_key"}
+    },
+    "concurrency": {"$ref": "#/$defs/pos_int"},
+    "benchmark": {"$ref": "#/$defs/ticker"},
+    "fx_ticker": {"$ref": "#/$defs/ticker"},
+    "fx_stooq_symbol": {"type": "string", "minLength": 1},
+    "sector_etfs": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/sector_key"},
+      "additionalProperties": {"$ref": "#/$defs/ticker"},
+      "required": [
+        "information_technology", "health_care", "financials", "energy", "industrials",
+        "consumer_discretionary", "consumer_staples", "utilities", "materials", "real_estate",
+        "communication_services"
+      ]
+    },
+    "phase1_reuse_days": {"type": "integer", "minimum": 0},
+    "cache_ttl_hours": {
+      "type": "object",
+      "required": ["prices", "fundamentals", "macro", "etf", "info", "sec_map"],
+      "additionalProperties": {"type": "number", "exclusiveMinimum": 0}
+    },
+    "orchestration": {
+      "type": "object",
+      "required": ["step_time_budget_seconds", "max_attempts"],
+      "properties": {
+        "step_time_budget_seconds": {"type": "number", "exclusiveMinimum": 0, "maximum": 600},
+        "max_attempts": {"type": "integer", "minimum": 1, "maximum": 5},
+        "command_timeout_ms": {"type": "integer", "minimum": 1000}
+      }
+    },
+    "roles": {
+      "type": "object",
+      "required": ["phase2_stock", "phase2_fund", "quick_stock", "quick_fund", "phase3_light", "phase3_full", "da_for_funds"],
+      "properties": {
+        "phase2_stock": {"$ref": "#/$defs/role_list"},
+        "phase2_fund": {"$ref": "#/$defs/role_list"},
+        "quick_stock": {"$ref": "#/$defs/role_list"},
+        "quick_fund": {"$ref": "#/$defs/role_list"},
+        "phase3_light": {"$ref": "#/$defs/role_list"},
+        "phase3_full": {"$ref": "#/$defs/role_list"},
+        "da_for_funds": {"type": "boolean"}
+      }
+    },
+    "prices": {
+      "type": "object",
+      "required": ["period", "adv_window_days", "return_windows_days"],
+      "properties": {
+        "period": {"type": "string", "pattern": "^[0-9]+(d|mo|y)$|^max$"},
+        "stooq_fallback": {"type": "boolean"},
+        "adv_window_days": {"$ref": "#/$defs/pos_int"},
+        "return_windows_days": {"$ref": "#/$defs/window_map"}
+      }
+    },
+    "technicals": {
+      "type": "object",
+      "required": [
+        "sma_periods", "rsi_period", "macd_fast", "macd_slow", "macd_signal", "atr_period", "adx_period",
+        "atr_pctile_window", "high_low_window", "high_low_min_bars", "sma200_slope_days", "rs_windows",
+        "volume_short", "volume_long", "volume_rising_ratio", "volume_falling_ratio", "pivot_left",
+        "pivot_right", "level_lookback", "level_cluster_atr", "max_levels_per_side",
+        "stop_support_buffer_atr", "stop_atr_multiple", "weekly_closes_weeks", "regime"
+      ],
+      "properties": {
+        "sma_periods": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/pos_int"}},
+        "rsi_period": {"$ref": "#/$defs/pos_int"},
+        "macd_fast": {"$ref": "#/$defs/pos_int"},
+        "macd_slow": {"$ref": "#/$defs/pos_int"},
+        "macd_signal": {"$ref": "#/$defs/pos_int"},
+        "atr_period": {"$ref": "#/$defs/pos_int"},
+        "adx_period": {"$ref": "#/$defs/pos_int"},
+        "atr_pctile_window": {"$ref": "#/$defs/pos_int"},
+        "high_low_window": {"$ref": "#/$defs/pos_int"},
+        "high_low_min_bars": {"$ref": "#/$defs/pos_int"},
+        "sma200_slope_days": {"$ref": "#/$defs/pos_int"},
+        "max_drawdown_window": {"$ref": "#/$defs/pos_int"},
+        "rs_windows": {"$ref": "#/$defs/window_map"},
+        "volume_short": {"$ref": "#/$defs/pos_int"},
+        "volume_long": {"$ref": "#/$defs/pos_int"},
+        "volume_rising_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "volume_falling_ratio": {"type": "number", "exclusiveMinimum": 0},
+        "adv_window": {"$ref": "#/$defs/pos_int"},
+        "pivot_left": {"$ref": "#/$defs/pos_int"},
+        "pivot_right": {"$ref": "#/$defs/pos_int"},
+        "level_lookback": {"$ref": "#/$defs/pos_int"},
+        "level_cluster_atr": {"type": "number", "exclusiveMinimum": 0},
+        "max_levels_per_side": {"$ref": "#/$defs/pos_int"},
+        "stop_support_buffer_atr": {"type": "number", "minimum": 0},
+        "stop_atr_multiple": {"type": "number", "exclusiveMinimum": 0},
+        "weekly_closes_weeks": {"$ref": "#/$defs/pos_int"},
+        "regime": {
+          "type": "object",
+          "required": [
+            "adx_trend_min", "adx_range_max", "choppy_window", "choppy_min_sma50_crosses",
+            "choppy_atr_pctile_min", "choppy_adx_max", "range_window", "range_max_width_pct"
+          ],
+          "properties": {
+            "adx_trend_min": {"type": "number", "minimum": 0, "maximum": 100},
+            "adx_range_max": {"type": "number", "minimum": 0, "maximum": 100},
+            "choppy_window": {"$ref": "#/$defs/pos_int"},
+            "choppy_min_sma50_crosses": {"$ref": "#/$defs/pos_int"},
+            "choppy_atr_pctile_min": {"type": "number", "minimum": 0, "maximum": 100},
+            "choppy_adx_max": {"type": "number", "minimum": 0, "maximum": 100},
+            "range_window": {"$ref": "#/$defs/pos_int"},
+            "range_max_width_pct": {"type": "number", "exclusiveMinimum": 0},
+            "sma200_slope_min_pct": {"type": "number", "minimum": 0}
+          }
+        }
+      }
+    },
+    "fundamentals": {
+      "type": "object",
+      "required": [
+        "forms", "duration_days", "ytd_prior_tolerance_days", "quarter_gap_days",
+        "debt_formula_max_gap_days", "share_count_divergence_pct", "tax_rate_bounds", "default_tax_rate",
+        "cagr_years", "financials_sic", "reit_sic"
+      ],
+      "properties": {
+        "forms": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "fy_extra_forms": {"type": "array", "items": {"type": "string"}},
+        "duration_days": {
+          "type": "object",
+          "required": ["Q", "H", "9M", "FY"],
+          "additionalProperties": {"$ref": "#/$defs/int_range"}
+        },
+        "ytd_prior_tolerance_days": {"type": "integer", "minimum": 0},
+        "quarter_gap_days": {"$ref": "#/$defs/int_range"},
+        "debt_formula_max_gap_days": {"$ref": "#/$defs/pos_int"},
+        "share_count_divergence_pct": {"type": "number", "exclusiveMinimum": 0},
+        "tax_rate_bounds": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/fraction"}},
+        "default_tax_rate": {"$ref": "#/$defs/fraction"},
+        "cagr_years": {"$ref": "#/$defs/pos_int"},
+        "financials_sic": {"$ref": "#/$defs/int_range"},
+        "reit_sic": {"type": "array", "items": {"type": "integer"}}
+      }
+    },
+    "valuation": {
+      "type": "object",
+      "required": [
+        "discount_rates", "years", "growth_tiers", "exit_multiple_by_growth", "reverse_dcf_exit_multiple",
+        "reverse_dcf_discount_rate", "reverse_dcf_growth_bounds", "default_tax_rate",
+        "tv_share_flag_threshold", "multiple_bands"
+      ],
+      "properties": {
+        "discount_rates": {
+          "type": "array", "minItems": 1,
+          "items": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.5}
+        },
+        "years": {"type": "integer", "minimum": 1, "maximum": 20},
+        "growth_tiers": {"type": "array", "minItems": 1, "items": {"type": "number", "minimum": -0.5, "maximum": 1}},
+        "exit_multiple_by_growth": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "array", "minItems": 2, "maxItems": 2,
+            "prefixItems": [{"type": "number"}, {"type": "number", "exclusiveMinimum": 0}]
+          }
+        },
+        "reverse_dcf_exit_multiple": {"type": "number", "exclusiveMinimum": 0},
+        "reverse_dcf_discount_rate": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.5},
+        "reverse_dcf_growth_bounds": {
+          "type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": -1, "maximum": 2}
+        },
+        "default_tax_rate": {"$ref": "#/$defs/fraction"},
+        "tv_share_flag_threshold": {"$ref": "#/$defs/fraction"},
+        "multiple_bands": {
+          "type": "object",
+          "propertyNames": {"$ref": "#/$defs/sector_key"},
+          "additionalProperties": {
+            "type": "object",
+            "minProperties": 2,
+            "propertyNames": {"enum": ["pe", "ev_ebit", "ev_sales", "p_b", "p_tbv", "p_ffo"]},
+            "additionalProperties": {"$ref": "#/$defs/band"}
+          }
+        }
+      }
+    },
+    "screen": {
+      "type": "object",
+      "required": ["weights", "etf_top_n", "impute_percentile"],
+      "properties": {
+        "weights": {
+          "type": "object",
+          "required": ["quality", "valuation", "momentum"],
+          "additionalProperties": false,
+          "properties": {
+            "quality": {"$ref": "#/$defs/fraction"},
+            "valuation": {"$ref": "#/$defs/fraction"},
+            "momentum": {"$ref": "#/$defs/fraction"}
+          }
+        },
+        "etf_top_n": {"$ref": "#/$defs/pos_int"},
+        "impute_percentile": {"$ref": "#/$defs/fraction"},
+        "momentum_windows": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "phase3": {
+      "type": "object",
+      "required": ["shortlist_size", "finalists", "max_buys_per_sector", "max_expand_sectors"],
+      "properties": {
+        "shortlist_size": {"$ref": "#/$defs/pos_int"},
+        "finalists": {"$ref": "#/$defs/pos_int"},
+        "max_buys_per_sector": {"type": "integer", "minimum": 0},
+        "max_expand_sectors": {"type": "integer", "minimum": 0, "maximum": 11},
+        "rotation": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "lookback_runs": {"type": "integer", "minimum": 0, "maximum": 20}
+          }
+        }
+      }
+    },
+    "lookthrough": {
+      "type": "object",
+      "required": ["sum_tolerance_pct", "top_n"],
+      "properties": {
+        "sum_tolerance_pct": {"type": "number", "exclusiveMinimum": 0},
+        "top_n": {"$ref": "#/$defs/pos_int"},
+        "overlap_basis": {"type": "string"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "start", "floor", "null_required_penalty", "stale_penalty", "few_sources_threshold",
+        "few_sources_penalty", "missing_data_penalty", "missing_data_max", "price_max_trading_days",
+        "fundamental_max_days_after_filing", "fundamental_filing_lag_days", "macro_max_days", "required_fields"
+      ],
+      "properties": {
+        "start": {"type": "number", "minimum": 1, "maximum": 10},
+        "floor": {"type": "number", "minimum": 0, "maximum": 10},
+        "null_required_penalty": {"type": "number", "minimum": 0},
+        "stale_penalty": {"type": "number", "minimum": 0},
+        "few_sources_threshold": {"$ref": "#/$defs/pos_int"},
+        "few_sources_penalty": {"type": "number", "minimum": 0},
+        "missing_data_penalty": {"type": "number", "minimum": 0},
+        "missing_data_max": {"type": "number", "minimum": 0},
+        "price_max_trading_days": {"type": "integer", "minimum": 0},
+        "fundamental_max_days_after_filing": {"type": "integer", "minimum": 0},
+        "fundamental_filing_lag_days": {"type": "integer", "minimum": 0},
+        "macro_max_days": {"type": "integer", "minimum": 0},
+        "failed_score": {"type": "number", "minimum": 0, "maximum": 10},
+        "required_fields": {
+          "type": "object",
+          "propertyNames": {"$ref": "#/$defs/role_key"},
+          "additionalProperties": {
+            "type": "object",
+            "required": ["default"],
+            "propertyNames": {"enum": ["default", "financials", "fund"]},
+            "additionalProperties": {
+              "type": "array",
+              "items": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z0-9_]+)*$"}
+            }
+          }
+        }
+      }
+    },
+    "aggregation": {
+      "type": "object",
+      "required": ["neutral_value", "da_adjust", "unresolved_flag_roles", "conviction_bounds"],
+      "properties": {
+        "neutral_value": {"type": "number", "minimum": 1, "maximum": 10},
+        "da_adjust": {
+          "type": "object",
+          "required": ["survives", "damaged", "broken"],
+          "additionalProperties": false,
+          "properties": {
+            "survives": {"type": "number", "maximum": 0},
+            "damaged": {"type": "number", "maximum": 0},
+            "broken": {"type": "number", "maximum": 0}
+          }
+        },
+        "unresolved_flag_roles": {"$ref": "#/$defs/role_list"},
+        "mean_excluded_roles": {"$ref": "#/$defs/role_list"},
+        "conviction_bounds": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}},
+        "round_dp": {"type": "integer", "minimum": 0, "maximum": 6},
+        "failed_evidence": {"type": "number", "minimum": 0, "maximum": 10}
+      }
+    },
+    "risk_reward": {
+      "type": "object",
+      "required": ["round_dp"],
+      "properties": {
+        "round_dp": {"type": "integer", "minimum": 0, "maximum": 6},
+        "min_downside_pct": {
+          "type": "number", "minimum": 0, "maximum": 100,
+          "description": "A stop closer than this percent below the price gives rr null (stop_too_tight). Default 1.0 when absent; 0 disables the guard."
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "required": ["min_evidence", "holding", "candidate", "sector_breach_tolerance_pp"],
+      "properties": {
+        "min_evidence": {"type": "number", "minimum": 0, "maximum": 10},
+        "holding": {
+          "type": "object",
+          "required": ["add_conviction", "add_evidence", "add_rr", "sell_max", "trim_below"],
+          "properties": {
+            "add_conviction": {"$ref": "#/$defs/score"},
+            "add_evidence": {"$ref": "#/$defs/score"},
+            "add_rr": {"type": "number", "exclusiveMinimum": 0},
+            "sell_max": {"$ref": "#/$defs/score"},
+            "trim_below": {"$ref": "#/$defs/score"}
+          }
+        },
+        "candidate": {
+          "type": "object",
+          "required": ["buy_conviction", "buy_evidence", "buy_rr", "block_on_unresolved_high_flag"],
+          "properties": {
+            "buy_conviction": {"$ref": "#/$defs/score"},
+            "buy_evidence": {"$ref": "#/$defs/score"},
+            "buy_rr": {"type": "number", "exclusiveMinimum": 0},
+            "block_on_unresolved_high_flag": {"type": "boolean"}
+          }
+        },
+        "sector_breach_tolerance_pp": {"type": "number", "minimum": 0}
+      }
+    },
+    "sizing": {
+      "type": "object",
+      "required": ["trim_fraction", "breach_buffer_pp", "add_step_pp", "initial_position_pct"],
+      "properties": {
+        "trim_fraction": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+        "breach_buffer_pp": {"type": "number", "minimum": 0},
+        "add_step_pp": {"type": "number", "exclusiveMinimum": 0},
+        "initial_position_pct": {"type": "number", "exclusiveMinimum": 0, "maximum": 100}
+      }
+    },
+    "macro": {
+      "type": "object",
+      "required": ["chg_3m_days", "chg_12m_days", "history_tail", "series"],
+      "properties": {
+        "chg_3m_days": {"$ref": "#/$defs/pos_int"},
+        "chg_12m_days": {"$ref": "#/$defs/pos_int"},
+        "history_tail": {"$ref": "#/$defs/pos_int"},
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "frequency", "units", "change", "yoy"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+              "name": {"type": "string", "minLength": 1},
+              "frequency": {"enum": ["d", "w", "m", "q"]},
+              "units": {"type": "string", "minLength": 1},
+              "change": {"enum": ["diff", "pct"]},
+              "yoy": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "data_ref_tolerance_pct", "data_ref_abs_tolerance", "level_match_tolerance_pct",
+        "cell_mean_tolerance_pct", "probability_sum_tolerance", "sector_weight_sum_tolerance_pct",
+        "min_justification_words", "max_quote_words", "word_limits"
+      ],
+      "properties": {
+        "data_ref_tolerance_pct": {"type": "number", "minimum": 0},
+        "data_ref_abs_tolerance": {"type": "number", "minimum": 0},
+        "level_match_tolerance_pct": {"type": "number", "minimum": 0},
+        "cell_mean_tolerance_pct": {"type": "number", "minimum": 0},
+        "min_base_method_families": {"$ref": "#/$defs/pos_int"},
+        "probability_sum_tolerance": {"type": "number", "minimum": 0},
+        "sector_weight_sum_tolerance_pct": {"type": "number", "minimum": 0},
+        "min_justification_words": {"type": "integer", "minimum": 0},
+        "max_quote_words": {"$ref": "#/$defs/pos_int"},
+        "max_executive_summary_items": {"$ref": "#/$defs/pos_int"},
+        "max_top_risks": {"$ref": "#/$defs/pos_int"},
+        "word_limits": {
+          "type": "object",
+          "required": ["thesis", "sector_rationale"],
+          "additionalProperties": {"$ref": "#/$defs/pos_int"}
+        }
+      }
+    },
+    "ledger": {
+      "type": "object",
+      "required": ["min_age_days"],
+      "properties": {"min_age_days": {"type": "integer", "minimum": 0}}
+    },
+    "market_holidays": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"}
+    }
+  },
+  "$defs": {
+    "pos_int": {"type": "integer", "minimum": 1},
+    "fraction": {"type": "number", "minimum": 0, "maximum": 1},
+    "score": {"type": "number", "minimum": 0, "maximum": 10},
+    "int_range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer"}},
+    "band": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number", "exclusiveMinimum": 0}},
+    "window_map": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/pos_int"}},
+    "ticker": {"type": "string", "minLength": 1, "maxLength": 20, "pattern": "^[A-Za-z0-9^][A-Za-z0-9.\\-=^]*$"},
+    "sector_key": {
+      "enum": [
+        "information_technology", "health_care", "financials", "energy", "industrials",
+        "consumer_discretionary", "consumer_staples", "utilities", "materials", "real_estate",
+        "communication_services"
+      ]
+    },
+    "role_key": {
+      "enum": [
+        "fundamental", "technical", "operator_ceo", "industry_ops", "osint", "devils_advocate", "etf",
+        "macro", "cio", "sector_head"
+      ]
+    },
+    "role_list": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/role_key"}}
+  }
+}

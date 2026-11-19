@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "KO",
+ "longName": "The Coca-Cola Company",
+ "shortName": "The Coca-Cola Company",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 85.65,
+ "regularMarketPrice": 85.65,
+ "sector": "Consumer Defensive",
+ "industry": "Beverages - Non-Alcoholic",
+ "sharesOutstanding": 4302549243,
+ "impliedSharesOutstanding": 4302549243,
+ "marketCap": 368513342663
+}

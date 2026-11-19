@@ -1,0 +1,126 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-a-etf-QQQ",
+  "agent_role": "etf",
+  "sector": "funds",
+  "ticker": "QQQ",
+  "as_of": "2026-10-03",
+  "thesis": "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+  "stance": "neutral",
+  "strengths": [
+    {
+      "point": "Low expense ratio and deep liquidity.",
+      "evidence_refs": [
+        "D:YF:QQQ:FUND"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "point": "Top-10 holdings exceed half of the fund.",
+      "evidence_refs": [
+        "D:YF:QQQ:FUND"
+      ],
+      "severity": "medium"
+    }
+  ],
+  "lookthrough_summary": {
+    "top_sectors": [
+      {
+        "sector": "information_technology",
+        "pct": 51.8
+      },
+      {
+        "sector": "communication_services",
+        "pct": 15.6
+      },
+      {
+        "sector": "consumer_discretionary",
+        "pct": 13.4
+      }
+    ],
+    "data_ref": "runs/2026-10-03_1015/phase1/lookthrough.json#/holdings/0/sector_split"
+  },
+  "expense_ratio_pct": 0.2,
+  "top10_concentration_pct": 52.7,
+  "overlap": [
+    {
+      "with": "SPMO",
+      "overlap_pct": 38.5,
+      "basis": "top10"
+    }
+  ],
+  "momentum_vs_benchmark": {
+    "benchmark": "SPY",
+    "rs_3m": 1.8,
+    "rs_6m": 3.2,
+    "rs_12m": 4.9
+  },
+  "role_in_portfolio": "core",
+  "conviction": 6,
+  "conviction_reason": "Sound core vehicle; concentration and overlap cap enthusiasm.",
+  "action": "HOLD",
+  "key_figures": [
+    {
+      "name": "Expense ratio",
+      "value": 0.2,
+      "unit": "pct",
+      "source_id": "D:YF:QQQ:FUND",
+      "as_of": "2026-10-03",
+      "kind": "other",
+      "data_ref": "runs/2026-10-03_1015/phase1/lookthrough.json#/funds/QQQ/expense_ratio_pct"
+    },
+    {
+      "name": "Top-10 concentration",
+      "value": 52.7,
+      "unit": "pct",
+      "source_id": "D:YF:QQQ:FUND",
+      "as_of": "2026-10-03",
+      "kind": "other",
+      "data_ref": "runs/2026-10-03_1015/phase1/lookthrough.json#/funds/QQQ/top10_concentration_pct"
+    },
+    {
+      "name": "RS vs SPY 12m",
+      "value": 4.9,
+      "unit": "pp",
+      "source_id": "D:PX:QQQ",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-03_1015/phase2/data/technicals_QQQ.json#/relative_strength/vs_spy/12m"
+    }
+  ],
+  "invalidation_price": null,
+  "invalidation_rationale": "A fund is reviewed on role and cost; no single price invalidates it.",
+  "self_evidence": 8,
+  "self_evidence_reason": "Fund data and three price sources available.",
+  "missing_data": [],
+  "red_flags": [],
+  "sources": [
+    {
+      "id": "D:YF:QQQ:FUND",
+      "url": "https://finance.yahoo.com/quote/QQQ/holdings/",
+      "title": "QQQ fund holdings (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/lookthrough.json"
+    },
+    {
+      "id": "D:PX:QQQ",
+      "url": "https://finance.yahoo.com/quote/QQQ/history/",
+      "title": "QQQ daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    },
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    }
+  ]
+}

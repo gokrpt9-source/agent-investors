@@ -1,0 +1,70 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p1-cio",
+  "agent_role": "cio",
+  "mode": "allocation",
+  "as_of": "2026-10-03",
+  "current_sector_weights": {
+    "information_technology": 24.0,
+    "communication_services": 7.5,
+    "consumer_discretionary": 6.5,
+    "consumer_staples": 22.0,
+    "financials": 25.0,
+    "health_care": 3.5,
+    "industrials": 3.0,
+    "energy": 1.0,
+    "utilities": 0.5,
+    "materials": 0.5,
+    "real_estate": 0.5,
+    "cash": 5.0,
+    "unclassified": 1.0
+  },
+  "target_sector_weights": {
+    "information_technology": 24.0,
+    "communication_services": 7.5,
+    "consumer_discretionary": 6.5,
+    "consumer_staples": 18.0,
+    "financials": 23.0,
+    "health_care": 6.0,
+    "industrials": 5.0,
+    "energy": 1.0,
+    "utilities": 0.5,
+    "materials": 0.5,
+    "real_estate": 0.5,
+    "cash": 5.0,
+    "unclassified": 0.5
+  },
+  "expand_sectors": [
+    "health_care",
+    "industrials"
+  ],
+  "reduce_sectors": [
+    "consumer_staples",
+    "financials"
+  ],
+  "constraint_overrides": [
+    {
+      "sector": "information_technology",
+      "macro_bound": "max",
+      "macro_value": 22,
+      "cio_target": 24.0,
+      "justification": "IT exposure comes almost entirely from the QQQ and SPMO core funds; cutting it by two points would mean selling a core fund at a taxable gain, so the excess is tolerated and reviewed next run."
+    }
+  ],
+  "rationale": "The portfolio is concentrated in staples and financials through single stocks and in IT through funds. The macro view favours defensive growth, so health care is the main expansion and industrials a smaller one. Staples and financials are trimmed toward the middle of their macro bands. IT stays slightly above the macro cap for tax reasons.",
+  "conviction": 6,
+  "conviction_reason": "Direction is clear; the size of the shifts is deliberately modest.",
+  "sources": [
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    }
+  ],
+  "missing_data": []
+}

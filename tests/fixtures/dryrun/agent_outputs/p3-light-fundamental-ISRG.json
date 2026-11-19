@@ -1,0 +1,201 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-fundamental-ISRG",
+ "agent_role": "fundamental",
+ "sector": "health_care",
+ "ticker": "ISRG",
+ "as_of": "${AS_OF}",
+ "thesis": "Intuitive Surgical is a robotic surgery systems and recurring instruments with operating margin of 28.5% TTM. Against the configured valuation grid the base fair value is 185.69 versus a 498.70 close (-62.8%), so the stock already prices in more than the filings support.",
+ "stance": "bearish",
+ "strengths": [
+  {
+   "point": "Durable installed robot base, surgeon training and procedure data.",
+   "evidence_refs": [
+    "D:SEC:ISRG:CF"
+   ]
+  },
+  {
+   "point": "P/E of 59.3x on TTM earnings with operating margin of 28.5% TTM.",
+   "evidence_refs": [
+    "D:SEC:ISRG:CF",
+    "D:PX:ISRG"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: a premium valuation and emerging robotic competition.",
+   "evidence_refs": [
+    "D:SEC:ISRG:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Base fair value sits 62.8% below the last close.",
+   "evidence_refs": [
+    "D:VAL:ISRG"
+   ],
+   "severity": "high"
+  },
+  {
+   "point": "The reverse DCF implies 48.5% annual growth is priced in.",
+   "evidence_refs": [
+    "D:VAL:ISRG"
+   ],
+   "severity": "high"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 10950000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:ISRG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json#/ttm/revenue",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 3011250000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:ISRG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json#/ttm/net_income",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 28.499999999999996,
+   "unit": "pct",
+   "source_id": "D:SEC:ISRG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json#/margins_pct/operating",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "FCF yield",
+   "value": 1.349318283402769,
+   "unit": "pct",
+   "source_id": "D:SEC:ISRG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json#/valuation/fcf_yield_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "ROIC",
+   "value": 19.469919783768592,
+   "unit": "pct",
+   "source_id": "D:SEC:ISRG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json#/valuation/roic_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "P/E",
+   "value": 59.28919883769199,
+   "unit": "x",
+   "source_id": "D:SEC:ISRG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json#/valuation/pe",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Last close",
+   "value": 498.7,
+   "unit": "USD/share",
+   "source_id": "D:PX:ISRG",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json#/price"
+  },
+  {
+   "name": "Reverse DCF implied growth",
+   "value": 48.45,
+   "unit": "pct",
+   "source_id": "D:VAL:ISRG",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase3/data/valuation_ISRG.json#/reverse_dcf/implied_growth_pct"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 4,
+ "conviction_reason": "The price sits above most of the valuation grid.",
+ "self_evidence": 8,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:ISRG:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001035267.json",
+   "title": "SEC EDGAR XBRL companyfacts — ISRG (CIK 0001035267)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json"
+  },
+  {
+   "id": "D:VAL:ISRG",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001035267.json",
+   "title": "Valuation grid for ISRG derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/valuation_ISRG.json"
+  },
+  {
+   "id": "D:PX:ISRG",
+   "url": "https://finance.yahoo.com/quote/ISRG/history/",
+   "title": "Yahoo Finance price history (yfinance) — ISRG",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json"
+  },
+  {
+   "id": "D:SEC:ISRG:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0001035267.json",
+   "title": "SEC EDGAR submissions — ISRG (CIK 0001035267)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 134.44,
+   "fair_value_base": 185.69,
+   "fair_value_high": 207.45,
+   "method": "Course NOPAT/FCF DCF (r 9-10%, 5 years, growth-tiered exit multiple) blended with the configured multiple bands.",
+   "input_refs": [
+    "${RUN_DIR}/phase3/data/valuation_ISRG.json#/cells",
+    "${RUN_DIR}/phase3/data/valuation_ISRG.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "DCF-NOPAT-r10-g10",
+    "PE-low"
+   ],
+   "cells_base": [
+    "DCF-NOPAT-r10-g15",
+    "DCF-FCF-r10-g15",
+    "PE-mid",
+    "EVEBIT-mid"
+   ],
+   "cells_high": [
+    "DCF-NOPAT-r09-g15",
+    "PE-high"
+   ],
+   "reverse_dcf_implied_growth_pct": 48.45
+  },
+  "quality_notes": "Intuitive Surgical: operating margin of 28.5% TTM; moat rests on its installed robot base, surgeon training and procedure data.",
+  "balance_sheet_notes": "Net debt of -4.4 bn USD, about -1.2x EBITDA; no near-term refinancing strain visible."
+ }
+}

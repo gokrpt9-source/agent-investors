@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:config_etf_overrides",
+  "title": "config/etf_overrides.yaml",
+  "description": "Security classification overrides and fallback fund compositions. Any entry carrying numbers must declare source_url (funds always; securities when share_class.class_factor is set - semantic check).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["securities", "funds"],
+  "properties": {
+    "securities": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/ticker"},
+      "additionalProperties": {"$ref": "#/$defs/security"}
+    },
+    "funds": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/ticker"},
+      "additionalProperties": {"$ref": "#/$defs/fund"}
+    }
+  },
+  "$defs": {
+    "ticker": {"type": "string", "minLength": 1, "maxLength": 20, "pattern": "^[A-Za-z0-9][A-Za-z0-9.\\-=^]*$"},
+    "sector_key": {
+      "enum": [
+        "information_technology", "health_care", "financials", "energy", "industrials",
+        "consumer_discretionary", "consumer_staples", "utilities", "materials", "real_estate",
+        "communication_services"
+      ]
+    },
+    "http_url": {"type": "string", "pattern": "^https?://\\S+$"},
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sector": {"$ref": "#/$defs/sector_key"},
+        "asset_type": {"enum": ["stock", "fund"]},
+        "flags": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "note": {"type": ["string", "null"]},
+        "share_class": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "class_factor": {"type": ["number", "null"], "exclusiveMinimum": 0},
+            "shares_tags": {"type": "array", "items": {"type": "string", "minLength": 1}}
+          }
+        },
+        "source_url": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/http_url"}]},
+        "as_of": {"type": ["string", "null"], "format": "date"}
+      }
+    },
+    "fund": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sector_weights", "source_url", "as_of"],
+      "properties": {
+        "sector_weights": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "anyOf": [{"$ref": "#/$defs/sector_key"}, {"enum": ["cash", "unclassified"]}]
+          },
+          "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}
+        },
+        "source_url": {"$ref": "#/$defs/http_url"},
+        "as_of": {"type": "string", "format": "date"},
+        "expense_ratio_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 5},
+        "top_holdings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["symbol", "weight_pct"],
+            "properties": {
+              "symbol": {"type": "string"},
+              "name": {"type": ["string", "null"]},
+              "weight_pct": {"type": "number", "minimum": 0, "maximum": 100}
+            }
+          }
+        },
+        "note": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

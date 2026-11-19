@@ -1,0 +1,67 @@
+# portfolio.yaml — SYNTHETIC sample portfolio for the dry-run fixtures (tests/fixtures/dryrun).
+# Not anyone's real positions. Prices come from the synthetic fixture series (as of 2026-10-02).
+as_of: "2026-10-01"
+total_value_usd: null
+cash_usd: 5000.0
+cash_pct: null
+holdings:
+  - ticker: "QQQ"
+    asset_type: fund
+    shares: 40
+    weight_pct: null
+    cost_basis: 402.50
+    cost_basis_currency: USD
+    purchase_date: "2023-05-10"
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "SPMO"
+    asset_type: fund
+    shares: 150
+    weight_pct: null
+    cost_basis: 71.20
+    cost_basis_currency: USD
+    purchase_date: "2024-02-01"
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "BRK-B"
+    asset_type: stock
+    shares: 14
+    weight_pct: null
+    cost_basis: 352.00
+    cost_basis_currency: USD
+    purchase_date: "2022-08-15"
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "KO"
+    asset_type: stock
+    shares: 80
+    weight_pct: null
+    cost_basis: 55.40
+    cost_basis_currency: USD
+    purchase_date: "2021-03-01"
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "PG"
+    asset_type: stock
+    shares: 40
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "JPM"
+    asset_type: stock
+    shares: 22
+    weight_pct: null
+    cost_basis: 151.75
+    cost_basis_currency: USD
+    purchase_date: "2022-01-20"
+    currency: USD
+    proxy_ticker: null
+    sector_override: null

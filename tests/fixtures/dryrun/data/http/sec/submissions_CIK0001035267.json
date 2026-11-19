@@ -1,0 +1,69 @@
+{
+ "cik": "0001035267",
+ "entityType": "operating",
+ "sic": "3845",
+ "sicDescription": "Electromedical & Electrotherapeutic Apparatus",
+ "name": "INTUITIVE SURGICAL INC",
+ "tickers": [
+  "ISRG"
+ ],
+ "exchanges": [
+  "NYSE"
+ ],
+ "fiscalYearEnd": "1231",
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "filings": {
+  "recent": {
+   "accessionNumber": [
+    "0001035267-26-000041",
+    "0001035267-26-000040",
+    "0001035267-26-000032",
+    "0001035267-26-000039",
+    "0001035267-26-000031",
+    "0001035267-26-000038",
+    "0001035267-26-000014",
+    "0001035267-25-000013"
+   ],
+   "filingDate": [
+    "2026-09-15",
+    "2026-08-20",
+    "2026-08-04",
+    "2026-07-28",
+    "2026-05-01",
+    "2026-03-20",
+    "2026-02-12",
+    "2025-02-14"
+   ],
+   "reportDate": [
+    null,
+    null,
+    "2026-06-30",
+    null,
+    "2026-03-31",
+    null,
+    "2025-12-31",
+    "2024-12-31"
+   ],
+   "form": [
+    "8-K",
+    "4",
+    "10-Q",
+    "8-K",
+    "10-Q",
+    "DEF 14A",
+    "10-K",
+    "10-K"
+   ],
+   "primaryDocument": [
+    "isrg-8k-20260915.htm",
+    "form4.xml",
+    "isrg-20260630.htm",
+    "isrg-8k-20260728.htm",
+    "isrg-20260331.htm",
+    "isrg-def14a.htm",
+    "isrg-20251231.htm",
+    "isrg-20241231.htm"
+   ]
+  }
+ }
+}

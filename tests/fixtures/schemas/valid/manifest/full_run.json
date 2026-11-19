@@ -1,0 +1,76 @@
+{
+  "run_id": "2026-10-03_1015",
+  "created_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "mode": {
+    "dry_run": false,
+    "quick": false,
+    "sectors": null,
+    "holding": null
+  },
+  "paths": {
+    "run_dir": "runs/2026-10-03_1015",
+    "config_dir": "config",
+    "cache_dir": "data/cache",
+    "ledger": "ledger/recommendations.csv"
+  },
+  "config_sha256": {
+    "committee.yaml": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "versions": {
+    "python": "3.13"
+  },
+  "holdings": [
+    {
+      "ticker": "KO",
+      "asset_type": "stock",
+      "sector": "consumer_staples",
+      "sector_class": "default",
+      "classification_source": "yf_info",
+      "position_pct": 12.0
+    }
+  ],
+  "candidates": {},
+  "finalists": {},
+  "expand_sectors": [],
+  "expand_dropped": [],
+  "steps": [
+    {
+      "name": "p1.data",
+      "kind": "python",
+      "status": "done",
+      "started": "2026-10-03T10:15:00+00:00",
+      "ended": "2026-10-03T10:15:00+00:00",
+      "summary": "ok",
+      "outputs": []
+    },
+    {
+      "name": "p1.macro",
+      "kind": "agents",
+      "status": "dispatched",
+      "started": "2026-10-03T10:16:00+00:00",
+      "ended": null,
+      "summary": "1 order dispatched",
+      "outputs": []
+    }
+  ],
+  "orders": {
+    "p1-macro": {
+      "step": "p1.macro",
+      "agent_type": "macro-geopolitics",
+      "agent_role": "macro",
+      "mode": null,
+      "ticker": null,
+      "sector": null,
+      "sector_class": null,
+      "phase": 1,
+      "attempt": 1,
+      "status": "dispatched",
+      "order_path": "runs/2026-10-03_1015/orders/p1-macro.md",
+      "output": "runs/2026-10-03_1015/phase1/macro_view.json",
+      "resolved_output": null,
+      "errors": []
+    }
+  },
+  "warnings": []
+}

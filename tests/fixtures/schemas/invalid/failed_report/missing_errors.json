@@ -1,0 +1,11 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-a-operator_ceo-PG",
+  "agent_role": "operator_ceo",
+  "ticker": "PG",
+  "sector": "consumer_staples",
+  "as_of": "2026-10-03",
+  "status": "failed",
+  "attempts": 2
+}

@@ -1,0 +1,125 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-technical-LLY",
+ "agent_role": "technical",
+ "sector": "health_care",
+ "ticker": "LLY",
+ "as_of": "${AS_OF}",
+ "thesis": "LLY trades in a transition between regimes: close 8.5% versus the 200-day average, ADX 20.4 and RSI 32.1. Twelve-month relative strength versus SPY is 9.7 pp.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is 9.7 pp.",
+   "evidence_refs": [
+    "D:PX:LLY"
+   ],
+   "severity": "low"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 905.2,
+   "unit": "USD/share",
+   "source_id": "D:PX:LLY",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_LLY.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 32.1266,
+   "unit": "index",
+   "source_id": "D:PX:LLY",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_LLY.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 20.4403,
+   "unit": "index",
+   "source_id": "D:PX:LLY",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_LLY.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": 9.7199,
+   "unit": "pp",
+   "source_id": "D:PX:LLY",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_LLY.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 881.1503,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 5,
+ "conviction_reason": "Computed regime is transition; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:LLY",
+   "url": "https://finance.yahoo.com/quote/LLY/history/",
+   "title": "Yahoo Finance price history (yfinance) — LLY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_LLY.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  },
+  {
+   "id": "D:PX:XLV",
+   "url": "https://finance.yahoo.com/quote/XLV/history/",
+   "title": "Yahoo Finance price history (yfinance) — XLV",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_XLV.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "transition",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 895.065,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_LLY.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 913.99,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_LLY.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 881.1503,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_LLY.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 881.15; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase3/data/technicals_LLY.json#/trend/regime",
+   "${RUN_DIR}/phase3/data/technicals_LLY.json#/momentum/adx14",
+   "${RUN_DIR}/phase3/data/technicals_LLY.json#/momentum/rsi14",
+   "${RUN_DIR}/phase3/data/technicals_LLY.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

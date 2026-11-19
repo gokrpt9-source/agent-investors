@@ -1,0 +1,1 @@
+run_id,rec_date,price_date,ticker,asset_type,sector,kind,role,action,rule_action,stance,conviction,evidence,rr,fair_value_base,invalidation_price,target_weight_pct,price_at_rec,spy_at_rec,sector_etf,sector_etf_at_rec,thesis,run_mode,report_path

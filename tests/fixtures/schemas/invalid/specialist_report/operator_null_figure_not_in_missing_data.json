@@ -1,0 +1,118 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-a-operator_ceo-KO",
+  "agent_role": "operator_ceo",
+  "sector": "consumer_staples",
+  "ticker": "KO",
+  "as_of": "2026-10-03",
+  "thesis": "Management runs a disciplined, shareholder-friendly playbook: steady dividend growth, refranchised bottling and incentives tied to organic revenue and EPS. Delivery against guidance has been reliable, though insiders have been modest net sellers.",
+  "stance": "bullish",
+  "strengths": [
+    {
+      "point": "Organic revenue guidance met or beaten in most recent years.",
+      "evidence_refs": [
+        "W3"
+      ]
+    },
+    {
+      "point": "Long-term incentives weight relative TSR and EPS, aligning pay with owners.",
+      "evidence_refs": [
+        "W1"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "point": "Executive pay is large relative to peers, which may blunt cost discipline.",
+      "evidence_refs": [
+        "W1"
+      ],
+      "severity": "low"
+    }
+  ],
+  "key_figures": [
+    {
+      "name": "Consecutive annual dividend increases",
+      "value": 64,
+      "unit": "years",
+      "source_id": "W3",
+      "as_of": "2026-02-17",
+      "kind": "other"
+    },
+    {
+      "name": "Share of CEO target pay that is performance-based",
+      "value": null,
+      "unit": "pct",
+      "source_id": null,
+      "as_of": null,
+      "kind": "other"
+    }
+  ],
+  "invalidation_price": null,
+  "invalidation_rationale": "No price-based invalidation for a governance view; a dividend freeze or a large debt-funded acquisition would break the thesis.",
+  "conviction": 7,
+  "conviction_reason": "Long, verifiable record of capital returns and guidance delivery.",
+  "self_evidence": 6,
+  "self_evidence_reason": "Proxy and Form 4 indexes reviewed; the pay-mix percentage could not be sourced.",
+  "missing_data": [],
+  "red_flags": [],
+  "sources": [
+    {
+      "id": "W1",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=DEF+14A",
+      "title": "The Coca-Cola Company - DEF 14A proxy statements (SEC EDGAR)",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    },
+    {
+      "id": "W2",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=4",
+      "title": "The Coca-Cola Company - Form 4 insider filings (SEC EDGAR)",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    },
+    {
+      "id": "W3",
+      "url": "https://investors.coca-colacompany.com/news-events/press-releases",
+      "title": "Coca-Cola investor relations - press releases",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    }
+  ],
+  "extensions": {
+    "management_quality": {
+      "assessment": "Stable leadership with a consistent strategy of brand focus and asset-light bottling.",
+      "source_ids": [
+        "W1",
+        "W3"
+      ]
+    },
+    "capital_allocation": {
+      "assessment": "Dividends first, then bolt-on acquisitions and opportunistic buybacks; refranchising lifted returns on capital.",
+      "source_ids": [
+        "W3"
+      ]
+    },
+    "incentives": {
+      "assessment": "Annual bonus keyed to organic revenue and EPS; long-term awards use relative TSR.",
+      "source_ids": [
+        "W1"
+      ]
+    },
+    "insider_activity": {
+      "assessment": "Routine executive sales under trading plans; no open-market purchases in the last year.",
+      "source_ids": [
+        "W2"
+      ],
+      "net_direction": "selling"
+    },
+    "guidance_vs_delivery": {
+      "assessment": "Organic growth and EPS guidance generally met; currency headwinds were flagged early.",
+      "source_ids": [
+        "W3"
+      ]
+    }
+  }
+}

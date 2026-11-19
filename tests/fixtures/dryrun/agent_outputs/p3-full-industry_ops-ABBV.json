@@ -1,0 +1,117 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-full-industry_ops-ABBV",
+ "agent_role": "industry_ops",
+ "sector": "health_care",
+ "ticker": "ABBV",
+ "as_of": "${AS_OF}",
+ "thesis": "Operationally AbbVie benefits from its successor immunology products with long patent runways. Unit economics are strong at the reported margins; the main operating exposure is high leverage from past acquisitions and amortisation-heavy GAAP earnings.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [],
+ "key_figures": [
+  {
+   "name": "Gross margin TTM",
+   "value": 52.5,
+   "unit": "pct",
+   "source_id": "D:SEC:ABBV:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ABBV.json#/margins_pct/gross",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 30.5,
+   "unit": "pct",
+   "source_id": "D:SEC:ABBV:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase3/data/fundamentals_ABBV.json#/margins_pct/operating",
+   "filed": "2026-08-04"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "Evidence of supply disruption or sustained share loss would undermine the moat.",
+ "conviction": 6,
+ "conviction_reason": "Structural advantages are documented in filings.",
+ "self_evidence": 7,
+ "self_evidence_reason": "Business description and MD&A reviewed; no independent volume data.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:ABBV:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001551152.json",
+   "title": "SEC EDGAR XBRL companyfacts — ABBV (CIK 0001551152)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_ABBV.json"
+  },
+  {
+   "id": "D:SEC:ABBV:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0001551152.json",
+   "title": "SEC EDGAR submissions — ABBV (CIK 0001551152)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_ABBV.json"
+  },
+  {
+   "id": "W1",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001551152&type=10-K&dateb=&owner=include&count=40",
+   "title": "Annual reports (10-K) — ABBV (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W2",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001551152&type=10-Q&dateb=&owner=include&count=40",
+   "title": "Quarterly reports (10-Q) — ABBV (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W3",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001551152&type=8-K&dateb=&owner=include&count=40",
+   "title": "Current reports (8-K) — ABBV (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  }
+ ],
+ "extensions": {
+  "supply_chain": {
+   "assessment": "Manufacturing is concentrated in a few qualified sites with dual sourcing for critical inputs.",
+   "source_ids": [
+    "W1"
+   ]
+  },
+  "capacity_backlog": {
+   "assessment": "Capacity additions are disclosed in the annual report; no backlog metric applies to most products.",
+   "source_ids": [
+    "W1",
+    "W2"
+   ]
+  },
+  "execution": {
+   "assessment": "Launch cadence and integration of acquired assets have been on plan per recent quarterly reports.",
+   "source_ids": [
+    "W2",
+    "W3"
+   ]
+  },
+  "unit_economics": {
+   "assessment": "Reported gross and operating margins show high incremental returns on established products.",
+   "source_ids": [
+    "D:SEC:ABBV:CF"
+   ]
+  },
+  "operational_moat": {
+   "assessment": "The successor immunology products with long patent runways is hard to replicate quickly.",
+   "source_ids": [
+    "W1"
+   ]
+  }
+ }
+}

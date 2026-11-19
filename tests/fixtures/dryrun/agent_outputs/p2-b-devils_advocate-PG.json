@@ -1,0 +1,97 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-b-devils_advocate-PG",
+ "agent_role": "devils_advocate",
+ "sector": "consumer_staples",
+ "ticker": "PG",
+ "as_of": "${AS_OF}",
+ "attacks": [
+  {
+   "target_claim": "The base fair value of 137.26 offers protection.",
+   "target_agent": "fundamental",
+   "counter_evidence": "The DCF-FCF-r10-g03 cell values the shares at 84.83; the base case leans on growth or multiples that the zero-growth cells do not support.",
+   "source_ids": [
+    "D:VAL:PG"
+   ],
+   "severity": "high"
+  },
+  {
+   "target_claim": "The technical structure supports the position.",
+   "target_agent": "technical",
+   "counter_evidence": "Twelve-month relative strength versus SPY is -23.3 pp; support levels fail more often while the benchmark keeps outperforming.",
+   "source_ids": [
+    "D:PX:PG",
+    "D:PX:SPY"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "bear_case_price": 84.83,
+ "bear_case_ref": "DCF-FCF-r10-g03",
+ "kill_criteria": [
+  "Any guidance cut that pushes TTM free cash flow below the dividend.",
+  "Two consecutive quarters of declining TTM operating income in SEC filings.",
+  "A daily close below STOP1 at 123.27."
+ ],
+ "verdict_on_thesis": "broken",
+ "verdict_reason": "The bull case needs the multiple bands; on cash-flow cells the shares are well above fair value and the downtrend shows the market is not paying for the brand premium any more.",
+ "self_evidence": 7,
+ "self_evidence_reason": "Read every specialist report and the data files listed in the order.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "key_figures": [
+  {
+   "name": "Bear-case fair value",
+   "value": 84.83,
+   "unit": "USD/share",
+   "source_id": "D:VAL:PG",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase2/data/valuation_PG.json#/cells/16/fv_per_share"
+  }
+ ],
+ "sources": [
+  {
+   "id": "D:VAL:PG",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000080424.json",
+   "title": "Valuation grid for PG derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_PG.json"
+  },
+  {
+   "id": "D:PX:PG",
+   "url": "https://finance.yahoo.com/quote/PG/history/",
+   "title": "Yahoo Finance price history (yfinance) — PG",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_PG.csv"
+  },
+  {
+   "id": "D:SEC:PG:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000080424.json",
+   "title": "SEC EDGAR XBRL companyfacts — PG (CIK 0000080424)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_PG.json"
+  },
+  {
+   "id": "D:SEC:PG:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000080424.json",
+   "title": "SEC EDGAR submissions — PG (CIK 0000080424)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_PG.json"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  }
+ ]
+}

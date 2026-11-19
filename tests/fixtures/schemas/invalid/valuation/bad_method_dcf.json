@@ -1,0 +1,192 @@
+{
+  "schema": "valuation/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:VAL:KO",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "Valuation grid for KO derived from SEC companyfacts",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "tests/fixtures/validate/run/phase2/data/valuation_KO.json"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "ticker": "KO",
+  "price": {
+    "value": 69.85,
+    "unit": "USD/share",
+    "source_id": "D:PX:KO",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "shares": {
+    "value": 4300000000.0,
+    "unit": "shares",
+    "source_id": "D:SEC:KO:CF",
+    "as_of": "2026-10-02",
+    "kind": "fundamental",
+    "na_reason": null
+  },
+  "net_debt": {
+    "value": 32300000000.0,
+    "unit": "USD",
+    "source_id": "D:SEC:KO:CF",
+    "as_of": "2026-10-02",
+    "kind": "fundamental",
+    "na_reason": null
+  },
+  "base_cf": {
+    "nopat": {
+      "value": 10400000000.0,
+      "unit": "USD",
+      "source_id": "D:VAL:KO",
+      "as_of": "2026-10-02",
+      "kind": "other",
+      "na_reason": null
+    },
+    "fcf": {
+      "value": 10100000000.0,
+      "unit": "USD",
+      "source_id": "D:VAL:KO",
+      "as_of": "2026-10-02",
+      "kind": "other",
+      "na_reason": null
+    }
+  },
+  "reverse_dcf": {
+    "implied_growth_pct": {
+      "value": 6.2,
+      "unit": "pct",
+      "source_id": "D:VAL:KO",
+      "as_of": "2026-10-02",
+      "kind": "other",
+      "na_reason": null
+    },
+    "assumptions": {
+      "r": 0.1,
+      "exit_multiple": 15,
+      "base": "nopat"
+    }
+  },
+  "cells": [
+    {
+      "id": "DCF-NOPAT-r10-g00",
+      "method": "dcf",
+      "params": {
+        "r": 0.1,
+        "g": 0.0,
+        "exit": 10
+      },
+      "fv_per_share": 58.4,
+      "tv_share": 0.7,
+      "flags": [],
+      "na_reason": null
+    },
+    {
+      "id": "DCF-NOPAT-r10-g03",
+      "method": "dcf_nopat",
+      "params": {
+        "r": 0.1,
+        "g": 0.03,
+        "exit": 12
+      },
+      "fv_per_share": 66.9,
+      "tv_share": 0.7,
+      "flags": [],
+      "na_reason": null
+    },
+    {
+      "id": "DCF-NOPAT-r09-g06",
+      "method": "dcf_nopat",
+      "params": {
+        "r": 0.09,
+        "g": 0.06,
+        "exit": 15
+      },
+      "fv_per_share": 77.6,
+      "tv_share": 0.7,
+      "flags": [],
+      "na_reason": null
+    },
+    {
+      "id": "DCF-FCF-r10-g03",
+      "method": "dcf_fcf",
+      "params": {
+        "r": 0.1,
+        "g": 0.03,
+        "exit": 12
+      },
+      "fv_per_share": 63.0,
+      "tv_share": 0.7,
+      "flags": [],
+      "na_reason": null
+    },
+    {
+      "id": "DCF-FCF-r10-g15",
+      "method": "dcf_fcf",
+      "params": {
+        "r": 0.1,
+        "g": 0.15,
+        "exit": 22
+      },
+      "fv_per_share": null,
+      "tv_share": null,
+      "flags": [],
+      "na_reason": "tv_dominates"
+    },
+    {
+      "id": "PE-low",
+      "method": "pe",
+      "params": {
+        "multiple": 17
+      },
+      "fv_per_share": 58.4,
+      "tv_share": null,
+      "flags": [],
+      "na_reason": null
+    },
+    {
+      "id": "PE-mid",
+      "method": "pe",
+      "params": {
+        "multiple": 21
+      },
+      "fv_per_share": 68.9,
+      "tv_share": null,
+      "flags": [],
+      "na_reason": null
+    },
+    {
+      "id": "PE-high",
+      "method": "pe",
+      "params": {
+        "multiple": 25
+      },
+      "fv_per_share": 79.6,
+      "tv_share": null,
+      "flags": [],
+      "na_reason": null
+    },
+    {
+      "id": "EVEBIT-mid",
+      "method": "ev_ebit",
+      "params": {
+        "multiple": 17
+      },
+      "fv_per_share": 64.2,
+      "tv_share": null,
+      "flags": [],
+      "na_reason": null
+    }
+  ],
+  "methods_available": [
+    "dcf_nopat",
+    "dcf_fcf",
+    "pe",
+    "ev_ebit"
+  ]
+}

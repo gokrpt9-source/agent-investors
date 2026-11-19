@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "ISRG",
+ "longName": "Intuitive Surgical, Inc.",
+ "shortName": "Intuitive Surgical, Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 498.7,
+ "regularMarketPrice": 498.7,
+ "sector": "Healthcare",
+ "industry": "Medical Instruments & Supplies",
+ "sharesOutstanding": 358000000,
+ "impliedSharesOutstanding": 358000000,
+ "marketCap": 178534600000
+}

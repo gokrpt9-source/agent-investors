@@ -1,0 +1,419 @@
+{
+  "schema": "fundamentals/v1",
+  "generated_at": "2026-10-02T12:00:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:SEC:TST:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001234567.json",
+      "title": "SEC EDGAR XBRL companyfacts — TST (CIK 0001234567)",
+      "accessed": "2026-10-02",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:TST",
+      "url": "https://finance.yahoo.com/quote/TST/history/",
+      "title": "Yahoo Finance price history (yfinance) — TST",
+      "accessed": "2026-10-02",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "_comment": "Synthetic test fixture - not real data.",
+  "ticker": "TST",
+  "cik": 1234567,
+  "coverage": "sec",
+  "entity": {
+    "name": "Synthetic Staples Co",
+    "sic": 2080,
+    "sic_description": "synthetic",
+    "fiscal_year_end": "1231",
+    "sector_class": "default"
+  },
+  "companyfacts_latest": {
+    "form": "10-Q",
+    "filed": "2026-07-30",
+    "period_end": "2026-06-30",
+    "accn": "0000000000-26-000001"
+  },
+  "submissions_latest": {
+    "form": "10-Q",
+    "filed": "2026-07-30",
+    "report_date": "2026-06-30",
+    "accn": "0000000000-26-000001"
+  },
+  "lag_detected": false,
+  "price": {
+    "value": 120.0,
+    "unit": "USD/share",
+    "source_id": "D:PX:TST",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "shares": {
+    "value": 100,
+    "unit": "shares",
+    "source_id": "D:SEC:TST:CF",
+    "as_of": "2026-06-30",
+    "kind": "fundamental",
+    "na_reason": null,
+    "filed": "2026-07-30"
+  },
+  "market_cap": {
+    "value": 12000.0,
+    "unit": "USD",
+    "source_id": "D:SEC:TST:CF",
+    "as_of": "2026-06-30",
+    "kind": "fundamental",
+    "na_reason": null,
+    "filed": "2026-07-30"
+  },
+  "ttm": {
+    "revenue": {
+      "value": 5000,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "gross_profit": {
+      "value": 2500,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "operating_income": {
+      "value": 1000,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "net_income": {
+      "value": 600,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "ocf": {
+      "value": 950,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "capex": {
+      "value": 250,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "fcf": {
+      "value": 700,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "da": {
+      "value": 250,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "ebitda": {
+      "value": 1250,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "pretax_income": {
+      "value": 750,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "income_tax": {
+      "value": 150,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    }
+  },
+  "fy": [],
+  "balance": {
+    "cash": {
+      "value": 200,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "st_investments": {
+      "value": 0,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "total_debt": {
+      "value": 1200,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "net_debt": {
+      "value": 1000,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "equity": {
+      "value": 2000,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "goodwill": {
+      "value": 100,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "intangibles": {
+      "value": 50,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    }
+  },
+  "margins_pct": {
+    "gross": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "operating": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "net": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "fcf": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    }
+  },
+  "growth_pct": {
+    "revenue_cagr_3y": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "ni_cagr_3y": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "fcf_cagr_3y": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "revenue_yoy_ttm": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    }
+  },
+  "valuation": {
+    "ev": {
+      "value": 13000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "pe": {
+      "value": 20.0,
+      "unit": "x",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "ev_ebit": {
+      "value": null,
+      "unit": "x",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "not_meaningful",
+      "filed": "2026-07-30"
+    },
+    "ev_sales": {
+      "value": null,
+      "unit": "x",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "not_meaningful",
+      "filed": "2026-07-30"
+    },
+    "fcf_yield_pct": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "net_debt_ebitda": {
+      "value": null,
+      "unit": "x",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "not_meaningful",
+      "filed": "2026-07-30"
+    },
+    "p_b": {
+      "value": 6.0,
+      "unit": "x",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-30"
+    },
+    "p_tbv": {
+      "value": null,
+      "unit": "x",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "roe_pct": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "roic_pct": {
+      "value": null,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": "missing",
+      "filed": "2026-07-30"
+    },
+    "tax_rate_used": {
+      "value": 20.0,
+      "unit": "pct",
+      "source_id": "D:SEC:TST:CF",
+      "as_of": "2026-06-30",
+      "kind": "fundamental",
+      "na_reason": null,
+      "derivation": "income_tax / pretax_income",
+      "filed": "2026-07-30"
+    }
+  },
+  "tag_map": {}
+}

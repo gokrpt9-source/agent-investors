@@ -1,0 +1,125 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-technical-TMO",
+ "agent_role": "technical",
+ "sector": "health_care",
+ "ticker": "TMO",
+ "as_of": "${AS_OF}",
+ "thesis": "TMO trades in a transition between regimes: close 4.7% versus the 200-day average, ADX 27.8 and RSI 41.7. Twelve-month relative strength versus SPY is -17.0 pp.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is -17.0 pp.",
+   "evidence_refs": [
+    "D:PX:TMO"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 512.3,
+   "unit": "USD/share",
+   "source_id": "D:PX:TMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_TMO.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 41.7044,
+   "unit": "index",
+   "source_id": "D:PX:TMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_TMO.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 27.8401,
+   "unit": "index",
+   "source_id": "D:PX:TMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_TMO.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": -16.9871,
+   "unit": "pp",
+   "source_id": "D:PX:TMO",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_TMO.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 497.8005,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 5,
+ "conviction_reason": "Computed regime is transition; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:TMO",
+   "url": "https://finance.yahoo.com/quote/TMO/history/",
+   "title": "Yahoo Finance price history (yfinance) — TMO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_TMO.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  },
+  {
+   "id": "D:PX:XLV",
+   "url": "https://finance.yahoo.com/quote/XLV/history/",
+   "title": "Yahoo Finance price history (yfinance) — XLV",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_XLV.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "transition",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 504.23,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_TMO.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 516.3217,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_TMO.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 497.8005,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_TMO.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 497.80; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase3/data/technicals_TMO.json#/trend/regime",
+   "${RUN_DIR}/phase3/data/technicals_TMO.json#/momentum/adx14",
+   "${RUN_DIR}/phase3/data/technicals_TMO.json#/momentum/rsi14",
+   "${RUN_DIR}/phase3/data/technicals_TMO.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

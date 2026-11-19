@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:cio_final",
+  "title": "CIO final verdict",
+  "description": "cio output in reconciliation mode (phase 4).",
+  "type": "object",
+  "required": [
+    "run_id",
+    "order_id",
+    "agent_role",
+    "mode",
+    "as_of",
+    "executive_summary",
+    "reconciliation",
+    "final_target_sector_weights",
+    "final_actions",
+    "constraint_overrides",
+    "top_risks",
+    "dissent_summary",
+    "conviction",
+    "sources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "_comment": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/comment"
+    },
+    "schema_version": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "order_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/order_id"
+    },
+    "agent_role": {
+      "const": "cio"
+    },
+    "mode": {
+      "const": "reconciliation"
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "executive_summary": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+        "description": "Bullet (<= 40 words)"
+      }
+    },
+    "reconciliation": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": [
+          "topic",
+          "phase1_position",
+          "findings",
+          "resolution"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "topic": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "phase1_position": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+            "description": "What phase 1 said (<= 60 words)"
+          },
+          "findings": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/text_80w",
+            "description": "What phases 2/3 found (<= 80 words)"
+          },
+          "resolution": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+            "description": "How the conflict is resolved (<= 60 words)"
+          }
+        }
+      }
+    },
+    "final_target_sector_weights": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/weights_map"
+    },
+    "final_actions": {
+      "type": "array",
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "required": [
+          "ticker",
+          "action",
+          "source_verdict_action",
+          "override"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "ticker": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+          },
+          "action": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/any_action"
+          },
+          "source_verdict_action": {
+            "anyOf": [
+              {
+                "$ref": "urn:agent-investors:common_defs#/$defs/any_action"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Sector verdict action (null if no verdict exists)."
+          },
+          "override": {
+            "type": "boolean"
+          },
+          "override_justification": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1200,
+            "x-min-words": 15,
+            "x-max-words": 150,
+            "description": "Required (>= 15 words) when override is true; null otherwise."
+          },
+          "note": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/text_40w"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "override": {
+                  "const": true
+                }
+              },
+              "required": [
+                "override"
+              ]
+            },
+            "then": {
+              "required": [
+                "override_justification"
+              ],
+              "properties": {
+                "override_justification": {
+                  "$ref": "urn:agent-investors:common_defs#/$defs/justification"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "override": {
+                  "const": false
+                },
+                "source_verdict_action": {
+                  "const": "ADD"
+                }
+              },
+              "required": [
+                "override",
+                "source_verdict_action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "action": {
+                  "const": "ADD"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "override": {
+                  "const": false
+                },
+                "source_verdict_action": {
+                  "const": "HOLD"
+                }
+              },
+              "required": [
+                "override",
+                "source_verdict_action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "action": {
+                  "const": "HOLD"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "override": {
+                  "const": false
+                },
+                "source_verdict_action": {
+                  "const": "TRIM"
+                }
+              },
+              "required": [
+                "override",
+                "source_verdict_action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "action": {
+                  "const": "TRIM"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "override": {
+                  "const": false
+                },
+                "source_verdict_action": {
+                  "const": "SELL"
+                }
+              },
+              "required": [
+                "override",
+                "source_verdict_action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "action": {
+                  "const": "SELL"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "override": {
+                  "const": false
+                },
+                "source_verdict_action": {
+                  "const": "BUY"
+                }
+              },
+              "required": [
+                "override",
+                "source_verdict_action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "action": {
+                  "const": "BUY"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "override": {
+                  "const": false
+                },
+                "source_verdict_action": {
+                  "const": "PASS"
+                }
+              },
+              "required": [
+                "override",
+                "source_verdict_action"
+              ]
+            },
+            "then": {
+              "properties": {
+                "action": {
+                  "const": "PASS"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "constraint_overrides": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/constraint_override"
+      }
+    },
+    "top_risks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+        "description": "Risk (<= 40 words)"
+      }
+    },
+    "dissent_summary": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_120w",
+      "description": "Committee-level dissent summary (<= 120 words)"
+    },
+    "conviction": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/score_1_10"
+    },
+    "conviction_reason": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "Why that conviction (<= 60 words)"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/source"
+      }
+    },
+    "missing_data": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/missing_data"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "QQQ",
+ "longName": "Invesco QQQ Trust, Series 1",
+ "shortName": "Invesco QQQ Trust, Series 1",
+ "quoteType": "ETF",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 612.4,
+ "regularMarketPrice": 612.4,
+ "netExpenseRatio": 0.18,
+ "category": "Large Growth"
+}

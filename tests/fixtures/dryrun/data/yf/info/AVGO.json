@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "AVGO",
+ "longName": "Broadcom Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Technology",
+ "marketCap": 1600000000000.0
+}

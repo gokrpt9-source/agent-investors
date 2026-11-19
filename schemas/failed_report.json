@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:failed_report",
+  "title": "Failed report stub",
+  "description": "Written by committee.py (never by an agent) after the second invalid/missing attempt; scored as evidence 1 and excluded from the conviction mean. Extra keys allowed.",
+  "type": "object",
+  "required": [
+    "order_id",
+    "agent_role",
+    "ticker",
+    "status",
+    "attempts",
+    "errors"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "_comment": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/comment"
+    },
+    "schema_version": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "order_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/order_id"
+    },
+    "agent_role": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/role_key"
+    },
+    "ticker": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker_or_null"
+    },
+    "sector": {
+      "anyOf": [
+        {
+          "$ref": "urn:agent-investors:common_defs#/$defs/sector_key"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "status": {
+      "const": "failed"
+    },
+    "attempts": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

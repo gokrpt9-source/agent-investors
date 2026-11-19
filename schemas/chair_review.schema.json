@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:chair_review",
+  "title": "Chair review (runs/<run_id>/phase4/chair_review.json)",
+  "description": "The chair's (main session's) final review of a finished committee run. Written by the chair, validated and stored by `committee.py chair-save`. Unknown keys are rejected. Word limits (headline 40, executive_summary item 45, chair_view 90, what_would_change_it 40 words) are enforced by chair-save; the maxLength values here are only a generous character guard. Research for decision support, not personalized financial advice.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "run_id", "round", "reviewed_at", "verdict", "headline", "executive_summary",
+    "decisions", "changes_made", "open_issues", "user_actions", "disclaimer_confirmed"
+  ],
+  "properties": {
+    "schema": {"const": "chair_review/1"},
+    "run_id": {"$ref": "urn:agent-investors:common_defs#/$defs/run_id"},
+    "round": {"type": "integer", "minimum": 1, "description": "1-based review round (the number of reopen rounds done so far + 1, or the round this review closes)."},
+    "reviewed_at": {"$ref": "urn:agent-investors:common_defs#/$defs/timestamp"},
+    "verdict": {"enum": ["approved", "approved_with_notes", "needs_rework"]},
+    "headline": {"type": "string", "minLength": 1, "maxLength": 600, "description": "The one thing the investor must know (<= 40 words)."},
+    "executive_summary": {
+      "type": "array", "minItems": 3, "maxItems": 7,
+      "items": {"type": "string", "minLength": 1, "maxLength": 600, "description": "<= 45 words each."}
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ticker", "action", "chair_view", "confidence", "what_would_change_it"],
+        "properties": {
+          "ticker": {"$ref": "urn:agent-investors:common_defs#/$defs/ticker"},
+          "action": {"enum": ["BUY", "ADD", "HOLD", "TRIM", "SELL", "PASS"]},
+          "chair_view": {"type": "string", "minLength": 1, "maxLength": 1100, "description": "<= 90 words, plain English: price versus value and the main risk."},
+          "confidence": {"enum": ["low", "medium", "high"]},
+          "what_would_change_it": {"type": "string", "minLength": 1, "maxLength": 600, "description": "<= 40 words."}
+        }
+      }
+    },
+    "changes_made": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["what", "how"],
+        "properties": {
+          "finding_id": {"type": ["string", "null"]},
+          "what": {"type": "string", "minLength": 1},
+          "how": {"enum": ["agent_rerun", "deterministic_fix", "chair_edit", "accepted_as_is"]}
+        }
+      }
+    },
+    "open_issues": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "user_actions": {"type": "array", "items": {"type": "string", "minLength": 1}, "description": "Concrete things the investor must do or decide (trades to execute or confirm, a new run to start)."},
+    "disclaimer_confirmed": {"const": true}
+  }
+}

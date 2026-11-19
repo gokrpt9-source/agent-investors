@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:config_portfolio",
+  "title": "config/portfolio.yaml",
+  "description": "Current holdings. Null shares/weights are schema-valid (the prefilled template); scripts/common.py validate_config(require_portfolio_values=True) then reports 'run /committee-setup'.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["holdings"],
+  "properties": {
+    "as_of": {"type": ["string", "null"], "format": "date"},
+    "total_value_usd": {"type": ["number", "null"], "exclusiveMinimum": 0},
+    "cash_usd": {"type": ["number", "null"], "minimum": 0},
+    "cash_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "notes": {"type": ["string", "null"]},
+    "holdings": {"type": "array", "items": {"$ref": "#/$defs/holding"}}
+  },
+  "$defs": {
+    "sector_key": {
+      "enum": [
+        "information_technology", "health_care", "financials", "energy", "industrials",
+        "consumer_discretionary", "consumer_staples", "utilities", "materials", "real_estate",
+        "communication_services"
+      ]
+    },
+    "ticker": {"type": "string", "minLength": 1, "maxLength": 20, "pattern": "^[A-Za-z0-9][A-Za-z0-9.\\-=^]*$"},
+    "currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+    "holding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ticker"],
+      "properties": {
+        "ticker": {"$ref": "#/$defs/ticker"},
+        "name": {"type": ["string", "null"]},
+        "asset_type": {"enum": ["stock", "fund", null]},
+        "shares": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "weight_pct": {"type": ["number", "null"], "exclusiveMinimum": 0, "maximum": 100},
+        "cost_basis": {"type": ["number", "null"], "minimum": 0, "description": "Average cost per share in cost_basis_currency."},
+        "cost_basis_currency": {"$ref": "#/$defs/currency"},
+        "purchase_date": {"type": ["string", "null"], "format": "date"},
+        "currency": {"$ref": "#/$defs/currency"},
+        "units": {"type": ["number", "null"], "exclusiveMinimum": 0,
+                  "description": "Units actually held of a fund priced through a proxy ticker (e.g. 73 units of a TASE fund). Display only: `shares` stays the proxy-equivalent quantity used for valuation."},
+        "unit_cost_ils": {"type": ["number", "null"], "minimum": 0,
+                          "description": "Average cost per unit in ILS (not agorot) for `units`; used for the dashboard P/L of proxy-priced TASE funds."},
+        "proxy_ticker": {
+          "anyOf": [{"type": "null"}, {"$ref": "#/$defs/ticker"}],
+          "description": "US-listed proxy for prices/look-through (e.g. a TASE NASDAQ-100 fund -> QQQ)."
+        },
+        "sector_override": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/sector_key"}]},
+        "note": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

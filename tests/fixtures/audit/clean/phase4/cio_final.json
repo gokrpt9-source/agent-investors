@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-10-02_0900",
+  "agent_role": "cio",
+  "mode": "reconciliation",
+  "as_of": "2026-10-02",
+  "executive_summary": [
+    "Technology look-through is 34% against the 35% profile cap; trimming AAA brings it to 31%.",
+    "No candidate earned a BUY, so the proceeds stay in cash for now."
+  ],
+  "reconciliation": [
+    {
+      "topic": "AAA trim",
+      "phase1_position": "Phase 1 wanted technology lower.",
+      "findings": "AAA TRIM sells 3 shares of the 10 held; the rest of the position stays.",
+      "resolution": "Accept the trim as sized; no override."
+    }
+  ],
+  "final_target_sector_weights": {
+    "information_technology": 31.0
+  },
+  "final_actions": [
+    {
+      "ticker": "AAA",
+      "action": "TRIM",
+      "source_verdict_action": "TRIM",
+      "override": false
+    },
+    {
+      "ticker": "BBB",
+      "action": "HOLD",
+      "source_verdict_action": "HOLD",
+      "override": false
+    },
+    {
+      "ticker": "FND",
+      "action": "HOLD",
+      "source_verdict_action": "HOLD",
+      "override": false
+    },
+    {
+      "ticker": "CCC",
+      "action": "PASS",
+      "source_verdict_action": "PASS",
+      "override": false
+    }
+  ],
+  "constraint_overrides": [],
+  "top_risks": [
+    "Fund overlap keeps technology above half of the portfolio."
+  ],
+  "dissent_summary": "No dissent worth recording.",
+  "conviction": 6,
+  "conviction_reason": "Verdicts agree."
+}

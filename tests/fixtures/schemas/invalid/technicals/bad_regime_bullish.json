@@ -1,0 +1,390 @@
+{
+  "schema": "technicals/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:XLP",
+      "url": "https://finance.yahoo.com/quote/XLP/history/",
+      "title": "XLP daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "ticker": "KO",
+  "benchmark": "SPY",
+  "sector_etf": "XLP",
+  "close": {
+    "value": 69.85,
+    "unit": "USD/share",
+    "source_id": "D:PX:KO",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "trend": {
+    "sma20": {
+      "value": 69.15,
+      "unit": "USD/share",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "sma50": {
+      "value": 68.45,
+      "unit": "USD/share",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "sma200": {
+      "value": 67.4,
+      "unit": "USD/share",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "sma200_slope_20d_pct": {
+      "value": 0.4,
+      "unit": "pct",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "close_vs_sma200_pct": {
+      "value": 3.6,
+      "unit": "pct",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "regime": "bullish",
+    "regime_tests": [
+      {
+        "test": "adx_lt_20",
+        "value": 16.8,
+        "pass": true
+      }
+    ],
+    "structure": "transition"
+  },
+  "momentum": {
+    "rsi14": {
+      "value": 52.3,
+      "unit": "index",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "adx14": {
+      "value": 16.8,
+      "unit": "index",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "pdi14": {
+      "value": 18.2,
+      "unit": "index",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "ndi14": {
+      "value": 17.5,
+      "unit": "index",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "macd": {
+      "line": {
+        "value": 0.21,
+        "unit": "index",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "signal": {
+        "value": 0.18,
+        "unit": "index",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "hist": {
+        "value": 0.03,
+        "unit": "index",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      }
+    }
+  },
+  "volatility": {
+    "atr14": {
+      "value": 1.1,
+      "unit": "USD/share",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "atr14_pct": {
+      "value": 1.6,
+      "unit": "pct",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "atr_pctile_252": {
+      "value": 41.0,
+      "unit": "pct",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    }
+  },
+  "range": {
+    "high_52w": {
+      "value": 75.44,
+      "unit": "USD/share",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "low_52w": {
+      "value": 60.07,
+      "unit": "USD/share",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "pct_from_high_52w": {
+      "value": -7.4,
+      "unit": "pct",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "drawdown_from_3y_peak_pct": {
+      "value": -7.4,
+      "unit": "pct",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "max_drawdown_1y_pct": {
+      "value": -12.0,
+      "unit": "pct",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    }
+  },
+  "relative_strength": {
+    "vs_spy": {
+      "3m": {
+        "value": -2.1,
+        "unit": "pp",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "6m": {
+        "value": -5.0,
+        "unit": "pp",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "12m": {
+        "value": -9.4,
+        "unit": "pp",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      }
+    },
+    "vs_sector": {
+      "3m": {
+        "value": 0.1,
+        "unit": "pp",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "6m": {
+        "value": 0.3,
+        "unit": "pp",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "12m": {
+        "value": -1.2,
+        "unit": "pp",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      }
+    }
+  },
+  "volume": {
+    "avg20": {
+      "value": 14000000.0,
+      "unit": "shares",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "avg50": {
+      "value": 14500000.0,
+      "unit": "shares",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "ratio_20_50": {
+      "value": 0.97,
+      "unit": "x",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    },
+    "trend": "flat",
+    "adv_usd_63d": {
+      "value": 980000000.0,
+      "unit": "USD/share",
+      "source_id": "D:PX:KO",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "na_reason": null
+    }
+  },
+  "levels": {
+    "supports": [
+      {
+        "id": "S1",
+        "price": {
+          "value": 66.8,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "touches": 3,
+        "last_date": "2026-09-12"
+      },
+      {
+        "id": "S2",
+        "price": {
+          "value": 64.13,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "touches": 2,
+        "last_date": "2026-05-20"
+      }
+    ],
+    "resistances": [
+      {
+        "id": "R1",
+        "price": {
+          "value": 73.1,
+          "unit": "USD/share",
+          "source_id": "D:PX:KO",
+          "as_of": "2026-10-02",
+          "kind": "price",
+          "na_reason": null
+        },
+        "touches": 2,
+        "last_date": "2026-08-28"
+      }
+    ]
+  },
+  "stop_candidates": [
+    {
+      "id": "STOP1",
+      "price": {
+        "value": 65.9,
+        "unit": "USD/share",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "basis": "below_support_0.5atr"
+    },
+    {
+      "id": "STOP2",
+      "price": {
+        "value": 67.65,
+        "unit": "USD/share",
+        "source_id": "D:PX:KO",
+        "as_of": "2026-10-02",
+        "kind": "price",
+        "na_reason": null
+      },
+      "basis": "close_minus_2atr"
+    }
+  ],
+  "weekly_closes_52w": [
+    [
+      "2026-09-25",
+      69.15
+    ],
+    [
+      "2026-10-02",
+      69.85
+    ]
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "lookthrough/v1",
+  "as_of": "2026-10-02",
+  "holdings": [
+    {
+      "ticker": "AAA",
+      "asset_type": "stock",
+      "contribution_pct": {
+        "information_technology": 10.0
+      }
+    },
+    {
+      "ticker": "BBB",
+      "asset_type": "stock",
+      "contribution_pct": {
+        "health_care": 6.0
+      }
+    },
+    {
+      "ticker": "FND",
+      "asset_type": "fund",
+      "contribution_pct": {
+        "information_technology": 24.0,
+        "health_care": 8.0
+      }
+    }
+  ]
+}

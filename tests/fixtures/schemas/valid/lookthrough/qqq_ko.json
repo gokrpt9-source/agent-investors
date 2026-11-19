@@ -1,0 +1,129 @@
+{
+  "schema": "lookthrough/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:YF:QQQ:FUND",
+      "url": "https://finance.yahoo.com/quote/QQQ/holdings/",
+      "title": "QQQ fund holdings (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:QQQ",
+      "url": "https://finance.yahoo.com/quote/QQQ/history/",
+      "title": "QQQ daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "total_value_usd": {
+    "value": 250000.0,
+    "unit": "USD",
+    "source_id": "D:CFG:portfolio",
+    "as_of": "2026-10-02",
+    "kind": "other",
+    "na_reason": null
+  },
+  "holdings": [
+    {
+      "ticker": "QQQ",
+      "asset_type": "fund",
+      "weight_pct": {
+        "value": 30.0,
+        "unit": "pct",
+        "source_id": "D:CFG:portfolio",
+        "as_of": "2026-10-02",
+        "kind": "other",
+        "na_reason": null
+      },
+      "sector": "funds",
+      "sector_split": {
+        "information_technology": 51.8,
+        "communication_services": 15.6,
+        "consumer_discretionary": 13.4,
+        "unclassified": 19.2
+      },
+      "classification_source": "yf_funds",
+      "flags": []
+    },
+    {
+      "ticker": "KO",
+      "asset_type": "stock",
+      "weight_pct": {
+        "value": 12.0,
+        "unit": "pct",
+        "source_id": "D:CFG:portfolio",
+        "as_of": "2026-10-02",
+        "kind": "other",
+        "na_reason": null
+      },
+      "sector": "consumer_staples",
+      "sector_split": {
+        "consumer_staples": 100.0
+      },
+      "classification_source": "yf_info",
+      "flags": []
+    }
+  ],
+  "sector_weights_pct": {
+    "information_technology": 24.0,
+    "communication_services": 7.5,
+    "consumer_discretionary": 6.5,
+    "consumer_staples": 22.0,
+    "financials": 25.0,
+    "health_care": 3.5,
+    "industrials": 3.0,
+    "energy": 1.0,
+    "utilities": 0.5,
+    "materials": 0.5,
+    "real_estate": 0.5,
+    "cash": 5.0,
+    "unclassified": 1.0
+  },
+  "funds": {
+    "QQQ": {
+      "expense_ratio_pct": {
+        "value": 0.2,
+        "unit": "pct",
+        "source_id": "D:YF:QQQ:FUND",
+        "as_of": "2026-10-02",
+        "kind": "other",
+        "na_reason": null
+      },
+      "top10": [
+        {
+          "symbol": "NVDA",
+          "weight_pct": 9.1
+        },
+        {
+          "symbol": "MSFT",
+          "weight_pct": 8.4
+        }
+      ],
+      "top10_concentration_pct": {
+        "value": 52.7,
+        "unit": "pct",
+        "source_id": "D:YF:QQQ:FUND",
+        "as_of": "2026-10-02",
+        "kind": "other",
+        "na_reason": null
+      },
+      "source_id": "D:YF:QQQ:FUND"
+    }
+  },
+  "overlap": {
+    "pairs": [
+      {
+        "a": "QQQ",
+        "b": "SPMO",
+        "overlap_pct": 38.5,
+        "basis": "top10"
+      }
+    ],
+    "direct_overlap": []
+  }
+}

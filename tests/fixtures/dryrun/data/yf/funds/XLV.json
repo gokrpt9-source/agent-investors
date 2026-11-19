@@ -1,0 +1,45 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "sector_weightings": {
+  "healthcare": 1.0
+ },
+ "top_holdings": [
+  {
+   "symbol": "LLY",
+   "name": "LLY (synthetic)",
+   "holding_pct": 12.4
+  },
+  {
+   "symbol": "JNJ",
+   "name": "JNJ (synthetic)",
+   "holding_pct": 8.1
+  },
+  {
+   "symbol": "ABBV",
+   "name": "ABBV (synthetic)",
+   "holding_pct": 7.2
+  },
+  {
+   "symbol": "ABT",
+   "name": "ABT (synthetic)",
+   "holding_pct": 4.6
+  },
+  {
+   "symbol": "MRK",
+   "name": "MRK (synthetic)",
+   "holding_pct": 4.4
+  },
+  {
+   "symbol": "TMO",
+   "name": "TMO (synthetic)",
+   "holding_pct": 4.1
+  },
+  {
+   "symbol": "ISRG",
+   "name": "ISRG (synthetic)",
+   "holding_pct": 3.9
+  }
+ ],
+ "expense_ratio_pct": 0.08,
+ "expense_ratio_field": "info.netExpenseRatio"
+}

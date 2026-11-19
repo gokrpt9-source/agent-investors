@@ -1,0 +1,58 @@
+{
+  "_comment": "SYNTHETIC test data (not real fund holdings / company data)",
+  "sector_weightings": {},
+  "top_holdings": [
+    {
+      "symbol": "BRK.B",
+      "name": "BRK.B (synthetic)",
+      "holding_pct": 12.0
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPM (synthetic)",
+      "holding_pct": 10.0
+    },
+    {
+      "symbol": "V",
+      "name": "V (synthetic)",
+      "holding_pct": 8.0
+    },
+    {
+      "symbol": "MA",
+      "name": "MA (synthetic)",
+      "holding_pct": 7.0
+    },
+    {
+      "symbol": "BAC",
+      "name": "BAC (synthetic)",
+      "holding_pct": 4.5
+    },
+    {
+      "symbol": "WFC",
+      "name": "WFC (synthetic)",
+      "holding_pct": 3.5
+    },
+    {
+      "symbol": "GS",
+      "name": "GS (synthetic)",
+      "holding_pct": 3.0
+    },
+    {
+      "symbol": "MS",
+      "name": "MS (synthetic)",
+      "holding_pct": 2.6
+    },
+    {
+      "symbol": "SPGI",
+      "name": "SPGI (synthetic)",
+      "holding_pct": 2.4
+    },
+    {
+      "symbol": "AXP",
+      "name": "AXP (synthetic)",
+      "holding_pct": 2.2
+    }
+  ],
+  "expense_ratio_pct": 0.08,
+  "expense_ratio_field": "info.netExpenseRatio"
+}

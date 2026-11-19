@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:config_universe",
+  "title": "config/universe.yaml",
+  "description": "Phase 3 candidate universe filters.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "region", "min_market_cap_usd", "min_avg_dollar_volume_usd", "exclusions", "additions",
+    "max_candidates_per_sector"
+  ],
+  "properties": {
+    "region": {"type": "string", "enum": ["US"]},
+    "min_market_cap_usd": {"type": "number", "exclusiveMinimum": 0},
+    "min_avg_dollar_volume_usd": {"type": "number", "minimum": 0},
+    "adv_window_days": {"type": "integer", "minimum": 5, "maximum": 260},
+    "max_candidates_per_sector": {"type": "integer", "minimum": 1, "maximum": 20},
+    "exclusions": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/ticker"}},
+    "additions": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/sector_key"},
+      "additionalProperties": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/ticker"}}
+    },
+    "notes": {"type": ["string", "null"]}
+  },
+  "$defs": {
+    "ticker": {"type": "string", "minLength": 1, "maxLength": 20, "pattern": "^[A-Za-z0-9][A-Za-z0-9.\\-=^]*$"},
+    "sector_key": {
+      "enum": [
+        "information_technology", "health_care", "financials", "energy", "industrials",
+        "consumer_discretionary", "consumer_staples", "utilities", "materials", "real_estate",
+        "communication_services"
+      ]
+    }
+  }
+}

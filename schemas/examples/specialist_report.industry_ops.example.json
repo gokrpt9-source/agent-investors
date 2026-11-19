@@ -1,0 +1,110 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p3-full-industry_ops-KO",
+  "agent_role": "industry_ops",
+  "sector": "consumer_staples",
+  "ticker": "KO",
+  "as_of": "2026-10-03",
+  "thesis": "The concentrate model pushes capital intensity onto bottlers, giving KO high unit economics and a global distribution moat. The main operational exposures are packaging input costs and bottler execution in emerging markets.",
+  "stance": "bullish",
+  "strengths": [
+    {
+      "point": "Franchise bottlers carry most plant and fleet capex.",
+      "evidence_refs": [
+        "W1",
+        "D:SEC:KO:CF"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "point": "Aluminum and PET costs pass through bottlers and can squeeze volumes.",
+      "evidence_refs": [
+        "W2"
+      ],
+      "severity": "medium"
+    }
+  ],
+  "key_figures": [
+    {
+      "name": "Capex TTM",
+      "value": 2100000000,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "data_ref": "runs/2026-10-03_1015/phase2/data/fundamentals_KO.json#/ttm/capex",
+      "filed": "2026-07-28"
+    }
+  ],
+  "invalidation_price": null,
+  "invalidation_rationale": "Evidence of bottler distress or sustained share loss in key markets would undermine the operational moat.",
+  "conviction": 7,
+  "conviction_reason": "The structural advantages are well documented in filings.",
+  "self_evidence": 6,
+  "self_evidence_reason": "Business description and MD&A reviewed; no independent volume data.",
+  "missing_data": [
+    "Bottler-level utilization or volume data"
+  ],
+  "red_flags": [],
+  "sources": [
+    {
+      "id": "D:SEC:KO:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase2/data/fundamentals_KO.json"
+    },
+    {
+      "id": "W1",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=10-K",
+      "title": "The Coca-Cola Company - Form 10-K annual reports (SEC EDGAR)",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    },
+    {
+      "id": "W2",
+      "url": "https://www.lme.com/en/metals/non-ferrous/lme-aluminium",
+      "title": "LME aluminium market data",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    }
+  ],
+  "extensions": {
+    "supply_chain": {
+      "assessment": "Concentrate produced in a few plants; packaging and sweetener costs sit mostly with bottlers.",
+      "source_ids": [
+        "W1",
+        "W2"
+      ]
+    },
+    "capacity_backlog": {
+      "assessment": "Backlog is not meaningful for a consumer staple; capacity is added by bottlers as volumes grow.",
+      "source_ids": [
+        "W1"
+      ]
+    },
+    "execution": {
+      "assessment": "Refranchising completed in most markets; new product launches are frequent and quickly pruned.",
+      "source_ids": [
+        "W1"
+      ]
+    },
+    "unit_economics": {
+      "assessment": "Concentrate pricing with low capex intensity yields high incremental margins.",
+      "source_ids": [
+        "D:SEC:KO:CF",
+        "W1"
+      ]
+    },
+    "operational_moat": {
+      "assessment": "A global bottler network and cooler placement are hard to replicate.",
+      "source_ids": [
+        "W1"
+      ]
+    }
+  }
+}

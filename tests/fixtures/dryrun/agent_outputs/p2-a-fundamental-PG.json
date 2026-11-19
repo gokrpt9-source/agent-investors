@@ -1,0 +1,194 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-fundamental-PG",
+ "agent_role": "fundamental",
+ "sector": "consumer_staples",
+ "ticker": "PG",
+ "as_of": "${AS_OF}",
+ "thesis": "Procter & Gamble is a diversified household and personal-care brands with operating margin of 26.5% TTM. Against the configured valuation grid the base fair value is 137.26 versus a 128.40 close (6.9%), so the stock looks roughly fairly priced.",
+ "stance": "bullish",
+ "strengths": [
+  {
+   "point": "Durable category-leading brands, retail shelf access and scale in advertising.",
+   "evidence_refs": [
+    "D:SEC:PG:CF"
+   ]
+  },
+  {
+   "point": "P/E of 17.1x on TTM earnings with operating margin of 26.5% TTM.",
+   "evidence_refs": [
+    "D:SEC:PG:CF",
+    "D:PX:PG"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: private-label share gains and commodity input costs.",
+   "evidence_refs": [
+    "D:SEC:PG:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "The reverse DCF implies 7.7% annual growth is priced in.",
+   "evidence_refs": [
+    "D:VAL:PG"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 85556250000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/ttm/revenue",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 17539031250.0,
+   "unit": "USD",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/ttm/net_income",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Operating margin TTM",
+   "value": 26.5,
+   "unit": "pct",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/margins_pct/operating",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "FCF yield",
+   "value": 5.576425413218193,
+   "unit": "pct",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/valuation/fcf_yield_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "ROIC",
+   "value": 26.693565204959192,
+   "unit": "pct",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/valuation/roic_pct",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "P/E",
+   "value": 17.145348321333312,
+   "unit": "x",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/valuation/pe",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Last close",
+   "value": 128.4,
+   "unit": "USD/share",
+   "source_id": "D:PX:PG",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/price"
+  },
+  {
+   "name": "Reverse DCF implied growth",
+   "value": 7.74,
+   "unit": "pct",
+   "source_id": "D:VAL:PG",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase2/data/valuation_PG.json#/reverse_dcf/implied_growth_pct"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 8,
+ "conviction_reason": "Valuation cells and quality metrics agree.",
+ "self_evidence": 8,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:PG:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000080424.json",
+   "title": "SEC EDGAR XBRL companyfacts — PG (CIK 0000080424)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_PG.json"
+  },
+  {
+   "id": "D:VAL:PG",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000080424.json",
+   "title": "Valuation grid for PG derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_PG.json"
+  },
+  {
+   "id": "D:PX:PG",
+   "url": "https://finance.yahoo.com/quote/PG/history/",
+   "title": "Yahoo Finance price history (yfinance) — PG",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_PG.json"
+  },
+  {
+   "id": "D:SEC:PG:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000080424.json",
+   "title": "SEC EDGAR submissions — PG (CIK 0000080424)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_PG.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 107.64,
+   "fair_value_base": 137.26,
+   "fair_value_high": 179.14,
+   "method": "Course NOPAT/FCF DCF (r 9-10%, 5 years, growth-tiered exit multiple) blended with the configured multiple bands.",
+   "input_refs": [
+    "${RUN_DIR}/phase2/data/valuation_PG.json#/cells",
+    "${RUN_DIR}/phase2/data/valuation_PG.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "DCF-NOPAT-r10-g03",
+    "PE-low"
+   ],
+   "cells_base": [
+    "DCF-NOPAT-r10-g06",
+    "DCF-FCF-r10-g06",
+    "PE-mid",
+    "EVEBIT-mid"
+   ],
+   "cells_high": [
+    "DCF-NOPAT-r09-g10",
+    "PE-high"
+   ],
+   "reverse_dcf_implied_growth_pct": 7.74
+  },
+  "quality_notes": "Procter & Gamble: operating margin of 26.5% TTM; moat rests on its category-leading brands, retail shelf access and scale in advertising.",
+  "balance_sheet_notes": "Net debt of 15.3 bn USD, about 0.6x EBITDA; no near-term refinancing strain visible."
+ }
+}

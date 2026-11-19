@@ -1,0 +1,401 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/technicals",
+  "title": "technicals/v1 (technicals_<T>.json)",
+  "description": "compute_technicals.py output (DESIGN 4.2).",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "ticker",
+    "benchmark",
+    "sector_etf",
+    "close",
+    "trend",
+    "momentum",
+    "volatility",
+    "range",
+    "relative_strength",
+    "volume",
+    "levels",
+    "stop_candidates",
+    "weekly_closes_52w"
+  ],
+  "properties": {
+    "schema": {
+      "const": "technicals/v1"
+    },
+    "ticker": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+    },
+    "benchmark": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+    },
+    "sector_etf": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker_or_null"
+    },
+    "close": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+    },
+    "trend": {
+      "type": "object",
+      "required": [
+        "sma20",
+        "sma50",
+        "sma200",
+        "sma200_slope_20d_pct",
+        "close_vs_sma200_pct",
+        "regime",
+        "regime_tests",
+        "structure"
+      ],
+      "properties": {
+        "sma20": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "sma50": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "sma200": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "sma200_slope_20d_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "close_vs_sma200_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "regime": {
+          "enum": [
+            "trend_up",
+            "trend_down",
+            "range",
+            "choppy",
+            "transition"
+          ]
+        },
+        "regime_tests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "test",
+              "pass"
+            ],
+            "properties": {
+              "test": {
+                "type": "string"
+              },
+              "value": {},
+              "pass": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "structure": {
+          "enum": [
+            "HH_HL",
+            "LH_LL",
+            "transition",
+            "unknown"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "momentum": {
+      "type": "object",
+      "required": [
+        "rsi14",
+        "macd",
+        "adx14",
+        "pdi14",
+        "ndi14"
+      ],
+      "properties": {
+        "rsi14": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "macd": {
+          "type": "object",
+          "required": [
+            "line",
+            "signal",
+            "hist"
+          ],
+          "properties": {
+            "line": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            },
+            "signal": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            },
+            "hist": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            }
+          },
+          "additionalProperties": true
+        },
+        "adx14": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "pdi14": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "ndi14": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "volatility": {
+      "type": "object",
+      "required": [
+        "atr14",
+        "atr14_pct",
+        "atr_pctile_252"
+      ],
+      "properties": {
+        "atr14": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "atr14_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "atr_pctile_252": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "range": {
+      "type": "object",
+      "required": [
+        "high_52w",
+        "low_52w",
+        "pct_from_high_52w",
+        "drawdown_from_3y_peak_pct",
+        "max_drawdown_1y_pct"
+      ],
+      "properties": {
+        "high_52w": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "low_52w": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "pct_from_high_52w": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "drawdown_from_3y_peak_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "max_drawdown_1y_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        }
+      },
+      "additionalProperties": true
+    },
+    "relative_strength": {
+      "type": "object",
+      "required": [
+        "vs_spy",
+        "vs_sector"
+      ],
+      "properties": {
+        "vs_spy": {
+          "type": "object",
+          "required": [
+            "3m",
+            "6m",
+            "12m"
+          ],
+          "properties": {
+            "3m": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            },
+            "6m": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            },
+            "12m": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            }
+          },
+          "additionalProperties": true
+        },
+        "vs_sector": {
+          "type": "object",
+          "required": [
+            "3m",
+            "6m",
+            "12m"
+          ],
+          "properties": {
+            "3m": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            },
+            "6m": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            },
+            "12m": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "volume": {
+      "type": "object",
+      "required": [
+        "avg20",
+        "avg50",
+        "ratio_20_50",
+        "trend",
+        "adv_usd_63d"
+      ],
+      "properties": {
+        "avg20": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "avg50": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "ratio_20_50": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "adv_usd_63d": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "trend": {
+          "enum": [
+            "rising",
+            "falling",
+            "flat"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "levels": {
+      "type": "object",
+      "required": [
+        "supports",
+        "resistances"
+      ],
+      "properties": {
+        "supports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "price"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "price": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+              },
+              "touches": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "last_date": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/date_or_null"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "resistances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "price"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^R[0-9]+$"
+              },
+              "price": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+              },
+              "touches": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "last_date": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/date_or_null"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "stop_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "price",
+          "basis"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^STOP[0-9]+$"
+          },
+          "price": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+          },
+          "basis": {
+            "type": "string",
+            "minLength": 1,
+            "description": "below_support_0.5atr | close_minus_2atr | below_sma200"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "weekly_closes_52w": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "$ref": "urn:agent-investors:common_defs#/$defs/date"
+          },
+          {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        ],
+        "items": false,
+        "minItems": 2
+      }
+    }
+  },
+  "additionalProperties": true
+}

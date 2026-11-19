@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "AMZN",
+ "longName": "Amazon.com, Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Consumer Cyclical",
+ "marketCap": 2400000000000.0
+}

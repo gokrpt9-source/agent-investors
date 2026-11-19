@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:desk_risk",
+  "title": "Desk risk result",
+  "description": "Written by desk-risk to runs/desk/<date>/risk_<SYMBOL>.json: the risk check verdict and, on PASS only, the plain ticket plus the exact JSON for the investor to place himself, and the flat-by-time close ticket. Nothing is ever placed or recorded as a yes.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "agent",
+    "date",
+    "disclaimer",
+    "nothing_ordered",
+    "missing_data",
+    "commands_run",
+    "symbol",
+    "verdict",
+    "reasons",
+    "numbers",
+    "entry_ticket",
+    "flat_ticket",
+    "user_steps",
+    "placed_by_investor_only"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "agent": {
+      "const": "desk-risk"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "disclaimer": {
+      "type": "string",
+      "pattern": "(?i)not financial advice",
+      "allOf": [
+        {
+          "pattern": "(?i)most people who day trade lose money"
+        }
+      ],
+      "description": "Must carry the skills' own disclaimer ('Education and tooling, not financial advice.') and 'Most people who day trade lose money.'"
+    },
+    "nothing_ordered": {
+      "const": true,
+      "description": "Always true: no desk agent places, modifies or cancels an order or moves money."
+    },
+    "missing_data": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Things the agent needed and could not get; never filled with guesses."
+    },
+    "commands_run": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Every skill command line the agent ran, verbatim."
+    },
+    "symbol": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9.\\-]{0,11}$"
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "BLOCK",
+        "NOT_RUN"
+      ]
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "On BLOCK: the tool's reason lines and the fix. On PASS: the warnings. NOT_RUN: why."
+    },
+    "numbers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_loss": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "max_loss_limit": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "reward_risk": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "min_reward_risk": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "trades_today": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "max_trades_per_day": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "daily_loss_used": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "max_daily_loss": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "entry_ticket": {
+      "type": "object",
+      "required": [
+        "plain",
+        "order_json",
+        "ready"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "plain": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The plain ticket text from the broker skill's show command."
+        },
+        "order_json": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Exact JSON arguments the INVESTOR would give his own broker / Alpaca MCP. Null unless the risk check passed."
+        },
+        "ready": {
+          "type": "boolean"
+        },
+        "written_to": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "flat_ticket": {
+      "type": "object",
+      "required": [
+        "plain",
+        "order_json",
+        "ready"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "plain": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The plain ticket text from the broker skill's show command."
+        },
+        "order_json": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Exact JSON arguments the INVESTOR would give his own broker / Alpaca MCP. Null unless the risk check passed."
+        },
+        "ready": {
+          "type": "boolean"
+        },
+        "written_to": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "user_steps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "What the INVESTOR does himself, in his own broker or his own Claude Desktop with the Alpaca MCP (Allow once card)."
+    },
+    "placed_by_investor_only": {
+      "const": true
+    }
+  },
+  "if": {
+    "properties": {
+      "verdict": {
+        "const": "PASS"
+      }
+    },
+    "required": [
+      "verdict"
+    ]
+  },
+  "else": {
+    "properties": {
+      "entry_ticket": {
+        "properties": {
+          "order_json": {
+            "type": "null"
+          },
+          "ready": {
+            "const": false
+          }
+        }
+      }
+    }
+  }
+}

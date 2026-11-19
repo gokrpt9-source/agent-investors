@@ -1,0 +1,118 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-a-osint-KO",
+  "agent_role": "osint",
+  "sector": "consumer_staples",
+  "ticker": "KO",
+  "as_of": "2026-10-03",
+  "thesis": "Public signals are mixed: news tone centers on weight-loss drugs and sugar taxes, while hiring and employee sentiment look stable. The unresolved transfer-pricing tax case is the one item others must address.",
+  "stance": "neutral",
+  "strengths": [
+    {
+      "point": "Hiring activity and employee review scores are steady.",
+      "evidence_refs": [
+        "W3",
+        "W4"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "point": "A long-running tax dispute could bring a sizable cash payment.",
+      "evidence_refs": [
+        "W2"
+      ],
+      "severity": "high"
+    }
+  ],
+  "key_figures": [],
+  "invalidation_price": null,
+  "invalidation_rationale": "Signals are qualitative; a resolution of the tax case would change the read.",
+  "conviction": 5,
+  "conviction_reason": "Signals point in different directions with no clear trend.",
+  "self_evidence": 5,
+  "self_evidence_reason": "News and review sites sampled; no consumer complaint data applies.",
+  "missing_data": [
+    "Consumer complaint data (CFPB not applicable to beverages)"
+  ],
+  "red_flags": [
+    {
+      "id": "F1",
+      "flag": "Transfer-pricing tax litigation outcome could require a large cash payment.",
+      "severity": "high",
+      "must_address": true,
+      "source_ids": [
+        "W2"
+      ]
+    },
+    {
+      "id": "F1",
+      "flag": "New sugar-tax proposals in several markets.",
+      "severity": "medium",
+      "must_address": false,
+      "source_ids": [
+        "W1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "W1",
+      "url": "https://www.reuters.com/business/retail-consumer/",
+      "title": "Reuters - retail and consumer news",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    },
+    {
+      "id": "W2",
+      "url": "https://www.ustaxcourt.gov/",
+      "title": "United States Tax Court",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    },
+    {
+      "id": "W3",
+      "url": "https://careers.coca-colacompany.com/",
+      "title": "Coca-Cola careers site",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    },
+    {
+      "id": "W4",
+      "url": "https://www.glassdoor.com/",
+      "title": "Glassdoor employer reviews",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    }
+  ],
+  "extensions": {
+    "signals": [
+      {
+        "signal": "News coverage links GLP-1 drug adoption to softer soda demand.",
+        "direction": "negative",
+        "source_ids": [
+          "W1"
+        ],
+        "trend": "stable"
+      },
+      {
+        "signal": "Open roles in bottling partnerships and marketing hold steady.",
+        "direction": "neutral",
+        "source_ids": [
+          "W3"
+        ],
+        "trend": "stable"
+      },
+      {
+        "signal": "Employee review ratings are flat year over year.",
+        "direction": "neutral",
+        "source_ids": [
+          "W4"
+        ],
+        "trend": "stable"
+      }
+    ]
+  }
+}

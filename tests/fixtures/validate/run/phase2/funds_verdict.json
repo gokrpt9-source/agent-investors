@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p2-sh-funds",
+  "agent_role": "sector_head",
+  "phase": 2,
+  "sector": "funds",
+  "as_of": "2026-10-03",
+  "summary": "Verdicts for the funds sector follow the rule outputs.",
+  "verdicts": [
+    {
+      "ticker": "QQQ",
+      "kind": "holding",
+      "action": "HOLD",
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "agg_conviction": 6.0,
+      "agg_evidence": 8.0,
+      "rr": null,
+      "rationale": "Rules applied without deviation.",
+      "dissents": [],
+      "unresolved_red_flags": [],
+      "rule_deviation": false,
+      "deviation_justification": null,
+      "da_rebuttal": null
+    },
+    {
+      "ticker": "SPMO",
+      "kind": "holding",
+      "action": "HOLD",
+      "rule_action": "HOLD",
+      "rule_label": null,
+      "agg_conviction": 5.8,
+      "agg_evidence": 7.5,
+      "rr": null,
+      "rationale": "Rules applied without deviation.",
+      "dissents": [],
+      "unresolved_red_flags": [],
+      "rule_deviation": false,
+      "deviation_justification": null,
+      "da_rebuttal": null
+    }
+  ],
+  "sources": [
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": []
+}

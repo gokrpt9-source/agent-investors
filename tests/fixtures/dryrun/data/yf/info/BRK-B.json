@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "BRK-B",
+ "longName": "Berkshire Hathaway Inc.",
+ "shortName": "Berkshire Hathaway Inc.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 502.65,
+ "regularMarketPrice": 502.65,
+ "sector": "Financial Services",
+ "industry": "Insurance - Diversified",
+ "sharesOutstanding": 1408035161,
+ "impliedSharesOutstanding": 2140709794,
+ "marketCap": 1076027777954
+}

@@ -1,0 +1,143 @@
+# portfolio.yaml — current holdings reviewed by the committee.
+# /committee-setup asks for the values below; until then every holding has null shares and
+# weights and `python scripts/committee.py validate-config` reports "run /committee-setup".
+#
+# Per holding give EITHER `shares` (preferred; valued at the latest close of `ticker`, or of
+# `proxy_ticker` when set) OR `weight_pct` (percent of the whole portfolio, 0–100). If any
+# holding uses weight_pct without shares, `total_value_usd` is required. If both shares and
+# weight_pct are given, shares win.
+#
+# Field reference:
+#   ticker               Yahoo-style symbol (BRK-B, not BRK.B). Quote tickers in YAML.
+#   asset_type           stock | fund (optional; classification falls back to Yahoo/SEC data)
+#   shares               number of shares/units held (> 0)
+#   weight_pct           percent of total portfolio value (> 0, <= 100)
+#   cost_basis           AVERAGE COST PER SHARE (optional) — enables the capital-gains tax note
+#   cost_basis_currency  currency of cost_basis (USD default)
+#   purchase_date        YYYY-MM-DD (optional; quoted)
+#   currency             trading currency of the holding
+#   proxy_ticker         US-listed proxy used for prices/look-through. Use it for the real TASE
+#                        UCITS funds you hold, e.g. a NASDAQ-100 tracker on TASE -> proxy "QQQ",
+#                        an S&P 500 momentum tracker -> "SPMO".
+#   sector_override      force a GICS sector key (e.g. financials) instead of auto-classification
+#
+# Portfolio-level: give cash as cash_usd OR cash_pct (not both).
+
+as_of: "2026-10-23"               # holdings as listed by the investor (2026-10-25); prices/FX below are 2026-10-23 closes
+total_value_usd: null             # not needed: every holding is entered by shares
+cash_usd: 1285.32               # $1,227.24 (USD cash position) + ILS 180.00 (= $58.08 at USD/ILS 3.0991)
+cash_pct: null
+
+holdings:
+  - ticker: "SPMO"
+    asset_type: fund
+    shares: 69
+    weight_pct: null
+    cost_basis: 145.29
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "PLTR"
+    asset_type: stock
+    shares: 12
+    weight_pct: null
+    cost_basis: 153.7
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "BRK-B"
+    asset_type: stock
+    shares: 8
+    weight_pct: null
+    cost_basis: 482.7
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "IBIT"
+    asset_type: fund
+    shares: 44
+    weight_pct: null
+    cost_basis: 36.94
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+    note: "Spot bitcoin ETF: no GICS sector, look-through stays unclassified."
+  - ticker: "QCOM"
+    asset_type: stock
+    shares: 9
+    weight_pct: null
+    cost_basis: 172.33
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "QTUM"
+    asset_type: fund
+    shares: 19
+    weight_pct: null
+    cost_basis: 145.82
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+    note: "Was 14 shares at 147.33; now 19 at an average of 145.82."
+  - ticker: "MCK"
+    asset_type: stock
+    shares: 1
+    weight_pct: null
+    cost_basis: 816.9
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    proxy_ticker: null
+    sector_override: null
+  - ticker: "1186063"
+    name: "Invesco NASDAQ-100 UCITS (TASE 1186063; Google Finance IN.FF12)"
+    asset_type: fund
+    shares: 9.4535
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    units: 73
+    unit_cost_ils: 267.7527
+    proxy_ticker: "QQQ"
+    sector_override: null
+    note: "Held: 73 units, average cost 26,775.27 agorot = ILS 267.75 per unit. Entered as QQQ-equivalent shares: 73 x ILS 282.70 (Bizportal 2026-10-25) / 3.0991 / QQQ 704.4 = 9.4535 (about 0.12950 QQQ per unit). Recompute when the TASE price moves a lot."
+  - ticker: "1159250"
+    name: "iShares Core S&P 500 UCITS (TASE 1159250; Google Finance IS.FF702)"
+    asset_type: fund
+    shares: 5.4517
+    weight_pct: null
+    cost_basis: null
+    cost_basis_currency: USD
+    purchase_date: null
+    currency: USD
+    units: 5
+    unit_cost_ils: 2453.0
+    proxy_ticker: "SPY"
+    sector_override: null
+    note: "Held: 5 units, average cost ILS 2,453.00 per unit (the list says agorot, but that figure only fits ILS). Entered as SPY-equivalent shares: 5 x ILS 2,568.00 (Bizportal 2026-10-25) / 3.0991 / SPY 759.97 = 5.4517 (about 1.09034 SPY per unit)."
+  - ticker: "LUMI.TA"
+    name: "Bank Leumi (TASE 604611)"
+    asset_type: stock
+    shares: 45
+    weight_pct: null
+    cost_basis: 67.33
+    cost_basis_currency: ILS
+    purchase_date: null
+    currency: ILS
+    proxy_ticker: null
+    sector_override: "financials"
+    note: "Held: 45 shares, average cost ILS 67.33 per share (the list says agorot, but that figure only fits ILS). Yahoo quotes it in agorot (ILA); the pipeline converts to USD at the USD/ILS rate and reports the ILS price. Not an SEC filer, so fundamentals come only from web research."

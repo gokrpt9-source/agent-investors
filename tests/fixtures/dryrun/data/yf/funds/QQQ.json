@@ -1,0 +1,70 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "sector_weightings": {
+  "technology": 0.505,
+  "communication_services": 0.158,
+  "consumer_cyclical": 0.132,
+  "consumer_defensive": 0.052,
+  "healthcare": 0.058,
+  "industrials": 0.048,
+  "utilities": 0.014,
+  "basic_materials": 0.013,
+  "financial_services": 0.005,
+  "energy": 0.005,
+  "realestate": 0.01
+ },
+ "top_holdings": [
+  {
+   "symbol": "NVDA",
+   "name": "NVDA (synthetic)",
+   "holding_pct": 9.4
+  },
+  {
+   "symbol": "MSFT",
+   "name": "MSFT (synthetic)",
+   "holding_pct": 8.6
+  },
+  {
+   "symbol": "AAPL",
+   "name": "AAPL (synthetic)",
+   "holding_pct": 8.1
+  },
+  {
+   "symbol": "AMZN",
+   "name": "AMZN (synthetic)",
+   "holding_pct": 5.4
+  },
+  {
+   "symbol": "AVGO",
+   "name": "AVGO (synthetic)",
+   "holding_pct": 5.0
+  },
+  {
+   "symbol": "META",
+   "name": "META (synthetic)",
+   "holding_pct": 3.9
+  },
+  {
+   "symbol": "GOOGL",
+   "name": "GOOGL (synthetic)",
+   "holding_pct": 3.1
+  },
+  {
+   "symbol": "TSLA",
+   "name": "TSLA (synthetic)",
+   "holding_pct": 2.9
+  },
+  {
+   "symbol": "COST",
+   "name": "COST (synthetic)",
+   "holding_pct": 2.5
+  },
+  {
+   "symbol": "NFLX",
+   "name": "NFLX (synthetic)",
+   "holding_pct": 2.4
+  }
+ ],
+ "expense_ratio_pct": 0.18,
+ "expense_ratio_field": "info.netExpenseRatio"
+}

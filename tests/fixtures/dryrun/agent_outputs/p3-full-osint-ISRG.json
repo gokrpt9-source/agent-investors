@@ -1,0 +1,93 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-full-osint-ISRG",
+ "agent_role": "osint",
+ "sector": "health_care",
+ "ticker": "ISRG",
+ "as_of": "${AS_OF}",
+ "thesis": "Public signals for Intuitive Surgical are mostly routine: filings are timely and insider activity is unremarkable. No item requires a committee response.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [],
+ "key_figures": [],
+ "invalidation_price": null,
+ "invalidation_rationale": "Signals are qualitative; a change in the flagged items would change the read.",
+ "conviction": 5,
+ "conviction_reason": "Signals point in different directions with no clear trend.",
+ "self_evidence": 6,
+ "self_evidence_reason": "Filing indexes were sampled; news-tone and hiring data were not available.",
+ "missing_data": [
+  "Hiring and employee-sentiment data (no source in the inputs)"
+ ],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:ISRG:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0001035267.json",
+   "title": "SEC EDGAR submissions — ISRG (CIK 0001035267)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json"
+  },
+  {
+   "id": "D:SEC:ISRG:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001035267.json",
+   "title": "SEC EDGAR XBRL companyfacts — ISRG (CIK 0001035267)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_ISRG.json"
+  },
+  {
+   "id": "W1",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001035267&type=8-K&dateb=&owner=include&count=40",
+   "title": "Current reports (8-K) — ISRG (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W2",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001035267&type=10-Q&dateb=&owner=include&count=40",
+   "title": "Quarterly reports (10-Q) — ISRG (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W3",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001035267&type=4&dateb=&owner=include&count=40",
+   "title": "Insider transaction reports (Form 4) — ISRG (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  }
+ ],
+ "extensions": {
+  "signals": [
+   {
+    "signal": "Recent current reports focus on routine business updates; a premium valuation and emerging robotic competition is the recurring theme.",
+    "direction": "neutral",
+    "source_ids": [
+     "W1"
+    ],
+    "trend": "stable"
+   },
+   {
+    "signal": "Quarterly filings arrived on the usual schedule with no late-filing notices.",
+    "direction": "positive",
+    "source_ids": [
+     "W2",
+     "D:SEC:ISRG:SUB"
+    ],
+    "trend": "stable"
+   },
+   {
+    "signal": "Insider filings show routine award and plan-based transactions, no unusual clusters.",
+    "direction": "neutral",
+    "source_ids": [
+     "W3"
+    ],
+    "trend": "stable"
+   }
+  ]
+ }
+}

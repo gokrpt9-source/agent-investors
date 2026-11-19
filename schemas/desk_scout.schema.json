@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:desk_scout",
+  "title": "Desk scout result",
+  "description": "Written by desk-scout to runs/desk/<date>/scout.json: what the scanner matched, news tags, congress-trade flags and upcoming earnings. A list of charts that matched a rule, not a list of stocks to act on.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "agent",
+    "date",
+    "disclaimer",
+    "nothing_ordered",
+    "missing_data",
+    "commands_run",
+    "market",
+    "scan",
+    "candidates",
+    "holdings"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "agent": {
+      "const": "desk-scout"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "disclaimer": {
+      "type": "string",
+      "pattern": "(?i)not financial advice",
+      "allOf": [
+        {
+          "pattern": "(?i)most people who day trade lose money"
+        }
+      ],
+      "description": "Must carry the skills' own disclaimer ('Education and tooling, not financial advice.') and 'Most people who day trade lose money.'"
+    },
+    "nothing_ordered": {
+      "const": true,
+      "description": "Always true: no desk agent places, modifies or cancels an order or moves money."
+    },
+    "missing_data": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Things the agent needed and could not get; never filled with guesses."
+    },
+    "commands_run": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Every skill command line the agent ran, verbatim."
+    },
+    "market": {
+      "type": "object",
+      "required": [
+        "state",
+        "note"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "enum": [
+            "open",
+            "closed",
+            "unknown"
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "next_open": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "scan": {
+      "type": "object",
+      "required": [
+        "mode",
+        "note"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": [
+            "daily",
+            "orb",
+            "symbols_only",
+            "none"
+          ]
+        },
+        "universe_size": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "charts_fetched": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "scanned": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "hits": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "partial": {
+          "type": "boolean"
+        },
+        "symbols_passed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "rank",
+          "setups",
+          "why",
+          "news_tags",
+          "news_note",
+          "moving",
+          "congress",
+          "earnings"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "pattern": "^[A-Z0-9][A-Z0-9.\\-]{0,11}$"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "setups": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "why": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "Why it matched the rule, in plain words; never 'buy' or 'winner'."
+          },
+          "price": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "change_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "news_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "trader-news tags: earnings, analyst, legal, deal, capital, people, risk, halt, regulatory, macro."
+          },
+          "news_note": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "moving": {
+            "type": "boolean",
+            "description": "trader-news MOVING flag (3 percent or more from yesterday's close)."
+          },
+          "important_8k": {
+            "type": "boolean"
+          },
+          "congress": {
+            "type": "object",
+            "required": [
+              "recent_ptr",
+              "note"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "recent_ptr": {
+                "type": "boolean",
+                "description": "A House Periodic Transaction Report names this ticker in the checked window."
+              },
+              "note": {
+                "type": "string",
+                "description": "Who, when, amount RANGE and days to disclose, or 'none found'. Public disclosure filed up to 45 days after the trade."
+              }
+            }
+          },
+          "earnings": {
+            "type": "object",
+            "required": [
+              "this_week",
+              "next_report_date",
+              "source"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "this_week": {
+                "enum": [
+                  "yes",
+                  "no",
+                  "unknown"
+                ]
+              },
+              "next_report_date": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Where the date came from (headline link or investor-relations page); SEC data has no next-report date."
+              }
+            }
+          }
+        }
+      }
+    },
+    "holdings": {
+      "type": "array",
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "setups",
+          "news_tags",
+          "congress",
+          "earnings"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "pattern": "^[A-Z0-9][A-Z0-9.\\-]{0,11}$"
+          },
+          "in_scan_hits": {
+            "type": "boolean"
+          },
+          "setups": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "news_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "trader-news tags: earnings, analyst, legal, deal, capital, people, risk, halt, regulatory, macro."
+          },
+          "news_note": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "congress": {
+            "type": "object",
+            "required": [
+              "recent_ptr",
+              "note"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "recent_ptr": {
+                "type": "boolean",
+                "description": "A House Periodic Transaction Report names this ticker in the checked window."
+              },
+              "note": {
+                "type": "string",
+                "description": "Who, when, amount RANGE and days to disclose, or 'none found'. Public disclosure filed up to 45 days after the trade."
+              }
+            }
+          },
+          "earnings": {
+            "type": "object",
+            "required": [
+              "this_week",
+              "next_report_date",
+              "source"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "this_week": {
+                "enum": [
+                  "yes",
+                  "no",
+                  "unknown"
+                ]
+              },
+              "next_report_date": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Where the date came from (headline link or investor-relations page); SEC data has no next-report date."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

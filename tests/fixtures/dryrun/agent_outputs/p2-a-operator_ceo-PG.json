@@ -1,0 +1,118 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-operator_ceo-PG",
+ "agent_role": "operator_ceo",
+ "sector": "consumer_staples",
+ "ticker": "PG",
+ "as_of": "${AS_OF}",
+ "thesis": "Management at Procter & Gamble looks disciplined and shareholder-aligned: capital returns are funded from operating cash flow, incentives reference multi-year targets and guidance has broadly been delivered. Insider activity is routine.",
+ "stance": "bullish",
+ "strengths": [],
+ "risks": [],
+ "key_figures": [
+  {
+   "name": "FCF TTM",
+   "value": 16769025000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/ttm/fcf",
+   "filed": "2026-08-04"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 17539031250.0,
+   "unit": "USD",
+   "source_id": "D:SEC:PG:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_PG.json#/ttm/net_income",
+   "filed": "2026-08-04"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "Governance view: a dividend cut or a large debt-funded acquisition would break it.",
+ "conviction": 8,
+ "conviction_reason": "Long, verifiable record in filings; pay-mix detail not quantified.",
+ "self_evidence": 7,
+ "self_evidence_reason": "Proxy, annual report and Form 4 indexes reviewed.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:PG:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000080424.json",
+   "title": "SEC EDGAR XBRL companyfacts — PG (CIK 0000080424)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_PG.json"
+  },
+  {
+   "id": "D:SEC:PG:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000080424.json",
+   "title": "SEC EDGAR submissions — PG (CIK 0000080424)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_PG.json"
+  },
+  {
+   "id": "W1",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000080424&type=DEF+14A&dateb=&owner=include&count=40",
+   "title": "Proxy statements (DEF 14A) — PG (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W2",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000080424&type=4&dateb=&owner=include&count=40",
+   "title": "Insider transaction reports (Form 4) — PG (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  },
+  {
+   "id": "W3",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000080424&type=10-K&dateb=&owner=include&count=40",
+   "title": "Annual reports (10-K) — PG (SEC EDGAR filing index)",
+   "accessed": "2026-10-02",
+   "kind": "web"
+  }
+ ],
+ "extensions": {
+  "management_quality": {
+   "assessment": "Leadership has kept a consistent strategy around its category-leading brands, retail shelf access and scale in advertising.",
+   "source_ids": [
+    "W1",
+    "W3"
+   ]
+  },
+  "capital_allocation": {
+   "assessment": "Dividends and buybacks are funded from free cash flow; acquisitions are bolt-on rather than transformational.",
+   "source_ids": [
+    "W3",
+    "D:SEC:PG:CF"
+   ]
+  },
+  "incentives": {
+   "assessment": "Annual bonus and long-term awards reference earnings, cash flow and relative shareholder return targets.",
+   "source_ids": [
+    "W1"
+   ]
+  },
+  "insider_activity": {
+   "assessment": "Form 4 activity is dominated by award vesting and plan-based sales.",
+   "source_ids": [
+    "W2"
+   ],
+   "net_direction": "selling"
+  },
+  "guidance_vs_delivery": {
+   "assessment": "Recent annual targets were broadly met; misses were flagged early.",
+   "source_ids": [
+    "W3"
+   ]
+  }
+ }
+}

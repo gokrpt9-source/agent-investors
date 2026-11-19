@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "JPM",
+ "longName": "JPMorgan Chase & Co.",
+ "shortName": "JPMorgan Chase & Co.",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 318.9,
+ "regularMarketPrice": 318.9,
+ "sector": "Financial Services",
+ "industry": "Banks - Diversified",
+ "sharesOutstanding": 2749000000,
+ "impliedSharesOutstanding": 2749000000,
+ "marketCap": 876656100000
+}

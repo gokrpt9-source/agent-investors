@@ -1,0 +1,75 @@
+{
+  "_comment": "SYNTHETIC test data (not real fund composition)",
+  "sector_weightings": {
+    "technology": 0.3,
+    "financial_services": 0.2,
+    "communication_services": 0.15,
+    "industrials": 0.12,
+    "consumer_cyclical": 0.08,
+    "healthcare": 0.07,
+    "consumer_defensive": 0.04,
+    "energy": 0.02,
+    "utilities": 0.01,
+    "realestate": 0.005,
+    "basic_materials": 0.005
+  },
+  "top_holdings": [
+    {
+      "symbol": "META",
+      "name": "META (synthetic)",
+      "holding_pct": 6.0
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVDA (synthetic)",
+      "holding_pct": 9.5
+    },
+    {
+      "symbol": "AVGO",
+      "name": "AVGO (synthetic)",
+      "holding_pct": 5.5
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPM (synthetic)",
+      "holding_pct": 5.0
+    },
+    {
+      "symbol": "AMZN",
+      "name": "AMZN (synthetic)",
+      "holding_pct": 4.5
+    },
+    {
+      "symbol": "MSFT",
+      "name": "MSFT (synthetic)",
+      "holding_pct": 4.0
+    },
+    {
+      "symbol": "BRK.B",
+      "name": "BRK.B (synthetic)",
+      "holding_pct": 3.8
+    },
+    {
+      "symbol": "COST",
+      "name": "COST (synthetic)",
+      "holding_pct": 3.0
+    },
+    {
+      "symbol": "LLY",
+      "name": "LLY (synthetic)",
+      "holding_pct": 2.8
+    },
+    {
+      "symbol": "GE",
+      "name": "GE (synthetic)",
+      "holding_pct": 2.5
+    },
+    {
+      "symbol": "ORCL",
+      "name": "ORCL (synthetic)",
+      "holding_pct": 1.0
+    }
+  ],
+  "expense_ratio_pct": 0.13,
+  "expense_ratio_field": "funds_data.fund_operations.Annual Report Expense Ratio"
+}

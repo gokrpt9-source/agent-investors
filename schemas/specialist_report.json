@@ -1,0 +1,639 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:specialist_report",
+  "title": "Specialist report",
+  "description": "Output of fundamental-analyst, technical-analyst, operator-ceo, industry-ops and osint-sentiment (DESIGN 5). Role-specific content lives in 'extensions', selected by agent_role.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "order_id",
+    "agent_role",
+    "sector",
+    "ticker",
+    "as_of",
+    "sources",
+    "missing_data",
+    "red_flags",
+    "self_evidence",
+    "self_evidence_reason",
+    "thesis",
+    "stance",
+    "strengths",
+    "risks",
+    "key_figures",
+    "invalidation_price",
+    "invalidation_rationale",
+    "conviction",
+    "conviction_reason",
+    "extensions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "_comment": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/comment"
+    },
+    "schema_version": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/schema_version"
+    },
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "order_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/order_id"
+    },
+    "agent_role": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/specialist_role"
+    },
+    "sector": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/sector_key"
+    },
+    "ticker": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/source"
+      }
+    },
+    "missing_data": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/missing_data"
+    },
+    "red_flags": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/red_flag"
+      }
+    },
+    "flag_responses": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/flag_response"
+      },
+      "description": "Responses to other agents' flags (optional)."
+    },
+    "self_evidence": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/score_1_10",
+      "description": "Agent's own view of data completeness (recorded only; decisions use the rule-based evidence score)."
+    },
+    "self_evidence_reason": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "Why that self-evidence score (<= 60 words)"
+    },
+    "thesis": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "Core thesis (<= 60 words)"
+    },
+    "stance": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/stance"
+    },
+    "strengths": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/strength"
+      },
+      "description": "Up to 3 - never padded; an empty list is valid."
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/risk"
+      },
+      "description": "Up to 3 - never padded; an empty list is valid."
+    },
+    "key_figures": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/key_figure"
+      }
+    },
+    "invalidation_price": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/price_or_null",
+      "description": "Price that would prove the thesis wrong (null if none)."
+    },
+    "invalidation_rationale": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "What would prove the thesis wrong (<= 60 words)"
+    },
+    "conviction": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/score_1_10",
+      "description": "How strongly the view is held (1-10)."
+    },
+    "conviction_reason": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+      "description": "Why that conviction (<= 60 words)"
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Role-specific block; shape chosen by agent_role."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "agent_role": {
+            "const": "fundamental"
+          }
+        },
+        "required": [
+          "agent_role"
+        ]
+      },
+      "then": {
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/ext_fundamental"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "agent_role": {
+            "const": "technical"
+          }
+        },
+        "required": [
+          "agent_role"
+        ]
+      },
+      "then": {
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/ext_technical"
+          }
+        },
+        "if": {
+          "properties": {
+            "invalidation_price": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "invalidation_price"
+          ]
+        },
+        "then": {
+          "properties": {
+            "extensions": {
+              "properties": {
+                "invalidation_ref": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "agent_role": {
+            "const": "operator_ceo"
+          }
+        },
+        "required": [
+          "agent_role"
+        ]
+      },
+      "then": {
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/ext_operator_ceo"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "agent_role": {
+            "const": "industry_ops"
+          }
+        },
+        "required": [
+          "agent_role"
+        ]
+      },
+      "then": {
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/ext_industry_ops"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "agent_role": {
+            "const": "osint"
+          }
+        },
+        "required": [
+          "agent_role"
+        ]
+      },
+      "then": {
+        "properties": {
+          "extensions": {
+            "$ref": "#/$defs/ext_osint"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "cell_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^\\S+$",
+        "maxLength": 60
+      },
+      "uniqueItems": true,
+      "description": "Cell ids from valuation_<T>.json (e.g. DCF-NOPAT-r10-g03)."
+    },
+    "valuation": {
+      "type": "object",
+      "description": "3-scenario valuation. Each fair_value_x must equal the mean fv of the cited cells +/-0.5%; cells_base must span >=2 method families when available (semantic checks).",
+      "required": [
+        "fair_value_low",
+        "fair_value_base",
+        "fair_value_high",
+        "method",
+        "input_refs",
+        "cells_low",
+        "cells_base",
+        "cells_high"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "fair_value_low": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "USD/share"
+        },
+        "fair_value_base": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "USD/share"
+        },
+        "fair_value_high": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "USD/share"
+        },
+        "method": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+          "description": "Valuation method(s) used (<= 40 words)"
+        },
+        "input_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "description": "data_refs / source ids of the valuation inputs."
+        },
+        "cells_low": {
+          "$ref": "#/$defs/cell_ids"
+        },
+        "cells_base": {
+          "$ref": "#/$defs/cell_ids"
+        },
+        "cells_high": {
+          "$ref": "#/$defs/cell_ids"
+        },
+        "reverse_dcf_implied_growth_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "notes": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+          "description": "Valuation caveats (<= 60 words)"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "fair_value_low": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "fair_value_low"
+            ]
+          },
+          "then": {
+            "properties": {
+              "cells_low": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fair_value_base": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "fair_value_base"
+            ]
+          },
+          "then": {
+            "properties": {
+              "cells_base": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fair_value_high": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "fair_value_high"
+            ]
+          },
+          "then": {
+            "properties": {
+              "cells_high": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ext_fundamental": {
+      "type": "object",
+      "required": [
+        "valuation",
+        "quality_notes",
+        "balance_sheet_notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "valuation": {
+          "$ref": "#/$defs/valuation"
+        },
+        "quality_notes": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_80w",
+          "description": "Business quality: margins, returns, growth durability (<= 80 words)"
+        },
+        "balance_sheet_notes": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_80w",
+          "description": "Leverage, liquidity, maturities (<= 80 words)"
+        }
+      }
+    },
+    "key_level": {
+      "type": "object",
+      "required": [
+        "ref_id",
+        "price",
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ref_id": {
+          "type": "string",
+          "pattern": "^(S|R|STOP)[0-9]+$",
+          "description": "Id of a computed level (S#/R#) or stop candidate (STOP#) in technicals_<T>.json."
+        },
+        "price": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "type": {
+          "enum": [
+            "support",
+            "resistance",
+            "stop"
+          ]
+        },
+        "data_ref": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/data_ref"
+        }
+      }
+    },
+    "ext_technical": {
+      "type": "object",
+      "description": "References computed indicators only (no pattern-spotting beyond technicals_<T>.json).",
+      "required": [
+        "trend_regime",
+        "key_levels",
+        "setup",
+        "indicator_refs",
+        "invalidation_ref"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "trend_regime": {
+          "enum": [
+            "trend_up",
+            "trend_down",
+            "range",
+            "choppy",
+            "transition"
+          ],
+          "description": "Must equal the computed trend.regime (semantic check)."
+        },
+        "key_levels": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/key_level"
+          }
+        },
+        "setup": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+          "description": "Current setup (<= 40 words)"
+        },
+        "indicator_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "urn:agent-investors:common_defs#/$defs/data_ref"
+          }
+        },
+        "invalidation_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(S|R|STOP)[0-9]+$",
+          "description": "ref_id whose price equals invalidation_price (+/-0.5%); required (non-null) when invalidation_price is a number."
+        }
+      }
+    },
+    "insider_activity": {
+      "type": "object",
+      "required": [
+        "assessment",
+        "source_ids",
+        "net_direction"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "assessment": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_60w",
+          "description": "Form 4 insider activity (<= 60 words)"
+        },
+        "source_ids": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/source_ids"
+        },
+        "net_direction": {
+          "enum": [
+            "buying",
+            "selling",
+            "mixed",
+            "none",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "ext_operator_ceo": {
+      "type": "object",
+      "required": [
+        "management_quality",
+        "capital_allocation",
+        "incentives",
+        "insider_activity",
+        "guidance_vs_delivery"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "management_quality": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        },
+        "capital_allocation": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        },
+        "incentives": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment",
+          "description": "Pay design from the DEF 14A proxy."
+        },
+        "insider_activity": {
+          "$ref": "#/$defs/insider_activity"
+        },
+        "guidance_vs_delivery": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        }
+      }
+    },
+    "ext_industry_ops": {
+      "type": "object",
+      "required": [
+        "supply_chain",
+        "capacity_backlog",
+        "execution",
+        "unit_economics",
+        "operational_moat"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "supply_chain": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        },
+        "capacity_backlog": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        },
+        "execution": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        },
+        "unit_economics": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        },
+        "operational_moat": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/assessment"
+        }
+      }
+    },
+    "signal": {
+      "type": "object",
+      "required": [
+        "signal",
+        "direction",
+        "source_ids",
+        "trend"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "signal": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/text_40w",
+          "description": "Observed signal (paraphrased) (<= 40 words)"
+        },
+        "direction": {
+          "enum": [
+            "positive",
+            "negative",
+            "neutral"
+          ]
+        },
+        "source_ids": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/source_ids_min1"
+        },
+        "trend": {
+          "enum": [
+            "improving",
+            "stable",
+            "deteriorating",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "ext_osint": {
+      "type": "object",
+      "description": "OSINT output is flags (red_flags) for others to address plus signals - not a score.",
+      "required": [
+        "signals"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "signals": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/signal"
+          }
+        }
+      }
+    }
+  }
+}

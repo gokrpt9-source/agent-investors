@@ -1,0 +1,16 @@
+# fetched data and committee runs stay local (folders are kept via .gitkeep)
+data/cache/*
+!data/cache/.gitkeep
+runs/*
+!runs/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+data/backups/
+data/alerts/
+
+# day-trader skills state (orders, plans, fills, state): local only
+trader/

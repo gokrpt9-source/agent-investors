@@ -1,0 +1,91 @@
+{
+  "_comment": "Synthetic test fixture - not real data.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-02_0900",
+  "order_id": "p2-b-devils_advocate-TST",
+  "agent_role": "devils_advocate",
+  "sector": "consumer_staples",
+  "ticker": "TST",
+  "as_of": "2026-10-02",
+  "attacks": [
+    {
+      "target_claim": "Free cash flow covers the dividend with modest headroom.",
+      "target_agent": "fundamental",
+      "counter_evidence": "The payout consumes most of FCF; a tax settlement would push coverage below one for a year.",
+      "source_ids": [
+        "D:SEC:TST:CF",
+        "W1"
+      ],
+      "severity": "high"
+    },
+    {
+      "target_claim": "The range floor at S1 is reliable support.",
+      "target_agent": "technical",
+      "counter_evidence": "Negative 12-month relative strength versus SPY shows persistent distribution; range floors fail more often in that setting.",
+      "source_ids": [
+        "D:PX:TST"
+      ],
+      "severity": "medium"
+    }
+  ],
+  "bear_case_price": 58.4,
+  "bear_case_ref": "DCF-NOPAT-r10-g00",
+  "kill_criteria": [
+    "Two consecutive quarters of negative global unit case volume.",
+    "An adverse appellate ruling in the tax case with cash tax above the amount reserved.",
+    "A daily close below STOP1."
+  ],
+  "verdict_on_thesis": "damaged",
+  "verdict_reason": "The quality case stands, but dividend coverage and the unresolved tax exposure weaken the argument that the current price offers adequate protection.",
+  "self_evidence": 7,
+  "self_evidence_reason": "Read all specialist reports and the data files; tax reserve detail not found.",
+  "missing_data": [
+    "Amount reserved for the transfer-pricing case in the latest 10-Q"
+  ],
+  "red_flags": [],
+  "flag_responses": [],
+  "key_figures": [
+    {
+      "name": "Low-case DCF fair value",
+      "value": 58.4,
+      "unit": "USD/share",
+      "source_id": "D:VAL:TST",
+      "as_of": "2026-10-02",
+      "kind": "other",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/valuation_TST.json#/cells/0/fv_per_share"
+    }
+  ],
+  "sources": [
+    {
+      "id": "D:SEC:TST:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase2/data/fundamentals_TST.json"
+    },
+    {
+      "id": "D:VAL:TST",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "Valuation grid for KO derived from SEC companyfacts",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase2/data/valuation_TST.json"
+    },
+    {
+      "id": "D:PX:TST",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase1/prices.json"
+    },
+    {
+      "id": "W1",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021344&type=10-Q",
+      "title": "The Coca-Cola Company - Form 10-Q filings (SEC EDGAR)",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    }
+  ]
+}

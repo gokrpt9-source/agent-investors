@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "agent_role": "fundamental",
+  "ticker": "BBB",
+  "as_of": "2026-10-02",
+  "thesis": "BBB is a steady business trading close to the fair value from the grid.",
+  "stance": "neutral",
+  "risks": [
+    {
+      "point": "Growth could slow if demand weakens.",
+      "severity": "medium"
+    },
+    {
+      "point": "Third-quarter results are due October 3 and could move the stock.",
+      "severity": "medium"
+    }
+  ],
+  "key_figures": [
+    {
+      "name": "Price",
+      "value": 200.0,
+      "unit": "USD/share",
+      "source_id": "D:X",
+      "as_of": "2026-10-01"
+    }
+  ],
+  "missing_data": [],
+  "extensions": {
+    "valuation": {
+      "fair_value_low": 168.0,
+      "fair_value_base": 210.0,
+      "fair_value_high": 252.0
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-sh-funds",
+ "agent_role": "sector_head",
+ "phase": 2,
+ "sector": "funds",
+ "as_of": "${AS_OF}",
+ "summary": "funds holdings review: QQQ HOLD; SPMO ADD. Every verdict follows the rule output.",
+ "verdicts": [
+  {
+   "ticker": "QQQ",
+   "kind": "holding",
+   "action": "HOLD",
+   "rule_action": "HOLD",
+   "rule_label": "hold",
+   "agg_conviction": 5.9,
+   "agg_evidence": 9.0,
+   "rr": null,
+   "rationale": "Nasdaq-100 tracker; low cost and liquid but concentrated in mega-cap technology. The ETF lens rates it neutral (6/10) as a core holding. Rules give HOLD (conviction 5.9, evidence 9.0). No rule fires; the position is kept at its current weight.",
+   "dissents": [],
+   "unresolved_red_flags": [],
+   "rule_deviation": false,
+   "deviation_justification": null,
+   "da_rebuttal": null
+  },
+  {
+   "ticker": "SPMO",
+   "kind": "holding",
+   "action": "ADD",
+   "rule_action": "ADD",
+   "rule_label": "add",
+   "agg_conviction": 8.0,
+   "agg_evidence": 9.0,
+   "rr": null,
+   "rationale": "S&P 500 momentum tilt; low cost with rules-based rebalancing toward leaders. The ETF lens rates it bullish (8/10) as a factor tilt holding. Rules give ADD (conviction 8.0, evidence 9.0). Conviction, evidence and the position cap allow an increase.",
+   "dissents": [],
+   "unresolved_red_flags": [],
+   "rule_deviation": false,
+   "deviation_justification": null,
+   "da_rebuttal": null
+  }
+ ],
+ "sources": [
+  {
+   "id": "D:PX:QQQ",
+   "url": "https://finance.yahoo.com/quote/QQQ/history/",
+   "title": "Yahoo Finance price history (yfinance) — QQQ",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_QQQ.csv"
+  },
+  {
+   "id": "D:YF:QQQ:FUND",
+   "url": "https://finance.yahoo.com/quote/QQQ/holdings/",
+   "title": "Yahoo Finance fund holdings (yfinance) — QQQ",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/lookthrough.json"
+  },
+  {
+   "id": "D:PX:SPMO",
+   "url": "https://finance.yahoo.com/quote/SPMO/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPMO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPMO.csv"
+  },
+  {
+   "id": "D:YF:SPMO:FUND",
+   "url": "https://finance.yahoo.com/quote/SPMO/holdings/",
+   "title": "Yahoo Finance fund holdings (yfinance) — SPMO",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase1/lookthrough.json"
+  }
+ ],
+ "missing_data": []
+}

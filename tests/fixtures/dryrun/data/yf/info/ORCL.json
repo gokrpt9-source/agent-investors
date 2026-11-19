@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "ORCL",
+ "longName": "Oracle Corporation",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Technology",
+ "marketCap": 640000000000.0
+}

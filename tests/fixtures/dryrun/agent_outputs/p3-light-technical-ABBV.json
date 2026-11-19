@@ -1,0 +1,125 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-light-technical-ABBV",
+ "agent_role": "technical",
+ "sector": "health_care",
+ "ticker": "ABBV",
+ "as_of": "${AS_OF}",
+ "thesis": "ABBV trades in a transition between regimes: close 7.4% versus the 200-day average, ADX 17.7 and RSI 69.5. Twelve-month relative strength versus SPY is 0.8 pp.",
+ "stance": "neutral",
+ "strengths": [],
+ "risks": [
+  {
+   "point": "Twelve-month relative strength versus SPY is 0.8 pp.",
+   "evidence_refs": [
+    "D:PX:ABBV"
+   ],
+   "severity": "low"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Last close",
+   "value": 214.6,
+   "unit": "USD/share",
+   "source_id": "D:PX:ABBV",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_ABBV.json#/close"
+  },
+  {
+   "name": "RSI 14",
+   "value": 69.4985,
+   "unit": "index",
+   "source_id": "D:PX:ABBV",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_ABBV.json#/momentum/rsi14"
+  },
+  {
+   "name": "ADX 14",
+   "value": 17.7355,
+   "unit": "index",
+   "source_id": "D:PX:ABBV",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_ABBV.json#/momentum/adx14"
+  },
+  {
+   "name": "RS vs SPY 12m",
+   "value": 0.7869,
+   "unit": "pp",
+   "source_id": "D:PX:ABBV",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase3/data/technicals_ABBV.json#/relative_strength/vs_spy/12m"
+  }
+ ],
+ "invalidation_price": 209.0377,
+ "invalidation_rationale": "A daily close below STOP1 breaks the nearest support structure and invalidates the setup.",
+ "conviction": 5,
+ "conviction_reason": "Computed regime is transition; levels are well defined by swing pivots.",
+ "self_evidence": 9,
+ "self_evidence_reason": "Three years of daily bars for the ticker and its benchmarks.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:PX:ABBV",
+   "url": "https://finance.yahoo.com/quote/ABBV/history/",
+   "title": "Yahoo Finance price history (yfinance) — ABBV",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_ABBV.csv"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  },
+  {
+   "id": "D:PX:XLV",
+   "url": "https://finance.yahoo.com/quote/XLV/history/",
+   "title": "Yahoo Finance price history (yfinance) — XLV",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_XLV.csv"
+  }
+ ],
+ "extensions": {
+  "trend_regime": "transition",
+  "key_levels": [
+   {
+    "ref_id": "S1",
+    "price": 211.38,
+    "type": "support",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_ABBV.json#/levels/supports/0/price"
+   },
+   {
+    "ref_id": "R1",
+    "price": 217.4,
+    "type": "resistance",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_ABBV.json#/levels/resistances/0/price"
+   },
+   {
+    "ref_id": "STOP1",
+    "price": 209.0377,
+    "type": "stop",
+    "data_ref": "${RUN_DIR}/phase3/data/technicals_ABBV.json#/stop_candidates/0/price"
+   }
+  ],
+  "setup": "Hold above STOP1 at 209.04; a close beyond the nearest resistance would confirm strength.",
+  "indicator_refs": [
+   "${RUN_DIR}/phase3/data/technicals_ABBV.json#/trend/regime",
+   "${RUN_DIR}/phase3/data/technicals_ABBV.json#/momentum/adx14",
+   "${RUN_DIR}/phase3/data/technicals_ABBV.json#/momentum/rsi14",
+   "${RUN_DIR}/phase3/data/technicals_ABBV.json#/relative_strength/vs_spy/12m"
+  ],
+  "invalidation_ref": "STOP1"
+ }
+}

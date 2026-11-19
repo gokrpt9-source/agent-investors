@@ -1,0 +1,17 @@
+{
+  "symbol": "JPM",
+  "shortName": "JP Morgan Chase & Co.",
+  "longName": "JPMorgan Chase & Co.",
+  "quoteType": "EQUITY",
+  "currency": "USD",
+  "exchange": "NYQ",
+  "sector": "Financial Services",
+  "industry": "Banks - Diversified",
+  "marketCap": 883527974912,
+  "sharesOutstanding": 2658186195,
+  "impliedSharesOutstanding": 2658186195,
+  "currentPrice": 332.38,
+  "regularMarketPrice": 332.38,
+  "previousClose": 333.18,
+  "regularMarketTime": 1790971202
+}

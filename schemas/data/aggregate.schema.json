@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/aggregate",
+  "title": "aggregate/v1 (aggregate.json)",
+  "description": "aggregate.py output (DESIGN 4.10), keyed by ticker.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "tickers"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aggregate/v1"
+    },
+    "tickers": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/ticker"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/ticker_agg"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "ticker_agg": {
+      "type": "object",
+      "required": [
+        "kind",
+        "asset_type",
+        "sector",
+        "inputs",
+        "specialists",
+        "agg_conviction",
+        "agg_evidence",
+        "rr",
+        "flags",
+        "rule_action",
+        "rule_trace"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "holding",
+            "candidate"
+          ]
+        },
+        "asset_type": {
+          "enum": [
+            "stock",
+            "fund"
+          ]
+        },
+        "sector": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/holding_sector"
+        },
+        "sector_class": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inputs": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "$ref": "urn:agent-investors:common_defs#/$defs/fact_or_null"
+            },
+            "position_pct": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "cap_pct": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "sector_lookthrough_pct": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "cio_target_pct": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "limit_breach": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": true
+        },
+        "specialists": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "role",
+              "status",
+              "in_mean"
+            ],
+            "properties": {
+              "role": {
+                "$ref": "urn:agent-investors:common_defs#/$defs/role_key"
+              },
+              "path": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "ok",
+                  "failed"
+                ]
+              },
+              "stance": {
+                "enum": [
+                  "bullish",
+                  "neutral",
+                  "bearish",
+                  null
+                ]
+              },
+              "conviction": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "effective_conviction": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "evidence": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "in_mean": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "conviction_mean": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "da": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "verdict": {
+                  "enum": [
+                    "survives",
+                    "damaged",
+                    "broken",
+                    null
+                  ]
+                },
+                "adj": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": true
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "agg_conviction": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 10
+        },
+        "agg_evidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 10
+        },
+        "rr": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "fv_base": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "invalidation": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "upside_pct": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "downside_pct": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "rr": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "invalidation_source": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "null_reason": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": true
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "flags": {
+          "type": "object",
+          "required": [
+            "all",
+            "unresolved"
+          ],
+          "properties": {
+            "all": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "flag_id"
+                ],
+                "properties": {
+                  "flag_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "unresolved": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "flag_id"
+                ],
+                "properties": {
+                  "flag_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "rule_action": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/any_action"
+        },
+        "rule_label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rule_trace": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "rule"
+            ],
+            "properties": {
+              "rule": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

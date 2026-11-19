@@ -1,0 +1,149 @@
+{
+  "schema": "portfolio_plan/v1",
+  "as_of": "2026-10-02",
+  "total_value_usd": {
+    "value": 10000.0,
+    "unit": "USD",
+    "source_id": "D:X",
+    "as_of": "2026-10-01",
+    "kind": "price",
+    "na_reason": null
+  },
+  "cash": {
+    "current_pct": 4.0,
+    "target_pct": 5.0,
+    "post_pct": 18.0,
+    "post_usd": 1800.0
+  },
+  "positions": [
+    {
+      "ticker": "AAA",
+      "asset_type": "stock",
+      "sector": "information_technology",
+      "kind": "holding",
+      "action": "TRIM",
+      "action_source": "cio_final",
+      "price": {
+        "value": 100.0,
+        "unit": "USD/share",
+        "source_id": "D:X",
+        "as_of": "2026-10-01",
+        "kind": "price",
+        "na_reason": null
+      },
+      "shares_cur": 10,
+      "weight_cur_pct": 10.0,
+      "weight_tgt_pct": 0.0,
+      "weight_intent_pct": 7.0,
+      "trade": {
+        "side": "SELL",
+        "shares": 10,
+        "value_usd": 1000.0
+      },
+      "full_exit": true,
+      "dropped_reason": null,
+      "notes": [
+        "reduced 3.0 pp for the information_technology sector limit 32%"
+      ]
+    },
+    {
+      "ticker": "BBB",
+      "asset_type": "stock",
+      "sector": "health_care",
+      "kind": "holding",
+      "action": "TRIM",
+      "action_source": "cio_final",
+      "price": {
+        "value": 200.0,
+        "unit": "USD/share",
+        "source_id": "D:X",
+        "as_of": "2026-10-01",
+        "kind": "price",
+        "na_reason": null
+      },
+      "shares_cur": 3,
+      "weight_cur_pct": 6.0,
+      "weight_tgt_pct": 6.0,
+      "weight_intent_pct": 6.0,
+      "trade": {
+        "side": "NONE",
+        "shares": 0,
+        "value_usd": 0.0,
+        "proposed_shares": 0.4
+      },
+      "full_exit": false,
+      "dropped_reason": "rounds_to_zero_shares",
+      "notes": []
+    },
+    {
+      "ticker": "FND",
+      "asset_type": "fund",
+      "sector": "funds",
+      "kind": "holding",
+      "action": "HOLD",
+      "action_source": "cio_final",
+      "price": {
+        "value": 100.0,
+        "unit": "USD/share",
+        "source_id": "D:X",
+        "as_of": "2026-10-01",
+        "kind": "price",
+        "na_reason": null
+      },
+      "shares_cur": 80,
+      "weight_cur_pct": 80.0,
+      "weight_tgt_pct": 80.0,
+      "weight_intent_pct": 80.0,
+      "trade": {
+        "side": "NONE",
+        "shares": 0,
+        "value_usd": 0.0
+      },
+      "full_exit": false,
+      "dropped_reason": null,
+      "notes": []
+    }
+  ],
+  "sectors": [
+    {
+      "sector": "information_technology",
+      "cur_lookthrough_pct": 34.0,
+      "post_lookthrough_pct": 36.5,
+      "target_pct": 31.0,
+      "max_pct": 35.0,
+      "gap_pp": 0.0,
+      "breach": true
+    },
+    {
+      "sector": "health_care",
+      "cur_lookthrough_pct": 14.0,
+      "post_lookthrough_pct": 14.0,
+      "target_pct": 14.0,
+      "max_pct": 35.0,
+      "gap_pp": 0.0,
+      "breach": false
+    },
+    {
+      "sector": "cash",
+      "cur_lookthrough_pct": 4.0,
+      "post_lookthrough_pct": 7.0,
+      "target_pct": 7.0,
+      "max_pct": null,
+      "gap_pp": 0.0,
+      "breach": false
+    }
+  ],
+  "constraint_checks": [
+    {
+      "check": "max_sector_pct",
+      "status": "pass",
+      "detail": "all sectors <= 35%"
+    }
+  ],
+  "notes": [
+    "Information Technology ends at 31%, inside its 32% limit."
+  ],
+  "sizing": {
+    "trim_fraction": 0.33
+  }
+}

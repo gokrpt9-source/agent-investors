@@ -1,0 +1,17 @@
+{
+  "symbol": "BRK-B",
+  "shortName": "Berkshire Hathaway Inc. New",
+  "longName": "Berkshire Hathaway Inc.",
+  "quoteType": "EQUITY",
+  "currency": "USD",
+  "exchange": "NYQ",
+  "sector": "Financial Services",
+  "industry": "Insurance - Diversified",
+  "marketCap": 1076027719680,
+  "sharesOutstanding": 1408035161,
+  "impliedSharesOutstanding": 2140709794,
+  "currentPrice": 502.65,
+  "regularMarketPrice": 502.65,
+  "previousClose": 500.5,
+  "regularMarketTime": 1790971203
+}

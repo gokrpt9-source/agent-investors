@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "agent_role": "sector_head",
+  "phase": 3,
+  "sector": "health_care",
+  "summary": "CCC does not clear the buy bar.",
+  "verdicts": [
+    {
+      "ticker": "CCC",
+      "kind": "candidate",
+      "action": "PASS",
+      "rule_action": "PASS",
+      "rationale": "Reward to risk is too low for a new position; revisit if the price falls."
+    }
+  ]
+}

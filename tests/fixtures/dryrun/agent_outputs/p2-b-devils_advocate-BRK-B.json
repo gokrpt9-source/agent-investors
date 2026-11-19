@@ -1,0 +1,96 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-b-devils_advocate-BRK-B",
+ "agent_role": "devils_advocate",
+ "sector": "financials",
+ "ticker": "BRK-B",
+ "as_of": "${AS_OF}",
+ "attacks": [
+  {
+   "target_claim": "The base fair value of 389.50 offers protection.",
+   "target_agent": "fundamental",
+   "counter_evidence": "The DCF-FCF-r10-g00 cell values the shares at 132.44; the base case leans on growth or multiples that the zero-growth cells do not support.",
+   "source_ids": [
+    "D:VAL:BRK-B"
+   ],
+   "severity": "medium"
+  },
+  {
+   "target_claim": "The technical structure supports the position.",
+   "target_agent": "technical",
+   "counter_evidence": "Twelve-month relative strength versus SPY is -5.3 pp; support levels fail more often while the benchmark keeps outperforming.",
+   "source_ids": [
+    "D:PX:BRK-B",
+    "D:PX:SPY"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "bear_case_price": 132.44,
+ "bear_case_ref": "DCF-FCF-r10-g00",
+ "kill_criteria": [
+  "Two consecutive quarters of declining TTM operating income in SEC filings.",
+  "A daily close below STOP1 at 488.70."
+ ],
+ "verdict_on_thesis": "survives",
+ "verdict_reason": "The conglomerate case is intact; valuation is near the middle of the multiple bands.",
+ "self_evidence": 7,
+ "self_evidence_reason": "Read every specialist report and the data files listed in the order.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [],
+ "key_figures": [
+  {
+   "name": "Bear-case fair value",
+   "value": 132.44,
+   "unit": "USD/share",
+   "source_id": "D:VAL:BRK-B",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase2/data/valuation_BRK-B.json#/cells/15/fv_per_share"
+  }
+ ],
+ "sources": [
+  {
+   "id": "D:VAL:BRK-B",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001067983.json",
+   "title": "Valuation grid for BRK-B derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_BRK-B.json"
+  },
+  {
+   "id": "D:PX:BRK-B",
+   "url": "https://finance.yahoo.com/quote/BRK-B/history/",
+   "title": "Yahoo Finance price history (yfinance) — BRK-B",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_BRK-B.csv"
+  },
+  {
+   "id": "D:SEC:BRK-B:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001067983.json",
+   "title": "SEC EDGAR XBRL companyfacts — BRK-B (CIK 0001067983)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json"
+  },
+  {
+   "id": "D:SEC:BRK-B:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0001067983.json",
+   "title": "SEC EDGAR submissions — BRK-B (CIK 0001067983)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  }
+ ]
+}

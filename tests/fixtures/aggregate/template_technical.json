@@ -1,0 +1,151 @@
+{
+  "_comment": "Synthetic test fixture - not real data.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-02_0900",
+  "order_id": "p2-a-technical-TST",
+  "agent_role": "technical",
+  "sector": "consumer_staples",
+  "ticker": "TST",
+  "as_of": "2026-10-02",
+  "thesis": "KO is range-bound: ADX is below 20 and price oscillates between computed support S1 and resistance R1. Relative strength versus XLP is flat over six months, so there is no trend edge until a close outside the range.",
+  "stance": "neutral",
+  "strengths": [
+    {
+      "point": "Price holds above SMA200 and the SMA200 slope is positive.",
+      "evidence_refs": [
+        "D:PX:TST"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "point": "Twelve-month relative strength versus SPY is negative.",
+      "evidence_refs": [
+        "D:PX:TST",
+        "D:PX:SPY"
+      ],
+      "severity": "medium"
+    }
+  ],
+  "key_figures": [
+    {
+      "name": "Close",
+      "value": 69.85,
+      "unit": "USD/share",
+      "source_id": "D:PX:TST",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/close"
+    },
+    {
+      "name": "SMA200",
+      "value": 67.4,
+      "unit": "USD/share",
+      "source_id": "D:PX:TST",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/trend/sma200"
+    },
+    {
+      "name": "RSI(14)",
+      "value": 52.3,
+      "unit": "index",
+      "source_id": "D:PX:TST",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/momentum/rsi14"
+    },
+    {
+      "name": "ADX(14)",
+      "value": 16.8,
+      "unit": "index",
+      "source_id": "D:PX:TST",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/momentum/adx14"
+    },
+    {
+      "name": "RS vs SPY 12m",
+      "value": -9.4,
+      "unit": "pp",
+      "source_id": "D:PX:SPY",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/relative_strength/vs_spy/12m"
+    },
+    {
+      "name": "RS vs XLP 6m",
+      "value": 0.3,
+      "unit": "pp",
+      "source_id": "D:PX:XLP",
+      "as_of": "2026-10-02",
+      "kind": "price",
+      "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/relative_strength/vs_sector/6m"
+    }
+  ],
+  "invalidation_price": 65.9,
+  "invalidation_rationale": "A daily close below STOP1, half an ATR under S1, breaks the range floor and would shift the computed regime toward trend_down.",
+  "conviction": 5,
+  "conviction_reason": "A range regime gives no directional edge, although the levels are well defined.",
+  "self_evidence": 9,
+  "self_evidence_reason": "Three years of daily data across three distinct price sources; nothing missing.",
+  "missing_data": [],
+  "red_flags": [],
+  "sources": [
+    {
+      "id": "D:PX:TST",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase1/prices.json"
+    },
+    {
+      "id": "D:PX:SPY",
+      "url": "https://finance.yahoo.com/quote/SPY/history/",
+      "title": "SPY daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase1/prices.json"
+    },
+    {
+      "id": "D:PX:XLP",
+      "url": "https://finance.yahoo.com/quote/XLP/history/",
+      "title": "XLP daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-02_0900/phase1/prices.json"
+    }
+  ],
+  "extensions": {
+    "trend_regime": "range",
+    "key_levels": [
+      {
+        "ref_id": "S1",
+        "price": 66.8,
+        "type": "support",
+        "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/levels/supports/0/price"
+      },
+      {
+        "ref_id": "R1",
+        "price": 73.1,
+        "type": "resistance",
+        "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/levels/resistances/0/price"
+      },
+      {
+        "ref_id": "STOP1",
+        "price": 65.9,
+        "type": "stop",
+        "data_ref": "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/stop_candidates/0/price"
+      }
+    ],
+    "setup": "Range between S1 and R1; treat only a close above R1 on rising volume as a breakout, and a close below STOP1 as a breakdown.",
+    "indicator_refs": [
+      "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/trend/regime",
+      "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/momentum/adx14",
+      "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/momentum/rsi14",
+      "runs/2026-10-02_0900/phase2/data/technicals_TST.json#/relative_strength/vs_spy/12m"
+    ],
+    "invalidation_ref": "STOP1"
+  }
+}

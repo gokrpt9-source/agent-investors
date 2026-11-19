@@ -1,0 +1,392 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:desk_quant",
+  "title": "Desk quant result",
+  "description": "Written by desk-quant to runs/desk/<date>/quant_<SYMBOL>.json: the 10,000-session simulation and history (honest odds; a coin-flip verdict stays a coin flip), then whole-share sizing to the investor's own limits and the proposed bracket order JSON (NOT placed).",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "agent",
+    "date",
+    "disclaimer",
+    "nothing_ordered",
+    "missing_data",
+    "commands_run",
+    "symbol",
+    "result",
+    "limits_check",
+    "simulation",
+    "sizing",
+    "order"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "agent": {
+      "const": "desk-quant"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "disclaimer": {
+      "type": "string",
+      "pattern": "(?i)not financial advice",
+      "allOf": [
+        {
+          "pattern": "(?i)most people who day trade lose money"
+        }
+      ],
+      "description": "Must carry the skills' own disclaimer ('Education and tooling, not financial advice.') and 'Most people who day trade lose money.'"
+    },
+    "nothing_ordered": {
+      "const": true,
+      "description": "Always true: no desk agent places, modifies or cancels an order or moves money."
+    },
+    "missing_data": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Things the agent needed and could not get; never filled with guesses."
+    },
+    "commands_run": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Every skill command line the agent ran, verbatim."
+    },
+    "symbol": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9.\\-]{0,11}$"
+    },
+    "result": {
+      "enum": [
+        "ready",
+        "refused",
+        "stopped_limits_not_set",
+        "simulation_only",
+        "failed"
+      ]
+    },
+    "limits_check": {
+      "type": "object",
+      "required": [
+        "limits_set",
+        "paper"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "limits_set": {
+          "type": "boolean"
+        },
+        "paper": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "simulation": {
+      "type": "object",
+      "required": [
+        "ran",
+        "verdict"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ran": {
+          "type": "boolean"
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "replays": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "until": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_first_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stop_first_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "neither_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "green_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price_median": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price_p05": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price_p95": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "avg_r": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "history": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "sessions": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "fired": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "target": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "stop": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "neither": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "avg_r": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "verdict": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The tool's verdict line, copied verbatim (never rewritten or rounded up into an edge)."
+        },
+        "extra_lines": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "not_a_prediction_said": {
+          "type": "boolean"
+        }
+      }
+    },
+    "sizing": {
+      "type": "object",
+      "required": [
+        "sized",
+        "refused_reason"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "sized": {
+          "type": "boolean"
+        },
+        "shares": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "dollars": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "max_loss": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "deciding_limit": {
+          "enum": [
+            "max_loss",
+            "position_cap",
+            "max_order",
+            "cash",
+            null
+          ]
+        },
+        "limit_shares": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "max_loss": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "position_cap": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "max_order": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "cash": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            }
+          }
+        },
+        "refused_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "order": {
+      "type": "object",
+      "required": [
+        "written",
+        "placed",
+        "path",
+        "bracket"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "written": {
+          "type": "boolean",
+          "description": "trader/orders.json was written (a proposal)."
+        },
+        "placed": {
+          "const": false,
+          "description": "Always false: placing is the investor's own act."
+        },
+        "path": {
+          "enum": [
+            "trader/orders.json",
+            null
+          ]
+        },
+        "bracket": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "symbol",
+                "side",
+                "qty",
+                "type",
+                "time_in_force",
+                "order_class",
+                "take_profit_limit_price",
+                "stop_loss_stop_price"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "pattern": "^[A-Z0-9][A-Z0-9.\\-]{0,11}$"
+                },
+                "side": {
+                  "const": "buy"
+                },
+                "qty": {
+                  "type": "string",
+                  "pattern": "^[1-9]\\d*$"
+                },
+                "type": {
+                  "enum": [
+                    "market",
+                    "limit"
+                  ]
+                },
+                "time_in_force": {
+                  "enum": [
+                    "day",
+                    "gtc"
+                  ]
+                },
+                "order_class": {
+                  "const": "bracket"
+                },
+                "take_profit_limit_price": {
+                  "type": "string"
+                },
+                "stop_loss_stop_price": {
+                  "type": "string"
+                }
+              },
+              "description": "The proposal exactly as trader-budget wrote it. A PROPOSAL only, never placed by any desk agent."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

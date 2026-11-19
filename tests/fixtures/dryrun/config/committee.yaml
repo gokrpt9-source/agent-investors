@@ -1,0 +1,389 @@
+# committee.yaml — every threshold, window, concurrency setting and cache TTL used by the
+# deterministic layer (scripts/). Code must read values from here, never hard-code them.
+# Validated by schemas/config_committee.schema.json + semantic checks in scripts/common.py
+# (`python scripts/committee.py validate-config`).
+#
+# Units: percentages are percent numbers (10 = 10%) unless the key ends in a fraction-style
+# name (rates / tiers / weights written as 0.09 etc.). Windows are TRADING days unless the key
+# says calendar "days". Section references (§) point at docs/DESIGN.md.
+
+version: 1
+
+# =========================================================================== scope (§2.3)
+enabled_sectors:                 # GICS sectors the committee may review / expand into
+  - information_technology
+  - health_care
+  - financials
+  - energy
+  - industrials
+  - consumer_discretionary
+  - consumer_staples
+  - utilities
+  - materials
+  - real_estate
+  - communication_services
+
+concurrency: 8                   # max agents launched per batch (one message)
+benchmark: "SPY"                 # market benchmark for relative strength / ledger scoring
+fx_ticker: "ILS=X"               # USD/ILS on Yahoo (base currency is ILS)
+fx_stooq_symbol: "usdils"        # Stooq fallback symbol for the FX series
+
+sector_etfs:                     # benchmark SPDR per sector (screen universe, RS vs sector, scoring)
+  information_technology: "XLK"
+  health_care: "XLV"
+  financials: "XLF"
+  energy: "XLE"
+  industrials: "XLI"
+  consumer_discretionary: "XLY"
+  consumer_staples: "XLP"
+  utilities: "XLU"
+  materials: "XLB"
+  real_estate: "XLRE"
+  communication_services: "XLC"
+
+phase1_reuse_days: 7             # /committee-holding reuses Phase 1 from the latest run <= N days old
+
+# =========================================================================== caching (§3)
+cache_ttl_hours:                 # reuse fetched data younger than this; older -> refetch
+  prices: 24                     # daily OHLCV (fetch_prices)
+  fundamentals: 168              # SEC companyfacts + submissions (fetch_fundamentals)
+  macro: 24                      # FRED CSVs (fetch_macro)
+  etf: 168                       # Yahoo fund composition (yf_funds)
+  info: 24                       # Yahoo quote/profile info (yf_info)
+  sec_map: 168                   # SEC company_tickers.json (ticker -> CIK)
+
+# =========================================================================== orchestration (§2.2)
+orchestration:
+  step_time_budget_seconds: 90   # `committee.py next` returns {"type":"continue"} after this long
+  max_attempts: 2                # agent attempts per work order (attempt 2 = retry with prior_errors)
+  command_timeout_ms: 600000     # shell timeout the slash commands use for `committee.py` calls
+
+roles:                           # which specialist roles run where (role keys, §2)
+  phase2_stock: [fundamental, technical, osint, operator_ceo]
+  phase2_fund: [etf, technical]
+  quick_stock: [fundamental, technical]     # --quick (Devil's Advocate still runs in wave B)
+  quick_fund: [etf]
+  phase3_light: [fundamental, technical]
+  phase3_full: [operator_ceo, industry_ops, osint]
+  da_for_funds: false            # run devils-advocate on fund holdings too?
+
+# =========================================================================== prices (§4.1)
+prices:
+  period: "3y"                   # yfinance history period
+  stooq_fallback: true           # try Stooq CSV when yfinance fails (bot wall -> ProviderBlocked)
+  adv_window_days: 63            # average dollar volume window
+  return_windows_days:           # trailing returns reported in prices.json
+    "1m": 21
+    "3m": 63
+    "6m": 126
+    "12m": 252
+
+# =========================================================================== technicals (§4.2, §8)
+technicals:
+  sma_periods: [20, 50, 200]
+  rsi_period: 14                 # Wilder RSI, seeded with the SMA of the first n deltas
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  atr_period: 14
+  adx_period: 14
+  atr_pctile_window: 252         # trailing percentile of ATR (no look-ahead)
+  high_low_window: 252           # 52-week high/low window
+  high_low_min_bars: 200         # < 200 bars -> null; 200–251 -> use available bars + flag
+  sma200_slope_days: 20          # slope of SMA200 over this many bars, in percent
+  max_drawdown_window: 252
+  rs_windows:                    # relative strength (excess return, pp) windows
+    "3m": 63
+    "6m": 126
+    "12m": 252
+  volume_short: 20               # avg20
+  volume_long: 50                # avg50
+  volume_rising_ratio: 1.10      # avg20/avg50 >= this -> "rising"
+  volume_falling_ratio: 0.90     # avg20/avg50 <= this -> "falling" (else "flat")
+  adv_window: 63
+  pivot_left: 3                  # swing pivot needs N lower highs / higher lows on the left ...
+  pivot_right: 3                 # ... and N on the right (ties rejected)
+  level_lookback: 250            # bars scanned for pivots
+  level_cluster_atr: 0.5         # pivots within 0.5 x ATR merge into one level
+  max_levels_per_side: 3         # S1..S3 below price, R1..R3 above
+  stop_support_buffer_atr: 0.5   # STOP "below_support_0.5atr" = S1 - 0.5 x ATR
+  stop_atr_multiple: 2.0         # STOP "close_minus_2atr" = close - 2 x ATR
+  weekly_closes_weeks: 52        # weekly_closes_52w series length
+  regime:                        # first match wins: choppy -> trend_up -> trend_down -> range -> transition
+    adx_trend_min: 25            # trend_up / trend_down need ADX >= this
+    adx_range_max: 20            # range needs ADX < this
+    choppy_window: 20            # bars inspected for SMA50 crosses
+    choppy_min_sma50_crosses: 4  # choppy: >= 4 crosses ...
+    choppy_atr_pctile_min: 80    # ... AND ATR percentile > 80 ...
+    choppy_adx_max: 20           # ... AND ADX < 20
+    range_window: 20             # range: 20-bar high-low width ...
+    range_max_width_pct: 10      # ... <= 10% of its midpoint
+    sma200_slope_min_pct: 0.0    # trend_up needs slope > this; trend_down needs slope < -this
+
+# =========================================================================== fundamentals (§4.3)
+fundamentals:
+  fy_history_years: 5            # fiscal years kept in fundamentals.fy[]
+  concept_max_gap_days: 400      # a concept's latest fact must be within this of the newest instant
+  submissions_keep_recent: 40    # recent filings scanned for lag detection
+  forms: ["10-K", "10-Q", "10-K/A", "10-Q/A"]
+  fy_extra_forms: ["20-F", "40-F"]          # accepted for fiscal-year values only
+  duration_days:                 # duration buckets by (end - start) days; others dropped
+    Q: [80, 100]
+    H: [170, 200]
+    "9M": [260, 290]
+    FY: [350, 380]
+  ytd_prior_tolerance_days: 10   # prior-year YTD end must be 1y +/- 10 days from current YTD end
+  quarter_gap_days: [84, 98]     # contiguous quarters end 84–98 days apart
+  debt_formula_max_gap_days: 400 # a debt formula qualifies only within 400 d of the newest balance sheet
+  share_count_divergence_pct: 10 # EDGAR vs Yahoo market cap divergence -> share_count_ambiguous
+  tax_rate_bounds: [0.0, 0.35]   # effective tax rate clamp
+  default_tax_rate: 0.21         # used (and flagged) when the effective rate is unusable
+  cagr_years: 3
+  financials_sic: [6000, 6799]   # SIC range treated as sector_class=financials ...
+  reit_sic: [6798]               # ... except REITs
+
+# =========================================================================== valuation (§4.4)
+# The DCF grid follows the course method (reverse DCF first, NOPAT DCF with exit multiple).
+valuation:
+  discount_rates: [0.09, 0.10]
+  years: 5
+  growth_tiers: [0.00, 0.03, 0.06, 0.10, 0.15]
+  # Piecewise exit multiple: first [g_max, multiple] pair with g <= g_max wins
+  # (g<=0 -> 10x, <=4% -> 12x, <=7% -> 15x, <=11% -> 18x, else 22x).
+  exit_multiple_by_growth: [[0.00, 10], [0.04, 12], [0.07, 15], [0.11, 18], [1.00, 22]]
+  reverse_dcf_exit_multiple: 15
+  reverse_dcf_discount_rate: 0.10
+  reverse_dcf_growth_bounds: [-0.30, 0.60]  # bisection range for implied growth
+  default_tax_rate: 0.21         # must equal fundamentals.default_tax_rate
+  tv_share_flag_threshold: 0.9   # flag tv_gt_90 when PV(terminal value) / EV > 0.9
+  # ------------------------------------------------------------------------------------
+  # multiple_bands: [low, mid, high] multiples per sector. These are CONFIGURABLE ASSUMPTIONS
+  # chosen by the investor — NOT market data and NOT sourced statistics. Valuation cells built
+  # from them carry source id D:CFG:valuation.multiple_bands and are labeled as assumptions.
+  # Default sectors use P/E and EV/EBIT; financials use P/E and P/B.
+  # ------------------------------------------------------------------------------------
+  multiple_bands:
+    information_technology: {pe: [18, 25, 32], ev_ebit: [15, 20, 26]}
+    health_care: {pe: [14, 18, 23], ev_ebit: [12, 15, 19]}
+    financials: {pe: [9, 12, 15], p_b: [1.0, 1.5, 2.2]}
+    energy: {pe: [8, 11, 14], ev_ebit: [6, 8, 11]}
+    industrials: {pe: [15, 19, 24], ev_ebit: [12, 15, 19]}
+    consumer_discretionary: {pe: [15, 20, 26], ev_ebit: [12, 16, 21]}
+    consumer_staples: {pe: [17, 21, 25], ev_ebit: [14, 17, 20]}
+    utilities: {pe: [13, 16, 19], ev_ebit: [12, 15, 18]}
+    materials: {pe: [11, 15, 19], ev_ebit: [9, 12, 15]}
+    # Real estate: P/FFO is the preferred REIT multiple, but FFO is not computable from the
+    # standard EDGAR us-gaap tags this system reads, so P/E and EV/EBIT are used instead.
+    real_estate: {pe: [20, 30, 40], ev_ebit: [16, 20, 25]}
+    communication_services: {pe: [13, 18, 23], ev_ebit: [11, 15, 19]}
+
+# =========================================================================== screening (§4.7)
+screen:
+  weights: {quality: 0.4, valuation: 0.3, momentum: 0.3}   # must sum to 1.0
+  etf_top_n: 10                  # universe = top-N holdings of the sector ETF (Yahoo shows 10)
+  impute_percentile: 0.5         # missing component input -> neutral percentile (listed in `imputed`)
+  momentum_windows: ["6m", "12m"]  # RS vs SPY windows used in the momentum component
+
+phase3:
+  shortlist_size: 6              # screen.py shortlist per sector
+  finalists: 4                   # top N after the light wave go to the full wave
+  max_buys_per_sector: 3
+  max_expand_sectors: 2          # cap on CIO expand_sectors processed in Phase 3
+
+# =========================================================================== look-through (§4.6)
+lookthrough:
+  sum_tolerance_pct: 0.01        # sector weights must sum to 100 +/- this
+  top_n: 10                      # fund top-holdings used for concentration / overlap
+  overlap_basis: top10
+  renormalize_tolerance_pp: 1.0  # fund sector weights renormalized to 100 when off by more than this
+
+# =========================================================================== evidence score (§4.8, SPEC §5)
+evidence:
+  start: 10
+  floor: 1
+  null_required_penalty: 2       # per required role field that is null / missing
+  stale_penalty: 1               # per stale key figure
+  few_sources_threshold: 3       # fewer distinct source URLs than this ...
+  few_sources_penalty: 2         # ... costs this many points
+  missing_data_penalty: 1        # per missing_data item ...
+  missing_data_max: 4            # ... capped at this many points
+  price_max_trading_days: 3      # price figures older than 3 NYSE trading days are stale
+  fundamental_max_days_after_filing: 120  # fundamental figure stale when run_date - filed > 120 d
+  fundamental_filing_lag_days: 45         # filed date assumed = as_of + 45 d when `filed` is absent
+  macro_max_days: 45             # macro figures older than 45 calendar days are stale
+  failed_score: 1                # score of a failed (stub) report
+  # Required fields per role and sector class (dotted paths into the agent report). Each one
+  # that is null/missing costs null_required_penalty. Classes: default | financials | fund
+  # (fund lists only matter if a stock-only role is ever run on a fund).
+  required_fields:
+    fundamental:
+      # invalidation_price is optional for the fundamental lens (its kill condition is usually a
+      # business metric, stated in invalidation_rationale); rr uses the technical stop.
+      default: [extensions.valuation.fair_value_base, extensions.valuation.fair_value_low,
+                extensions.valuation.fair_value_high, conviction]
+      financials: [extensions.valuation.fair_value_base, extensions.valuation.fair_value_low,
+                   extensions.valuation.fair_value_high, conviction]
+      fund: [extensions.valuation.fair_value_base, extensions.valuation.fair_value_low,
+             extensions.valuation.fair_value_high, conviction]
+    technical:
+      default: [extensions.trend_regime, invalidation_price, extensions.invalidation_ref]
+      financials: [extensions.trend_regime, invalidation_price, extensions.invalidation_ref]
+      fund: [extensions.trend_regime, invalidation_price, extensions.invalidation_ref]
+    operator_ceo:
+      default: [extensions.management_quality.assessment, extensions.capital_allocation.assessment,
+                extensions.incentives.assessment, extensions.insider_activity.assessment,
+                extensions.guidance_vs_delivery.assessment]
+      financials: [extensions.management_quality.assessment, extensions.capital_allocation.assessment,
+                   extensions.incentives.assessment, extensions.insider_activity.assessment,
+                   extensions.guidance_vs_delivery.assessment]
+      fund: [extensions.management_quality.assessment, extensions.capital_allocation.assessment,
+             extensions.incentives.assessment, extensions.insider_activity.assessment,
+             extensions.guidance_vs_delivery.assessment]
+    industry_ops:
+      default: [extensions.supply_chain.assessment, extensions.capacity_backlog.assessment,
+                extensions.execution.assessment, extensions.unit_economics.assessment,
+                extensions.operational_moat.assessment]
+      # banks/insurers: supply chain and capacity/backlog are rarely meaningful
+      financials: [extensions.execution.assessment, extensions.unit_economics.assessment,
+                   extensions.operational_moat.assessment]
+      fund: [extensions.supply_chain.assessment, extensions.capacity_backlog.assessment,
+             extensions.execution.assessment, extensions.unit_economics.assessment,
+             extensions.operational_moat.assessment]
+    osint:
+      default: [extensions.signals]
+      financials: [extensions.signals]
+      fund: [extensions.signals]
+    devils_advocate:
+      default: [bear_case_price, verdict_on_thesis]
+      financials: [bear_case_price, verdict_on_thesis]
+      fund: [bear_case_price, verdict_on_thesis]
+    etf:
+      default: [expense_ratio_pct, top10_concentration_pct, action]
+      financials: [expense_ratio_pct, top10_concentration_pct, action]
+      fund: [expense_ratio_pct, top10_concentration_pct, action]
+
+# =========================================================================== aggregation (§4.10, SPEC §5)
+aggregation:
+  neutral_value: 5               # effective conviction of a neutral stance
+  da_adjust: {survives: 0, damaged: -1, broken: -3}   # Devil's Advocate verdict adjustment
+  unresolved_flag_roles: [osint] # high + must_address flags from these roles must be answered
+  mean_excluded_roles: [osint, devils_advocate]       # not part of the conviction mean
+  conviction_bounds: [1, 10]
+  round_dp: 1                    # agg_conviction / agg_evidence rounding (ROUND_HALF_UP)
+  failed_evidence: 1             # evidence counted for a failed specialist
+
+risk_reward:
+  round_dp: 2                    # rr rounding
+
+# =========================================================================== action rules (§4.10, SPEC §5)
+actions:
+  min_evidence: 5                # agg_evidence below this caps holdings at HOLD (insufficient evidence)
+  holding:
+    add_conviction: 7            # ADD: agg_conviction >= 7 ...
+    add_evidence: 6              # ... agg_evidence >= 6 ...
+    add_rr: 2.0                  # ... rr >= 2.0 (no rr test for funds), no unresolved high flag
+    sell_max: 3.0                # SELL: agg_conviction <= 3.0 (or DA "broken" not rebutted)
+    trim_below: 4.5              # TRIM: sell_max < agg_conviction < 4.5 (or limit breach)
+  candidate:
+    buy_conviction: 7            # BUY: agg_conviction >= 7 ...
+    buy_evidence: 6              # ... agg_evidence >= 6 ...
+    buy_rr: 2.5                  # ... rr >= 2.5, DA verdict != broken
+    block_on_unresolved_high_flag: false   # also require no unresolved high flag for BUY?
+  sector_breach_tolerance_pp: 1.0          # sector look-through may exceed its cap by this before TRIM
+
+# =========================================================================== sizing (§4.11)
+sizing:
+  trim_fraction: 0.33            # conviction TRIM sells a third of the position
+  breach_buffer_pp: 0.5          # breach TRIM targets cap - 0.5 pp
+  add_step_pp: 2.0               # ADD raises the weight by up to 2 pp
+  initial_position_pct: 3.0      # new BUY starting weight
+
+# =========================================================================== macro (§4.5)
+macro:
+  chg_3m_days: 91                # 3-month change: last observation <= latest - 91 calendar days
+  chg_12m_days: 365              # 12-month change: last observation <= latest - 365 calendar days
+  history_tail: 13               # observations kept in history_tail
+  # change: diff -> latest minus prior, in percentage points (rates, spreads, unemployment)
+  #         pct  -> percent change of a level
+  # yoy: true -> also compute the 12-month percent change (inflation indices)
+  series:
+    - {id: DFF, name: "Effective Federal Funds Rate", frequency: d, units: pct, change: diff, yoy: false}
+    - {id: DGS2, name: "2-Year Treasury Constant Maturity Yield", frequency: d, units: pct, change: diff, yoy: false}
+    - {id: DGS10, name: "10-Year Treasury Constant Maturity Yield", frequency: d, units: pct, change: diff, yoy: false}
+    - {id: T10Y2Y, name: "10-Year minus 2-Year Treasury Spread", frequency: d, units: pct, change: diff, yoy: false}
+    - {id: CPIAUCSL, name: "CPI, All Urban Consumers (SA)", frequency: m, units: index, change: pct, yoy: true}
+    - {id: CPILFESL, name: "Core CPI ex Food & Energy (SA)", frequency: m, units: index, change: pct, yoy: true}
+    - {id: UNRATE, name: "Unemployment Rate", frequency: m, units: pct, change: diff, yoy: false}
+    - {id: PAYEMS, name: "Nonfarm Payrolls", frequency: m, units: thousands_persons, change: pct, yoy: false}
+    - {id: INDPRO, name: "Industrial Production Index", frequency: m, units: index, change: pct, yoy: false}
+    - {id: DTWEXBGS, name: "Nominal Broad U.S. Dollar Index", frequency: d, units: index, change: pct, yoy: false}
+    - {id: DCOILWTICO, name: "WTI Crude Oil Spot Price", frequency: d, units: USD/bbl, change: pct, yoy: false}
+    - {id: BAMLH0A0HYM2, name: "ICE BofA US High Yield OAS", frequency: d, units: pct, change: diff, yoy: false}
+    - {id: VIXCLS, name: "CBOE Volatility Index (VIX)", frequency: d, units: index, change: pct, yoy: false}
+
+# =========================================================================== agent-output validation (§4.13)
+validation:
+  data_ref_tolerance_pct: 0.5    # |agent - data| <= 0.5% ...
+  data_ref_abs_tolerance: 0.000001   # ... or <= 1e-6 absolute when the data value is 0
+  level_match_tolerance_pct: 0.5 # technical invalidation must equal a computed level/stop +/- 0.5%
+  cell_mean_tolerance_pct: 0.5   # fair_value_x = mean(fv of cited valuation cells) +/- 0.5%
+  min_base_method_families: 2    # cells_base must span DCF + multiple families when both exist
+  probability_sum_tolerance: 0.01  # macro scenario probabilities sum to 1 +/- 0.01
+  sector_weight_sum_tolerance_pct: 0.5  # CIO sector weights sum to 100 +/- 0.5
+  current_weight_tolerance_pp: 0.5      # CIO current_sector_weights must match look-through +/- 0.5 pp
+  min_justification_words: 15    # rule deviations / overrides need >= 15 words of justification
+  max_quote_words: 25            # copyright guard: quoted spans longer than this are rejected
+  max_executive_summary_items: 5
+  max_top_risks: 5
+  word_limits:
+    thesis: 60
+    sector_rationale: 80         # sector_verdict verdicts[].rationale
+    sector_summary: 80           # sector_verdict summary
+    regime_summary: 80           # macro_view
+    scenario_description: 60     # macro_view scenarios[].description
+    technical_setup: 40          # technical extensions.setup
+    extension_assessment: 60     # operator_ceo / industry_ops assessments
+    flag_response_note: 60
+    cio_rationale: 150           # cio_allocation rationale
+    executive_summary_item: 40   # cio_final executive_summary[]
+    dissent_summary: 120         # cio_final
+
+# =========================================================================== ledger (§4.12)
+ledger:
+  min_age_days: 20               # recommendations younger than this are not scored
+
+# =========================================================================== calendar
+# NYSE full-day market holidays used by trading_days_between (price freshness).
+# Verify yearly against https://www.nyse.com/markets/hours-calendars and extend the list.
+market_holidays:
+  - "2025-01-01"   # New Year's Day
+  - "2025-01-09"   # National Day of Mourning (President Carter)
+  - "2025-01-20"   # Martin Luther King Jr. Day
+  - "2025-02-17"   # Washington's Birthday
+  - "2025-04-18"   # Good Friday
+  - "2025-05-26"   # Memorial Day
+  - "2025-06-19"   # Juneteenth
+  - "2025-07-04"   # Independence Day
+  - "2025-09-01"   # Labor Day
+  - "2025-11-27"   # Thanksgiving Day
+  - "2025-12-25"   # Christmas Day
+  - "2026-01-01"   # New Year's Day
+  - "2026-01-19"   # Martin Luther King Jr. Day
+  - "2026-02-16"   # Washington's Birthday
+  - "2026-04-03"   # Good Friday
+  - "2026-05-25"   # Memorial Day
+  - "2026-06-19"   # Juneteenth
+  - "2026-07-03"   # Independence Day (observed)
+  - "2026-09-07"   # Labor Day
+  - "2026-11-26"   # Thanksgiving Day
+  - "2026-12-25"   # Christmas Day
+  - "2027-01-01"   # New Year's Day
+  - "2027-01-18"   # Martin Luther King Jr. Day
+  - "2027-02-15"   # Washington's Birthday
+  - "2027-03-26"   # Good Friday
+  - "2027-05-31"   # Memorial Day
+  - "2027-06-18"   # Juneteenth (observed)
+  - "2027-07-05"   # Independence Day (observed)
+  - "2027-09-06"   # Labor Day
+  - "2027-11-25"   # Thanksgiving Day
+  - "2027-12-24"   # Christmas Day (observed)

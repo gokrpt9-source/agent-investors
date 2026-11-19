@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/macro",
+  "title": "macro/v1 (phase1/macro.json)",
+  "description": "fetch_macro.py output (DESIGN 4.5). Series live under 'series' keyed by FRED id.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "urn:agent-investors:common_defs#/$defs/envelope"
+    }
+  ],
+  "required": [
+    "schema",
+    "series"
+  ],
+  "properties": {
+    "schema": {
+      "const": "macro/v1"
+    },
+    "series": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Z0-9_]+$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/series_entry"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "series_entry": {
+      "type": "object",
+      "required": [
+        "latest",
+        "observation_date",
+        "frequency",
+        "chg_3m",
+        "chg_12m",
+        "yoy_pct",
+        "history_tail"
+      ],
+      "properties": {
+        "latest": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "observation_date": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/date_or_null"
+        },
+        "frequency": {
+          "enum": [
+            "d",
+            "w",
+            "m"
+          ]
+        },
+        "chg_3m": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "chg_12m": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact"
+        },
+        "yoy_pct": {
+          "$ref": "urn:agent-investors:common_defs#/$defs/fact_or_null"
+        },
+        "history_tail": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "$ref": "urn:agent-investors:common_defs#/$defs/date"
+              },
+              {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            ],
+            "items": false,
+            "minItems": 2
+          }
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "units": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+ "0": {
+  "cik_str": 9900001,
+  "ticker": "ZZTTM",
+  "title": "ZZ Synthetic TTM Corp"
+ },
+ "1": {
+  "cik_str": 9900002,
+  "ticker": "ZZQ4",
+  "title": "ZZ Synthetic Quarters Inc"
+ },
+ "2": {
+  "cik_str": 9900003,
+  "ticker": "ZZNEG",
+  "title": "ZZ Synthetic Loss Co"
+ }
+}

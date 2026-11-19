@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/manifest",
+  "title": "Run manifest (runs/<run_id>/manifest.json)",
+  "description": "committee.py run state (DESIGN 2). Only the identity keys are pinned; step state is free-form and owned by committee.py.",
+  "type": "object",
+  "required": [
+    "run_id",
+    "mode",
+    "as_of",
+    "config_sha256"
+  ],
+  "properties": {
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "run_dir": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "object",
+      "description": "Run mode flags written by committee.py init.",
+      "required": ["dry_run", "quick", "sectors", "holding"],
+      "additionalProperties": false,
+      "properties": {
+        "dry_run": {"type": "boolean"},
+        "quick": {"type": "boolean"},
+        "sectors": {"type": ["array", "null"], "items": {"$ref": "urn:agent-investors:common_defs#/$defs/sector_key"}},
+        "holding": {"type": ["string", "null"]}
+      }
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "created_at": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/timestamp"
+    },
+    "sectors": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/sector_key"
+      }
+    },
+    "holding": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker_or_null"
+    },
+    "config_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      ]
+    },
+    "steps": {
+      "type": [
+        "object",
+        "array"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

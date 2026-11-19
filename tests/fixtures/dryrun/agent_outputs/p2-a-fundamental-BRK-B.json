@@ -1,0 +1,179 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p2-a-fundamental-BRK-B",
+ "agent_role": "fundamental",
+ "sector": "financials",
+ "ticker": "BRK-B",
+ "as_of": "${AS_OF}",
+ "thesis": "Berkshire Hathaway is a insurance-led conglomerate with rail, energy and industrial units with ROE of 11.5% TTM on reported equity. Against the configured valuation grid the base fair value is 389.50 versus a 502.65 close (-22.5%), so the stock already prices in more than the filings support.",
+ "stance": "neutral",
+ "strengths": [
+  {
+   "point": "Durable low-cost insurance float and a decentralised operating model.",
+   "evidence_refs": [
+    "D:SEC:BRK-B:CF"
+   ]
+  },
+  {
+   "point": "P/E of 12.5x on TTM earnings with ROE of 11.5% TTM on reported equity.",
+   "evidence_refs": [
+    "D:SEC:BRK-B:CF",
+    "D:PX:BRK-B"
+   ]
+  }
+ ],
+ "risks": [
+  {
+   "point": "Key risk: succession and the difficulty of deploying a very large cash pile.",
+   "evidence_refs": [
+    "D:SEC:BRK-B:CF"
+   ],
+   "severity": "medium"
+  },
+  {
+   "point": "Base fair value sits 22.5% below the last close.",
+   "evidence_refs": [
+    "D:VAL:BRK-B"
+   ],
+   "severity": "high"
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Revenue TTM",
+   "value": 384687000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:BRK-B:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json#/ttm/revenue",
+   "filed": "2026-08-10"
+  },
+  {
+   "name": "Net income TTM",
+   "value": 85768000000.0,
+   "unit": "USD",
+   "source_id": "D:SEC:BRK-B:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json#/ttm/net_income",
+   "filed": "2026-08-10"
+  },
+  {
+   "name": "ROE",
+   "value": 11.467689962696047,
+   "unit": "pct",
+   "source_id": "D:SEC:BRK-B:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json#/valuation/roe_pct",
+   "filed": "2026-08-10"
+  },
+  {
+   "name": "P/B",
+   "value": 1.4387129172681206,
+   "unit": "x",
+   "source_id": "D:SEC:BRK-B:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json#/valuation/p_b",
+   "filed": "2026-08-10"
+  },
+  {
+   "name": "P/E",
+   "value": 12.545795377693311,
+   "unit": "x",
+   "source_id": "D:SEC:BRK-B:CF",
+   "as_of": "2026-06-30",
+   "kind": "fundamental",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json#/valuation/pe",
+   "filed": "2026-08-10"
+  },
+  {
+   "name": "Last close",
+   "value": 502.65,
+   "unit": "USD/share",
+   "source_id": "D:PX:BRK-B",
+   "as_of": "2026-10-02",
+   "kind": "price",
+   "data_ref": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json#/price"
+  }
+ ],
+ "invalidation_price": null,
+ "invalidation_rationale": "The fundamental kill condition is a business metric, not a price: a sustained decline in TTM operating income or a cut to capital returns would break the thesis.",
+ "conviction": 6,
+ "conviction_reason": "Quality is clear but the valuation grid gives no edge.",
+ "self_evidence": 7,
+ "self_evidence_reason": "TTM, FY history and the valuation grid were available from SEC companyfacts.",
+ "missing_data": [
+  "From fundamentals data: shares: no current EDGAR share count (newest dei:EntityCommonStockSharesOutstanding is from 2011-04-29)",
+  "Reverse DCF implied growth (not computable for this sector class)"
+ ],
+ "red_flags": [],
+ "flag_responses": [],
+ "sources": [
+  {
+   "id": "D:SEC:BRK-B:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001067983.json",
+   "title": "SEC EDGAR XBRL companyfacts — BRK-B (CIK 0001067983)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json"
+  },
+  {
+   "id": "D:VAL:BRK-B",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001067983.json",
+   "title": "Valuation grid for BRK-B derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/valuation_BRK-B.json"
+  },
+  {
+   "id": "D:PX:BRK-B",
+   "url": "https://finance.yahoo.com/quote/BRK-B/history/",
+   "title": "Yahoo Finance price history (yfinance) — BRK-B",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json"
+  },
+  {
+   "id": "D:SEC:BRK-B:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0001067983.json",
+   "title": "SEC EDGAR submissions — BRK-B (CIK 0001067983)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase2/data/fundamentals_BRK-B.json"
+  }
+ ],
+ "extensions": {
+  "valuation": {
+   "fair_value_low": 280.8,
+   "fair_value_base": 389.5,
+   "fair_value_high": 529.52,
+   "method": "Configured P/E and P/B bands (financials: DCF cells have limited meaning) plus one FCF DCF cell.",
+   "input_refs": [
+    "${RUN_DIR}/phase2/data/valuation_BRK-B.json#/cells",
+    "${RUN_DIR}/phase2/data/valuation_BRK-B.json#/reverse_dcf"
+   ],
+   "cells_low": [
+    "PE-low",
+    "PB-low",
+    "DCF-FCF-r10-g00"
+   ],
+   "cells_base": [
+    "PE-mid",
+    "PB-mid",
+    "DCF-FCF-r10-g03"
+   ],
+   "cells_high": [
+    "PE-high",
+    "PB-high",
+    "DCF-FCF-r09-g06"
+   ],
+   "reverse_dcf_implied_growth_pct": null
+  },
+  "quality_notes": "Berkshire Hathaway: ROE of 11.5% TTM on reported equity; moat rests on its low-cost insurance float and a decentralised operating model.",
+  "balance_sheet_notes": "Balance-sheet leverage is assessed through capital ratios that SEC companyfacts does not expose; equity and earnings figures are taken as reported."
+ }
+}

@@ -1,0 +1,128 @@
+{
+  "_comment": "Illustrative example for schema documentation only. All numbers, dates and claims are placeholders, not real data or research.",
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p4-cio",
+  "agent_role": "cio",
+  "mode": "reconciliation",
+  "as_of": "2026-10-03",
+  "executive_summary": [
+    "Bullet.",
+    "Bullet.",
+    "Bullet.",
+    "Bullet.",
+    "Bullet.",
+    "Bullet."
+  ],
+  "reconciliation": [
+    {
+      "topic": "Reduce financials vs JPM HOLD verdict",
+      "phase1_position": "Reduce financials from 25% to 23% of the portfolio.",
+      "findings": "The financials sector head rated JPM HOLD on rules; conviction 6.1 and evidence 7.0.",
+      "resolution": "Trim JPM by the amount needed to reach the 23% target; thesis unchanged."
+    },
+    {
+      "topic": "Expand health care",
+      "phase1_position": "Raise health care from 3.5% to 8%.",
+      "findings": "Phase 3 produced one BUY (MRK) with rr 2.7 and DA verdict survives.",
+      "resolution": "Initiate MRK at the standard 3% starter size; remaining gap stays in cash."
+    }
+  ],
+  "final_target_sector_weights": {
+    "information_technology": 24.0,
+    "communication_services": 7.5,
+    "consumer_discretionary": 6.5,
+    "consumer_staples": 18.0,
+    "financials": 23.0,
+    "health_care": 8.0,
+    "industrials": 5.0,
+    "energy": 1.0,
+    "utilities": 0.5,
+    "materials": 0.5,
+    "real_estate": 0.5,
+    "cash": 5.0,
+    "unclassified": 0.5
+  },
+  "final_actions": [
+    {
+      "ticker": "KO",
+      "action": "HOLD",
+      "source_verdict_action": "HOLD",
+      "override": false
+    },
+    {
+      "ticker": "PG",
+      "action": "HOLD",
+      "source_verdict_action": "HOLD",
+      "override": false
+    },
+    {
+      "ticker": "JPM",
+      "action": "TRIM",
+      "source_verdict_action": "HOLD",
+      "override": true,
+      "override_justification": "Financials sit two points above the CIO target and JPM is the largest single position in the sector, so a partial trim is the cleanest way to close the gap.",
+      "note": "Size set by portfolio.py breach sizing."
+    },
+    {
+      "ticker": "BRK-B",
+      "action": "HOLD",
+      "source_verdict_action": "HOLD",
+      "override": false
+    },
+    {
+      "ticker": "QQQ",
+      "action": "HOLD",
+      "source_verdict_action": "HOLD",
+      "override": false
+    },
+    {
+      "ticker": "SPMO",
+      "action": "HOLD",
+      "source_verdict_action": "HOLD",
+      "override": false
+    },
+    {
+      "ticker": "MRK",
+      "action": "BUY",
+      "source_verdict_action": "BUY",
+      "override": false
+    }
+  ],
+  "constraint_overrides": [
+    {
+      "sector": "information_technology",
+      "macro_bound": "max",
+      "macro_value": 22,
+      "cio_target": 24.0,
+      "justification": "IT exposure comes almost entirely from the QQQ and SPMO core funds; cutting it by two points would mean selling a core fund at a taxable gain, so the excess is tolerated and reviewed next run."
+    }
+  ],
+  "top_risks": [
+    "A growth scare would hit financials and the IT-heavy funds together.",
+    "KO's open tax case could pressure dividend coverage.",
+    "Fund overlap concentrates exposure in a handful of mega-cap names."
+  ],
+  "dissent_summary": "The operator lens argued for higher KO conviction; the technical lens flagged weak relative strength in staples. The DA damaged KO's thesis but did not break it. No dissent changed a final action.",
+  "conviction": 6,
+  "conviction_reason": "Most findings agree with the phase 1 direction; sizing is conservative.",
+  "sources": [
+    {
+      "id": "D:SEC:KO:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase2/data/fundamentals_KO.json"
+    },
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    }
+  ],
+  "missing_data": []
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "evidence/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-03",
+  "sources": [],
+  "missing_data": [],
+  "flags": [],
+  "reports": {
+    "phase3/reports/fundamental_ABBV.json": {
+      "agent_role": "fundamental",
+      "ticker": "ABBV",
+      "status": "ok",
+      "score": 8,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    },
+    "phase3/reports/technical_ABBV.json": {
+      "agent_role": "technical",
+      "ticker": "ABBV",
+      "status": "ok",
+      "score": 9,
+      "start": 10,
+      "floor": 1,
+      "deductions": []
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-10-03_1015",
+  "order_id": "p3-da-MRK",
+  "agent_role": "devils_advocate",
+  "sector": "health_care",
+  "ticker": "MRK",
+  "as_of": "2026-10-03",
+  "attacks": [
+    {
+      "target_claim": "The pipeline replaces the patent-cliff revenue within five years.",
+      "target_agent": "fundamental",
+      "counter_evidence": "Late-stage readouts slipped twice in the filings window; replacement revenue may arrive after the cliff.",
+      "source_ids": [
+        "D:SEC:MRK:CF",
+        "W1"
+      ],
+      "severity": "high"
+    },
+    {
+      "target_claim": "The range floor at S1 is reliable support.",
+      "target_agent": "technical",
+      "counter_evidence": "Negative 12-month relative strength versus SPY shows persistent distribution; range floors fail more often in that setting.",
+      "source_ids": [
+        "D:PX:MRK"
+      ],
+      "severity": "medium"
+    }
+  ],
+  "bear_case_price": 82.0,
+  "bear_case_ref": "DCF-NOPAT-r10-g00",
+  "kill_criteria": [
+    "A late-stage oncology readout fails its primary endpoint.",
+    "Guidance assumes a steeper post-exclusivity revenue decline than the base case.",
+    "A daily close below STOP1."
+  ],
+  "verdict_on_thesis": "survives",
+  "verdict_reason": "Patent-cliff risk is real but the base case already assumes a revenue step-down.",
+  "self_evidence": 7,
+  "self_evidence_reason": "Read all specialist reports and the data files; tax reserve detail not found.",
+  "missing_data": [
+    "Expected dates for the next two late-stage oncology readouts"
+  ],
+  "red_flags": [],
+  "flag_responses": [
+    {
+      "flag_ref": "osint:F1",
+      "status": "confirmed",
+      "note": "The case remains open; filings describe it as a material uncertain tax position.",
+      "source_ids": [
+        "W1"
+      ]
+    }
+  ],
+  "key_figures": [
+    {
+      "name": "Low-case DCF fair value",
+      "value": 58.4,
+      "unit": "USD/share",
+      "source_id": "D:VAL:MRK",
+      "as_of": "2026-10-02",
+      "kind": "other",
+      "data_ref": "runs/2026-10-03_1015/phase2/data/valuation_MRK.json#/cells/0/fv_per_share"
+    }
+  ],
+  "sources": [
+    {
+      "id": "D:SEC:MRK:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000310158.json",
+      "title": "SEC EDGAR companyfacts - MRK (CIK 310158)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase2/data/fundamentals_MRK.json"
+    },
+    {
+      "id": "D:VAL:MRK",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000310158.json",
+      "title": "Valuation grid for MRK derived from SEC companyfacts",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase2/data/valuation_MRK.json"
+    },
+    {
+      "id": "D:PX:MRK",
+      "url": "https://finance.yahoo.com/quote/MRK/history/",
+      "title": "MRK daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset",
+      "path": "runs/2026-10-03_1015/phase1/prices.json"
+    },
+    {
+      "id": "W1",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000310158&type=10-Q",
+      "title": "MRK - Form 10-Q filings (SEC EDGAR)",
+      "accessed": "2026-10-03",
+      "kind": "web"
+    }
+  ]
+}

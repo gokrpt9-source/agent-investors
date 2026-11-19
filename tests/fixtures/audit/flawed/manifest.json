@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-10-02_0900",
+  "created_at": "2026-10-02T08:00:00+00:00",
+  "as_of": "2026-10-02",
+  "status": "done",
+  "config_sha256": {
+    "portfolio.yaml": "7223bedd768aa323b63693bc5953b39b29423b40e561a0318f7c17e33ada5562"
+  },
+  "holdings": [
+    {
+      "ticker": "AAA",
+      "asset_type": "stock",
+      "sector": "information_technology",
+      "position_pct": 10.0
+    },
+    {
+      "ticker": "BBB",
+      "asset_type": "stock",
+      "sector": "health_care",
+      "position_pct": 6.0
+    },
+    {
+      "ticker": "FND",
+      "asset_type": "fund",
+      "sector": "funds",
+      "position_pct": 80.0
+    }
+  ]
+}

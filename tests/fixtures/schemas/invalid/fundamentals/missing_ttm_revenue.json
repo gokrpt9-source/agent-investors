@@ -1,0 +1,470 @@
+{
+  "schema": "fundamentals/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [
+    {
+      "id": "D:SEC:KO:CF",
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
+      "title": "SEC EDGAR companyfacts - The Coca-Cola Company (CIK 21344)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    },
+    {
+      "id": "D:PX:KO",
+      "url": "https://finance.yahoo.com/quote/KO/history/",
+      "title": "KO daily price history (yfinance)",
+      "accessed": "2026-10-03",
+      "kind": "dataset"
+    }
+  ],
+  "missing_data": [],
+  "flags": [],
+  "ticker": "KO",
+  "cik": 21344,
+  "coverage": "sec",
+  "entity": {
+    "name": "COCA COLA CO",
+    "sic": "2080",
+    "sic_description": "Beverages",
+    "fiscal_year_end": "1231",
+    "sector_class": "default"
+  },
+  "companyfacts_latest": {
+    "form": "10-Q",
+    "filed": "2026-07-28",
+    "period_end": "2026-06-27",
+    "accn": "0000021344-26-000040"
+  },
+  "submissions_latest": {
+    "form": "10-Q",
+    "filed": "2026-07-28",
+    "report_date": "2026-06-27",
+    "accn": "0000021344-26-000040"
+  },
+  "lag_detected": false,
+  "price": {
+    "value": 69.85,
+    "unit": "USD/share",
+    "source_id": "D:PX:KO",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "shares": {
+    "value": 4300000000.0,
+    "unit": "shares",
+    "source_id": "D:SEC:KO:CF",
+    "as_of": "2026-06-27",
+    "kind": "fundamental",
+    "na_reason": null,
+    "filed": "2026-07-28"
+  },
+  "market_cap": {
+    "value": 300350000000.0,
+    "unit": "USD",
+    "source_id": "D:PX:KO",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "ttm": {
+    "gross_profit": {
+      "value": 29400000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "operating_income": {
+      "value": 14274000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "net_income": {
+      "value": 10800000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "ocf": {
+      "value": 12200000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "capex": {
+      "value": 2100000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "fcf": {
+      "value": 10100000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "da": {
+      "value": 1100000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "ebitda": {
+      "value": 15374000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "pretax_income": {
+      "value": 13400000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "income_tax": {
+      "value": 2600000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    }
+  },
+  "fy": [
+    {
+      "fy": 2025,
+      "period_end": "2025-12-31",
+      "revenue": {
+        "value": 47100000000.0,
+        "unit": "USD",
+        "source_id": "D:SEC:KO:CF",
+        "as_of": "2026-06-27",
+        "kind": "fundamental",
+        "na_reason": null,
+        "filed": "2026-07-28"
+      },
+      "operating_income": {
+        "value": 13900000000.0,
+        "unit": "USD",
+        "source_id": "D:SEC:KO:CF",
+        "as_of": "2026-06-27",
+        "kind": "fundamental",
+        "na_reason": null,
+        "filed": "2026-07-28"
+      },
+      "net_income": {
+        "value": 10600000000.0,
+        "unit": "USD",
+        "source_id": "D:SEC:KO:CF",
+        "as_of": "2026-06-27",
+        "kind": "fundamental",
+        "na_reason": null,
+        "filed": "2026-07-28"
+      },
+      "ocf": {
+        "value": 11900000000.0,
+        "unit": "USD",
+        "source_id": "D:SEC:KO:CF",
+        "as_of": "2026-06-27",
+        "kind": "fundamental",
+        "na_reason": null,
+        "filed": "2026-07-28"
+      },
+      "capex": {
+        "value": 2000000000.0,
+        "unit": "USD",
+        "source_id": "D:SEC:KO:CF",
+        "as_of": "2026-06-27",
+        "kind": "fundamental",
+        "na_reason": null,
+        "filed": "2026-07-28"
+      },
+      "fcf": {
+        "value": 9900000000.0,
+        "unit": "USD",
+        "source_id": "D:SEC:KO:CF",
+        "as_of": "2026-06-27",
+        "kind": "fundamental",
+        "na_reason": null,
+        "filed": "2026-07-28"
+      }
+    }
+  ],
+  "balance": {
+    "cash": {
+      "value": 10500000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "st_investments": {
+      "value": 3200000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "total_debt": {
+      "value": 46000000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "net_debt": {
+      "value": 32300000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "equity": {
+      "value": 26500000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "goodwill": {
+      "value": 18500000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "intangibles": {
+      "value": 13900000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    }
+  },
+  "margins_pct": {
+    "gross": {
+      "value": 61.4,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "operating": {
+      "value": 29.8,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "net": {
+      "value": 22.5,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "fcf": {
+      "value": 21.1,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    }
+  },
+  "growth_pct": {
+    "revenue_cagr_3y": {
+      "value": 4.1,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "ni_cagr_3y": {
+      "value": 3.2,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "fcf_cagr_3y": {
+      "value": 1.8,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "revenue_yoy_ttm": {
+      "value": 2.4,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    }
+  },
+  "valuation": {
+    "ev": {
+      "value": 332650000000.0,
+      "unit": "USD",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "pe": {
+      "value": 27.8,
+      "unit": "x",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "ev_ebit": {
+      "value": 23.3,
+      "unit": "x",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "ev_sales": {
+      "value": 6.9,
+      "unit": "x",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "fcf_yield_pct": {
+      "value": 3.4,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "net_debt_ebitda": {
+      "value": 2.1,
+      "unit": "x",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "p_b": {
+      "value": 11.3,
+      "unit": "x",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "p_tbv": {
+      "value": null,
+      "unit": "x",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-10-02",
+      "kind": "fundamental",
+      "na_reason": "negative_denominator"
+    },
+    "roe_pct": {
+      "value": 40.8,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "roic_pct": {
+      "value": 18.4,
+      "unit": "pct",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    },
+    "tax_rate_used": {
+      "value": 0.194,
+      "unit": "x",
+      "source_id": "D:SEC:KO:CF",
+      "as_of": "2026-06-27",
+      "kind": "fundamental",
+      "na_reason": null,
+      "filed": "2026-07-28"
+    }
+  },
+  "tag_map": {
+    "revenue": {
+      "tag": "Revenues",
+      "stitched": false
+    }
+  }
+}

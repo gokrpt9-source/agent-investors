@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agent-investors:data/work_order",
+  "title": "Work order front matter (orders/<order_id>.md)",
+  "description": "YAML front matter of a work order (DESIGN 2.1). Validate the dict before dumping, or convert date objects to strings first (yaml.safe_load parses unquoted dates).",
+  "type": "object",
+  "required": [
+    "order_id",
+    "run_id",
+    "step",
+    "agent_type",
+    "agent_role",
+    "mode",
+    "ticker",
+    "sector",
+    "sector_class",
+    "attempt",
+    "as_of",
+    "inputs",
+    "output",
+    "schema",
+    "seed_sources",
+    "required_fields",
+    "prior_errors",
+    "word_limits"
+  ],
+  "properties": {
+    "order_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/order_id"
+    },
+    "run_id": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/run_id"
+    },
+    "step": {
+      "type": "string",
+      "pattern": "^p[0-9]\\.[a-z_]+$"
+    },
+    "agent_type": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/agent_type"
+    },
+    "agent_role": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/role_key"
+    },
+    "mode": {
+      "enum": [
+        "allocation",
+        "reconciliation",
+        "phase2",
+        "phase3",
+        null
+      ]
+    },
+    "ticker": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/ticker_or_null"
+    },
+    "sector": {
+      "anyOf": [
+        {
+          "$ref": "urn:agent-investors:common_defs#/$defs/sector_key"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sector_class": {
+      "enum": [
+        "default",
+        "financials",
+        "fund",
+        null
+      ]
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "as_of": {
+      "$ref": "urn:agent-investors:common_defs#/$defs/date"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "purpose"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seed_sources": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:agent-investors:common_defs#/$defs/source"
+      }
+    },
+    "required_fields": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "prior_errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "word_limits": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    }
+  },
+  "additionalProperties": true
+}

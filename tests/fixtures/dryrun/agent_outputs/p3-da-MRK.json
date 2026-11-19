@@ -1,0 +1,114 @@
+{
+ "schema_version": "1.0",
+ "run_id": "${RUN_ID}",
+ "order_id": "p3-da-MRK",
+ "agent_role": "devils_advocate",
+ "sector": "health_care",
+ "ticker": "MRK",
+ "as_of": "${AS_OF}",
+ "attacks": [
+  {
+   "target_claim": "The base fair value of 106.98 offers protection.",
+   "target_agent": "fundamental",
+   "counter_evidence": "The DCF-NOPAT-r10-g00 cell values the shares at 60.39; the base case leans on growth or multiples that the zero-growth cells do not support.",
+   "source_ids": [
+    "D:VAL:MRK"
+   ],
+   "severity": "medium"
+  },
+  {
+   "target_claim": "The technical structure supports the position.",
+   "target_agent": "technical",
+   "counter_evidence": "Twelve-month relative strength versus SPY is -19.3 pp; support levels fail more often while the benchmark keeps outperforming.",
+   "source_ids": [
+    "D:PX:MRK",
+    "D:PX:SPY"
+   ],
+   "severity": "medium"
+  },
+  {
+   "target_claim": "Exclusivity on the lead oncology product expires within the forecast horizon; replacement revenue depends on pipeline readouts.",
+   "target_agent": "osint",
+   "counter_evidence": "The flag stands: the pipeline must replace a large revenue stream within the forecast horizon, which the zero-growth DCF cells already reflect.",
+   "source_ids": [
+    "D:SEC:MRK:CF"
+   ],
+   "severity": "medium"
+  }
+ ],
+ "bear_case_price": 60.39,
+ "bear_case_ref": "DCF-NOPAT-r10-g00",
+ "kill_criteria": [
+  "Two consecutive quarters of declining TTM operating income in SEC filings.",
+  "A daily close below STOP1 at 85.41."
+ ],
+ "verdict_on_thesis": "survives",
+ "verdict_reason": "The patent-expiry flag is real and confirmed, but even the zero-growth cells cover most of the price, so the thesis survives.",
+ "self_evidence": 7,
+ "self_evidence_reason": "Read every specialist report and the data files listed in the order.",
+ "missing_data": [],
+ "red_flags": [],
+ "flag_responses": [
+  {
+   "flag_ref": "osint:F1",
+   "status": "confirmed",
+   "note": "Confirmed: the exclusivity date is disclosed in the annual report and replacement revenue is not yet visible in reported figures.",
+   "source_ids": [
+    "D:SEC:MRK:SUB"
+   ]
+  }
+ ],
+ "key_figures": [
+  {
+   "name": "Bear-case fair value",
+   "value": 60.39,
+   "unit": "USD/share",
+   "source_id": "D:VAL:MRK",
+   "as_of": "2026-10-02",
+   "kind": "other",
+   "data_ref": "${RUN_DIR}/phase3/data/valuation_MRK.json#/cells/5/fv_per_share"
+  }
+ ],
+ "sources": [
+  {
+   "id": "D:VAL:MRK",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000310158.json",
+   "title": "Valuation grid for MRK derived from SEC companyfacts",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/valuation_MRK.json"
+  },
+  {
+   "id": "D:PX:MRK",
+   "url": "https://finance.yahoo.com/quote/MRK/history/",
+   "title": "Yahoo Finance price history (yfinance) — MRK",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_MRK.csv"
+  },
+  {
+   "id": "D:SEC:MRK:CF",
+   "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000310158.json",
+   "title": "SEC EDGAR XBRL companyfacts — MRK (CIK 0000310158)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_MRK.json"
+  },
+  {
+   "id": "D:SEC:MRK:SUB",
+   "url": "https://data.sec.gov/submissions/CIK0000310158.json",
+   "title": "SEC EDGAR submissions — MRK (CIK 0000310158)",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/phase3/data/fundamentals_MRK.json"
+  },
+  {
+   "id": "D:PX:SPY",
+   "url": "https://finance.yahoo.com/quote/SPY/history/",
+   "title": "Yahoo Finance price history (yfinance) — SPY",
+   "accessed": "2026-10-02",
+   "kind": "dataset",
+   "path": "${RUN_DIR}/.cache/prices/prices_SPY.csv"
+  }
+ ]
+}

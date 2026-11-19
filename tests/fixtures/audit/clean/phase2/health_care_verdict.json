@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "agent_role": "sector_head",
+  "phase": 2,
+  "sector": "health_care",
+  "summary": "BBB is fairly valued and no limit is breached, so it is held.",
+  "verdicts": [
+    {
+      "ticker": "BBB",
+      "kind": "holding",
+      "action": "HOLD",
+      "rule_action": "HOLD",
+      "rationale": "Fairly valued, no limit breached, nothing in the news changes the picture."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "NVDA",
+ "longName": "NVIDIA Corporation",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "sector": "Technology",
+ "marketCap": 4300000000000.0
+}

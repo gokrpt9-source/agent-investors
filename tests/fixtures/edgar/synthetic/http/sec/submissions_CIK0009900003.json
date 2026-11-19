@@ -1,0 +1,34 @@
+{
+ "cik": "0009900003",
+ "entityType": "operating",
+ "sic": "3571",
+ "sicDescription": "Electronic Computers",
+ "name": "ZZ SYNTHETIC LOSS CO",
+ "tickers": [],
+ "exchanges": [],
+ "fiscalYearEnd": "1231",
+ "filings": {
+  "recent": {
+   "accessionNumber": [
+    "0009900003-26-900001",
+    "0009900003-26-000001"
+   ],
+   "filingDate": [
+    "2026-09-15",
+    "2026-03-02"
+   ],
+   "reportDate": [
+    null,
+    "2025-12-31"
+   ],
+   "form": [
+    "4",
+    "10-K"
+   ],
+   "primaryDocument": [
+    "form4.xml",
+    "zzneg-20251231.htm"
+   ]
+  }
+ }
+}

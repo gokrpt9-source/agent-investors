@@ -1,0 +1,16 @@
+{
+ "_comment": "SYNTHETIC dry-run fixture data (not real market data)",
+ "symbol": "PG",
+ "longName": "The Procter & Gamble Company",
+ "shortName": "The Procter & Gamble Company",
+ "quoteType": "EQUITY",
+ "currency": "USD",
+ "exchange": "NYQ",
+ "currentPrice": 128.4,
+ "regularMarketPrice": 128.4,
+ "sector": "Consumer Defensive",
+ "industry": "Household & Personal Products",
+ "sharesOutstanding": 2342000000,
+ "impliedSharesOutstanding": 2342000000,
+ "marketCap": 300712800000
+}

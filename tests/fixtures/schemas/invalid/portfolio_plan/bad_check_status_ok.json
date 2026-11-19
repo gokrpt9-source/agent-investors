@@ -1,0 +1,78 @@
+{
+  "schema": "portfolio_plan/v1",
+  "generated_at": "2026-10-03T10:15:00+00:00",
+  "as_of": "2026-10-02",
+  "sources": [],
+  "missing_data": [],
+  "flags": [],
+  "base_currency": "ILS",
+  "fx_usdils": {
+    "value": 3.7,
+    "unit": "ILS/USD",
+    "source_id": "D:PX:ILS=X",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "total_value_usd": {
+    "value": 250000.0,
+    "unit": "USD",
+    "source_id": "D:PX:KO",
+    "as_of": "2026-10-02",
+    "kind": "price",
+    "na_reason": null
+  },
+  "cash": {
+    "current_pct": 5.0,
+    "target_pct": 5.0,
+    "post_pct": 5.2
+  },
+  "positions": [
+    {
+      "ticker": "JPM",
+      "asset_type": "stock",
+      "sector": "financials",
+      "action": "TRIM",
+      "action_source": "cio_override",
+      "price": 300.0,
+      "shares_cur": 80,
+      "value_usd_cur": 24000.0,
+      "weight_cur_pct": 9.6,
+      "weight_tgt_pct": 8.0,
+      "trade": {
+        "side": "SELL",
+        "shares": 13,
+        "value_usd": 3900.0,
+        "value_ils": 14430.0
+      },
+      "dropped_reason": null,
+      "tax": {
+        "applicable": true,
+        "est_gain_usd": 1200.0,
+        "est_tax_usd": 300.0,
+        "note": "Israeli tax applies to real (CPI/FX-adjusted) gains."
+      }
+    }
+  ],
+  "sectors": [
+    {
+      "sector": "financials",
+      "cur_lookthrough_pct": 25.0,
+      "post_lookthrough_pct": 23.4,
+      "target_pct": 23.0,
+      "max_pct": 35.0,
+      "gap_pp": 0.4,
+      "breach": false
+    }
+  ],
+  "constraint_checks": [
+    {
+      "check": "max_sector_pct",
+      "status": "ok",
+      "detail": "all <= 35%"
+    }
+  ],
+  "notes": [
+    "Shares rounded down to whole shares."
+  ]
+}
